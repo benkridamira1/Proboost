@@ -21,6 +21,10 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { JobDetailsComponent } from './job-details/job-details.component';
+import { WelcomeQuizComponent } from './welcome-quiz/welcome-quiz.component';
+import { QuestionComponent } from './question/question.component';
+import { HttpClientModule } from '@angular/common/http';
+import { ChangeBgDirective } from './change-bg.directive';
 
 @NgModule({
   declarations: [
@@ -42,11 +46,15 @@ import { JobDetailsComponent } from './job-details/job-details.component';
     HomeComponent,
     AboutComponent,
     ContactComponent,
-    JobDetailsComponent
+    JobDetailsComponent,
+    WelcomeQuizComponent,
+    QuestionComponent,
+    ChangeBgDirective
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
