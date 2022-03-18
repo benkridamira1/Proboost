@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Offre } from '../models/offre';
+import { ListOffreService } from '../services/list-offre/list-offre.service';
 
 @Component({
   selector: 'app-find-a-job',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FindAJobComponent implements OnInit {
 
-  constructor() { }
+  offres !: Offre[];
+
+
+  constructor(private listOffreService : ListOffreService) { 
+    
+  }
 
   ngOnInit(): void {
+
+    this.listOffreService.listeOffre().subscribe(prods => {
+      console.log(prods);
+      this.offres = prods;
+      });
+      
   }
 
 }
