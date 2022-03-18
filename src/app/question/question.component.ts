@@ -2,8 +2,9 @@ import { Component, OnInit,Inject, Renderer2 } from '@angular/core';
 import { interval } from 'rxjs';
 import { QuestionService } from '../quizService/question.service';
 import Swal from 'sweetalert2';
-import { DOCUMENT } from '@angular/common';
+import {  DOCUMENT } from '@angular/common';
 import {Router} from "@angular/router"
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-question',
@@ -35,7 +36,7 @@ export class QuestionComponent implements OnInit {
     script.text = `
     {
       $(window).blur(function() {
-        location.replace("");
+        document.getElementById("cheated").click();
     });
 
     $(document).ready(function() {
@@ -70,6 +71,16 @@ export class QuestionComponent implements OnInit {
   {
     this.quizCompleted=true;
     this.stopcounter();
+    let date=new Date();
+    this.finalscore=((this.score/this.questionlist.length)*100).toFixed(1).toString();
+    let record= 
+    {
+     user:"AngularUser",
+     date:date.toUTCString(),
+     qcm:{id:1},
+     score:this.finalscore
+    }
+    this.questionService.saveRecords(record).subscribe();
   }
 
 
@@ -101,12 +112,15 @@ export class QuestionComponent implements OnInit {
 
      if(this.currentquestion+1>=this.questionlist.length)
      {
+      
        setTimeout(()=>{
+        this.showremain=true;
+        this.finishconfirmation();
          this.finalscore=((this.score/this.questionlist.length)*100).toFixed(1).toString();
          this.quizCompleted=true;
-         this.showremain=true;
          this.stopcounter();
-       },1000)
+         this.finishquiz();
+       },3000)
        
      }
   }
@@ -131,6 +145,8 @@ export class QuestionComponent implements OnInit {
          this.quizCompleted=true;
          this.showremain=true;
          this.stopcounter();
+         this.finishconfirmation();
+         this.finishquiz();
      }
 
      else
@@ -166,8 +182,8 @@ export class QuestionComponent implements OnInit {
   }
 
 
-  tinyAlert() {
-    Swal.fire('Hey there!');
+  finishconfirmation() {
+    Swal.fire('Finished!', 'Quiz finished successfully.', 'success');
   }
   cheaterNotification() {
     Swal.fire('Cheater', 'You changed the window so the Quiz stopped!', 'error');
@@ -180,7 +196,7 @@ export class QuestionComponent implements OnInit {
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Yes, go ahead.',
-      cancelButtonText: 'No, let me think',
+      cancelButtonText: 'No, dont finish the quiz',
     }).then((result) => {
       if (result.value) {
         setTimeout(()=>{
