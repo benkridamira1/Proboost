@@ -4,7 +4,7 @@ import { QuestionService } from '../quizService/question.service';
 import Swal from 'sweetalert2';
 import {  DOCUMENT } from '@angular/common';
 import {Router} from "@angular/router"
-import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-question',
@@ -24,6 +24,7 @@ export class QuestionComponent implements OnInit {
   public showremain:boolean=false;
   public gored:boolean=false;
   public quizlength:number=0;
+  public numscore:number=0;
   constructor(private questionService:QuestionService, private _renderer2: Renderer2,
     @Inject(DOCUMENT) private _document: Document,private router:Router) { }
 
@@ -73,6 +74,7 @@ export class QuestionComponent implements OnInit {
     this.stopcounter();
     let date=new Date();
     this.finalscore=((this.score/this.questionlist.length)*100).toFixed(1).toString();
+    this.numscore=Number(this.finalscore);
     let record= 
     {
      user:"AngularUser",
@@ -115,12 +117,16 @@ export class QuestionComponent implements OnInit {
       
        setTimeout(()=>{
         this.showremain=true;
-        this.finishconfirmation();
          this.finalscore=((this.score/this.questionlist.length)*100).toFixed(1).toString();
          this.quizCompleted=true;
          this.stopcounter();
          this.finishquiz();
+         
        },3000)
+       setTimeout(()=>{
+        this.finishconfirmation();
+       },1000)
+       
        
      }
   }
@@ -187,6 +193,16 @@ export class QuestionComponent implements OnInit {
   }
   cheaterNotification() {
     Swal.fire('Cheater', 'You changed the window so the Quiz stopped!', 'error');
+    let cheater= 
+    {
+      user:"AngularUser",
+      date:new Date().toUTCString(),
+      qcm:
+      {
+        id:1
+      }
+    }
+    this.questionService.saveCheater(cheater).subscribe();
     this.router.navigate([""]);
   }
   alertConfirmation() {

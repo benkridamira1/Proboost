@@ -15,4 +15,9 @@ export class QuestionService {
   {
      return this.http.post<any>("http://localhost:3000/records/save",record)
   }
+
+  saveCheater(cheater:object)
+  {
+     return this.http.post<any>("http://localhost:3000/cheaters/save",cheater)
+  }
 }

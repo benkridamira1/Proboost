@@ -25,6 +25,7 @@ import { WelcomeQuizComponent } from './welcome-quiz/welcome-quiz.component';
 import { QuestionComponent } from './question/question.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ChangeBgDirective } from './change-bg.directive';
+import { NgCircleProgressModule } from 'ng-circle-progress';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,17 @@ import { ChangeBgDirective } from './change-bg.directive';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    NgCircleProgressModule.forRoot({
+      "backgroundColor": "#F1F1F1",
+      "backgroundPadding": -18,
+      "radius": 60,
+      "toFixed": 2,
+      "outerStrokeWidth": 10,
+      "outerStrokeColor": "#FF6347",
+      "innerStrokeColor": "#32CD32",
+      "innerStrokeWidth": 1,
+      "startFromZero": true})
   ],
   providers: [],
   bootstrap: [AppComponent]

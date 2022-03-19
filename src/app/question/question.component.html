@@ -13,14 +13,14 @@
 <div class="card">
     <div class="d-flex justify-content-around py-3">
       <div class="score">
-          <h5>{{score}} Points</h5>
+          <h5> {{questionlist[0]?.qcm.titre}}  </h5>
       </div>
       <ng-container *ngIf="!showremain">
       <div class="question-remain">
-          <span>Question {{currentquestion+1}} Of {{questionlist.length}} </span>
+          <span>Question {{currentquestion}} Of {{questionlist.length}} Completed</span>
       </div>
     </ng-container>
-    <ng-container *ngIf="showremain">
+    <ng-container *ngIf="showremain || progress=='100'">
         <div class="question-remain" >
             <span>All The {{questionlist.length}} Questions Are Completed ! </span>
         </div>
@@ -49,7 +49,7 @@
       </div>
       <div class="question mt-3">
           <div class="card unselectable">
-              <h3>{{questionlist[currentquestion]?.question}}</h3> 
+              <h4>{{questionlist[currentquestion]?.question}}</h4> 
           </div>
       </div>
 
@@ -75,9 +75,24 @@
         <div class="row d-flex justify-content-center" >
      
        <div class="result text-center col-md-6 col-sm-12" style="text-align: center;">
-           <h3>You Finished The Test.</h3>
-           <h3>Score : {{finalscore}} %</h3>
-           <h3>Your Results Are Submitted For Review By The Recruter</h3>
+
+        <ng-container *ngIf="numscore<70">
+        <div style="margin-top:10%;">
+            <circle-progress [percent]="numscore"  [space]="-10" [radius]="100" [outerStrokeWidth]="10"
+              [innerStrokeWidth]="10" [outerStrokeColor]="'#ce2100'" [innerStrokeColor]="'black'" [animation]="true"
+              [animationDuration]="1000" [subtitle]="'Failed'"></circle-progress>
+          </div>
+        </ng-container>
+
+
+        <ng-container *ngIf="numscore>=70">
+            <div style="margin-top:10%;">
+                <circle-progress [percent]="numscore"  [space]="-10" [radius]="100" [outerStrokeWidth]="10"
+                  [innerStrokeWidth]="10" [outerStrokeColor]="'green'" [innerStrokeColor]="'white'" [animation]="true"
+                  [animationDuration]="1000" [subtitle]="'Sucess'"></circle-progress>
+              </div>
+            </ng-container>
+           <h6>Your Results Are Submitted For Review By The Recruter</h6>
        </div>
         </div>
     </ng-container>
