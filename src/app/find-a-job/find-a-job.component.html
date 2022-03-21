@@ -40,16 +40,12 @@
                             <!-- single one -->
                             <div class="single-listing">
                                <div class="small-section-tittle2">
-                                     <h4>Job Category</h4>
+                                     <h4>Recruteur </h4>
                                </div>
                                 <!-- Select job items start -->
                                 <div class="select-job-items2">
-                                    <select name="select">
-                                        <option value="">All Category</option>
-                                        <option value="">Category 1</option>
-                                        <option value="">Category 2</option>
-                                        <option value="">Category 3</option>
-                                        <option value="">Category 4</option>
+                                    <select name="select"   (change)="search($event,'Recruteur')">
+                                        <option value="{{nomRecruteur}}"   *ngFor=" let nomRecruteur  of recruteurs">  {{nomRecruteur}} </option>
                                     </select>
                                 </div>
                                 <!--  Select job items End-->
@@ -58,20 +54,10 @@
                                     <div class="small-section-tittle2">
                                         <h4>Job Type</h4>
                                     </div>
-                                    <label class="container">Full Time
-                                        <input type="checkbox" >
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label class="container">Part Time
-                                        <input type="checkbox" checked="checked active">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label class="container">Remote
-                                        <input type="checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label class="container">Freelance
-                                        <input type="checkbox">
+                                  
+                                    <label class="container"    *ngFor="let job of jobsType "> {{job}}
+                                        <input type="checkbox"  (change)="search($event,'jobtype')"  value="{{job}}">
+
                                         <span class="checkmark"></span>
                                     </label>
                                 </div>
@@ -84,12 +70,9 @@
                                </div>
                                 <!-- Select job items start -->
                                 <div class="select-job-items2">
-                                    <select name="select">
-                                        <option value="">Anywhere</option>
-                                        <option value="">Category 1</option>
-                                        <option value="">Category 2</option>
-                                        <option value="">Category 3</option>
-                                        <option value="">Category 4</option>
+                                    <select name="select"  (change)="search($event,'Location')"  >
+                            
+                                        <option value="{{location}}"   *ngFor=" let location of locations">  {{location}} </option>
                                     </select>
                                 </div>
                                 <!--  Select job items End-->
@@ -98,22 +81,13 @@
                                     <div class="small-section-tittle2">
                                         <h4>Experience</h4>
                                     </div>
-                                    <label class="container">1-2 Years
-                                        <input type="checkbox" >
+                                  
+                                
+                                    <label class="container"  *ngFor="let experience of experiences " > {{experience}} Years
+                                        <input type="checkbox"  (change)="search($event,'experiencetype')"  value="{{experience}}">
                                         <span class="checkmark"></span>
                                     </label>
-                                    <label class="container">2-3 Years
-                                        <input type="checkbox" checked="checked active">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label class="container">3-6 Years
-                                        <input type="checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label class="container">6-more..
-                                        <input type="checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
+                            
                                 </div>
                                 <!-- select-Categories End -->
                             </div>

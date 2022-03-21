@@ -45,7 +45,8 @@ import { JobDetailsComponent } from './job-details/job-details.component';
     HomeComponent,
     AboutComponent,
     ContactComponent,
-    JobDetailsComponent
+    JobDetailsComponent,
+  
   ],
   imports: [
     BrowserModule,

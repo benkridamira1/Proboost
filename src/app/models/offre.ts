@@ -1,3 +1,5 @@
+import { Recruteur } from "./recruteur";
+
 export class Offre{
 
 
@@ -16,6 +18,8 @@ export class Offre{
      experience !: number ;
 
      salary !: number  ;
+
+     recruteur !: Recruteur ;
 
 
      

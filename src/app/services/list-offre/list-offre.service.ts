@@ -12,6 +12,7 @@ headers: new HttpHeaders( {'Content-Type': 'application/json'} )
 })
 export class ListOffreService {
   apiURL: string = 'http://localhost:3000/offre/all';
+  
 
   constructor(private http : HttpClient) { }
 
@@ -19,9 +20,11 @@ export class ListOffreService {
   listeOffre(): Observable<Offre[]> {
     return this.http.get<Offre[]>(this.apiURL);
     }
-    
+  
 
 }
+
+
 
 
 
