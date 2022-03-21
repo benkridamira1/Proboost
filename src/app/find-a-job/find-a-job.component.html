@@ -40,16 +40,12 @@
                             <!-- single one -->
                             <div class="single-listing">
                                <div class="small-section-tittle2">
-                                     <h4>Job Category</h4>
+                                     <h4>Recruteur </h4>
                                </div>
                                 <!-- Select job items start -->
                                 <div class="select-job-items2">
-                                    <select name="select">
-                                        <option value="">All Category</option>
-                                        <option value="">Category 1</option>
-                                        <option value="">Category 2</option>
-                                        <option value="">Category 3</option>
-                                        <option value="">Category 4</option>
+                                    <select name="select"   (change)="search($event,'Recruteur')">
+                                        <option value="{{nomRecruteur}}"   *ngFor=" let nomRecruteur  of recruteurs">  {{nomRecruteur}} </option>
                                     </select>
                                 </div>
                                 <!--  Select job items End-->
@@ -58,20 +54,10 @@
                                     <div class="small-section-tittle2">
                                         <h4>Job Type</h4>
                                     </div>
-                                    <label class="container">Full Time
-                                        <input type="checkbox" >
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label class="container">Part Time
-                                        <input type="checkbox" checked="checked active">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label class="container">Remote
-                                        <input type="checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label class="container">Freelance
-                                        <input type="checkbox">
+                                  
+                                    <label class="container"    *ngFor="let job of jobsType "> {{job}}
+                                        <input type="checkbox"  (change)="search($event,'jobtype')"  value="{{job}}">
+
                                         <span class="checkmark"></span>
                                     </label>
                                 </div>
@@ -84,12 +70,9 @@
                                </div>
                                 <!-- Select job items start -->
                                 <div class="select-job-items2">
-                                    <select name="select">
-                                        <option value="">Anywhere</option>
-                                        <option value="">Category 1</option>
-                                        <option value="">Category 2</option>
-                                        <option value="">Category 3</option>
-                                        <option value="">Category 4</option>
+                                    <select name="select"  (change)="search($event,'Location')"  >
+                            
+                                        <option value="{{location}}"   *ngFor=" let location of locations">  {{location}} </option>
                                     </select>
                                 </div>
                                 <!--  Select job items End-->
@@ -98,22 +81,13 @@
                                     <div class="small-section-tittle2">
                                         <h4>Experience</h4>
                                     </div>
-                                    <label class="container">1-2 Years
-                                        <input type="checkbox" >
+                                  
+                                
+                                    <label class="container"  *ngFor="let experience of experiences " > {{experience}} Years
+                                        <input type="checkbox"  (change)="search($event,'experiencetype')"  value="{{experience}}">
                                         <span class="checkmark"></span>
                                     </label>
-                                    <label class="container">2-3 Years
-                                        <input type="checkbox" checked="checked active">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label class="container">3-6 Years
-                                        <input type="checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
-                                    <label class="container">6-more..
-                                        <input type="checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
+                            
                                 </div>
                                 <!-- select-Categories End -->
                             </div>
@@ -125,29 +99,26 @@
                                         <h4>Posted Within</h4>
                                     </div>
                                     <label class="container">Any
-                                        <input type="checkbox" >
+                                        <input type="checkbox"     (change)="serachTodayOffers($event)">
                                         <span class="checkmark"></span>
                                     </label>
                                     <label class="container">Today
-                                        <input type="checkbox" checked="checked active">
+                                        <input type="checkbox" checked="checked active"  (change)="serachTodayOffers($event)">
                                         <span class="checkmark"></span>
                                     </label>
                                     <label class="container">Last 2 days
-                                        <input type="checkbox">
+                                        <input type="checkbox"   (change)="serachTwodayOffers($event)">
                                         <span class="checkmark"></span>
                                     </label>
-                                    <label class="container">Last 3 days
-                                        <input type="checkbox">
+                                    <label class="container">This week
+                                        <input type="checkbox"   (change)="serachThisWeekOffers($event)">
                                         <span class="checkmark"></span>
                                     </label>
-                                    <label class="container">Last 5 days
-                                        <input type="checkbox">
+                                    <label class="container">This Month
+                                        <input type="checkbox"  (change)="serachThisMonthOffers($event)" >
                                         <span class="checkmark"></span>
                                     </label>
-                                    <label class="container">Last 10 days
-                                        <input type="checkbox">
-                                        <span class="checkmark"></span>
-                                    </label>
+                                   
                                 </div>
                                 <!-- select-Categories End -->
                             </div>
@@ -184,180 +155,35 @@
                         <!-- Featured_job_start -->
                         <section class="featured-job-area">
                             <div class="container">
-                                <!-- Count of Job list Start -->
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="count-job mb-35">
-                                            <span>39, 782 Jobs found</span>
-                                            <!-- Select job items start -->
-                                            <div class="select-job-items">
-                                                <span>Sort by</span>
-                                                <select name="select">
-                                                    <option value="">None</option>
-                                                    <option value="">job list</option>
-                                                    <option value="">job list</option>
-                                                    <option value="">job list</option>
-                                                </select>
-                                            </div>
-                                            <!--  Select job items End-->
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Count of Job list End -->
+                          
+                             
+    <!--   _______________________test get Amira _____________________________________ -->
                                 <!-- single-job-content -->
-                                <div class="single-job-items mb-30">
-                                    <div class="job-items">
-                                        <div class="company-img">
-                                            <a href="#"><img src="assets/img/icon/job-list1.png" alt=""></a>
-                                        </div>
-                                        <div class="job-tittle job-tittle2">
-                                            <a href="#">
-                                                <h4>Digital Marketer</h4>
-                                            </a>
-                                            <ul>
-                                                <li>Creative Agency</li>
-                                                <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                                                <li>$3500 - $4000</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="items-link items-link2 f-right">
-                                        <a href="job_details.html">Full Time</a>
-                                        <span>7 hours ago</span>
-                                    </div>
-                                </div>
-                                <!-- single-job-content -->
-                                <div class="single-job-items mb-30">
-                                    <div class="job-items">
-                                        <div class="company-img">
-                                            <a href="#"><img src="assets/img/icon/job-list2.png" alt=""></a>
-                                        </div>
-                                        <div class="job-tittle job-tittle2">
-                                            <a href="#">
-                                                <h4>Digital Marketer</h4>
-                                            </a>
-                                            <ul>
-                                                <li>Creative Agency</li>
-                                                <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                                                <li>$3500 - $4000</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="items-link items-link2 f-right">
-                                        <a href="job_details.html">Full Time</a>
-                                        <span>7 hours ago</span>
-                                    </div>
-                                </div>
-                                <!-- single-job-content -->
-                                <div class="single-job-items mb-30">
-                                    <div class="job-items">
-                                        <div class="company-img">
-                                            <a href="#"><img src="assets/img/icon/job-list3.png" alt=""></a>
-                                        </div>
-                                        <div class="job-tittle job-tittle2">
-                                            <a href="#">
-                                                <h4>Digital Marketer</h4>
-                                            </a>
-                                            <ul>
-                                                <li>Creative Agency</li>
-                                                <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                                                <li>$3500 - $4000</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="items-link items-link2 f-right">
-                                        <a href="job_details.html">Full Time</a>
-                                        <span>7 hours ago</span>
-                                    </div>
-                                </div>
-                                <!-- single-job-content -->
-                                <div class="single-job-items mb-30">
+                                <div class="single-job-items mb-30"   *ngFor="let offre of offres ">
                                     <div class="job-items">
                                         <div class="company-img">
                                             <a href="#"><img src="assets/img/icon/job-list4.png" alt=""></a>
                                         </div>
                                         <div class="job-tittle job-tittle2">
                                             <a href="#">
-                                                <h4>Digital Marketer</h4>
+                                                <h4> {{offre.title}} </h4>
                                             </a>
                                             <ul>
-                                                <li>Creative Agency</li>
-                                                <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                                                <li>$3500 - $4000</li>
+                                                <li> {{offre.recruteur.nom}} </li>
+                                                <li><i class="fas fa-map-marker-alt"></i> {{offre.location}} </li>
+                                                <li> {{offre. salary}}  $</li>
                                             </ul>
                                         </div>
                                     </div>
                                     <div class="items-link items-link2 f-right">
-                                        <a href="job_details.html">Full Time</a>
-                                        <span>7 hours ago</span>
+                                        <a href="job_details.html"> {{offre.jobeType}}  </a>
+                                        <span> {{offre.postedDate | date:'dd/MM/yyyy'}} </span>
                                     </div>
                                 </div>
-                                <!-- single-job-content -->
-                                <div class="single-job-items mb-30">
-                                    <div class="job-items">
-                                        <div class="company-img">
-                                            <a href="#"><img src="assets/img/icon/job-list1.png" alt=""></a>
-                                        </div>
-                                        <div class="job-tittle job-tittle2">
-                                            <a href="#">
-                                                <h4>Digital Marketer</h4>
-                                            </a>
-                                            <ul>
-                                                <li>Creative Agency</li>
-                                                <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                                                <li>$3500 - $4000</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="items-link items-link2 f-right">
-                                        <a href="job_details.html">Full Time</a>
-                                        <span>7 hours ago</span>
-                                    </div>
-                                </div>
-                                <!-- single-job-content -->
-                                <div class="single-job-items mb-30">
-                                    <div class="job-items">
-                                        <div class="company-img">
-                                            <a href="#"><img src="assets/img/icon/job-list3.png" alt=""></a>
-                                        </div>
-                                        <div class="job-tittle job-tittle2">
-                                            <a href="#">
-                                                <h4>Digital Marketer</h4>
-                                            </a>
-                                            <ul>
-                                                <li>Creative Agency</li>
-                                                <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                                                <li>$3500 - $4000</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="items-link items-link2 f-right">
-                                        <a href="job_details.html">Full Time</a>
-                                        <span>7 hours ago</span>
-                                    </div>
-                                </div>
-                                <!-- single-job-content -->
-                                <div class="single-job-items mb-30">
-                                    <div class="job-items">
-                                        <div class="company-img">
-                                            <a href="#"><img src="assets/img/icon/job-list4.png" alt=""></a>
-                                        </div>
-                                        <div class="job-tittle job-tittle2">
-                                            <a href="#">
-                                                <h4>Digital Marketer</h4>
-                                            </a>
-                                            <ul>
-                                                <li>Creative Agency</li>
-                                                <li><i class="fas fa-map-marker-alt"></i>Athens, Greece</li>
-                                                <li>$3500 - $4000</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="items-link items-link2 f-right">
-                                        <a href="job_details.html">Full Time</a>
-                                        <span>7 hours ago</span>
-                                    </div>
-                                </div>
+
+                               
+                            
+
                             </div>
                         </section>
                         <!-- Featured_job_end -->
