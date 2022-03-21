@@ -7,8 +7,8 @@ export class QuestionService {
 
   constructor(private http:HttpClient) { }
 
-  getQuestions(){
-    return this.http.get<any>("http://localhost:3000/question/getall");
+  getQuestions(id:number){
+    return this.http.get<any>("http://localhost:3000/question/getbyqcm/"+id);
   }
 
   saveRecords(record:object)

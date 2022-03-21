@@ -26,6 +26,9 @@ import { QuestionComponent } from './question/question.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ChangeBgDirective } from './change-bg.directive';
 import { NgCircleProgressModule } from 'ng-circle-progress';
+import { CreatequizComponent } from './createquiz/createquiz.component';
+import { FormsModule } from '@angular/forms';
+import { VideochatComponent } from './videochat/videochat.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +53,9 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
     JobDetailsComponent,
     WelcomeQuizComponent,
     QuestionComponent,
-    ChangeBgDirective
+    ChangeBgDirective,
+    CreatequizComponent,
+    VideochatComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +70,8 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
       "outerStrokeColor": "#FF6347",
       "innerStrokeColor": "#32CD32",
       "innerStrokeWidth": 1,
-      "startFromZero": true})
+      "startFromZero": true}),
+      FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

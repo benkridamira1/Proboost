@@ -60,7 +60,7 @@ export class QuestionComponent implements OnInit {
 
   getquestions()
   {
-    this.questionService.getQuestions()
+    this.questionService.getQuestions(1)
     .subscribe(res =>{
       this.questionlist=res;
       this.quizlength=res.length;
