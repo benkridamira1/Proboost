@@ -12,13 +12,13 @@ export class FindAJobComponent implements OnInit {
   offres : Offre[] = [];
   tempOffres : Offre[] = [];
   offresRecherche  !: Offre[];
-  jobsType :any [] = ["tous"];
+  jobsType :any [] = ["All"];
 
-  recruteurs : any[] = ["tous"];
+  recruteurs : any[] = ["All"];
 
-  locations  : any[] = ["tous"];
+  locations  : any[] = ["All"];
 
-  experiences  : any[] = ["tous"];
+  experiences  : any[] = ["All"];
 
 
   constructor(private listOffreService : ListOffreService) { 
@@ -73,7 +73,7 @@ search(event :any , name : string){
   
 
  
-if (event.target.value =='tous') {
+if (event.target.value =='All') {
  
   this.offres = this.tempOffres;
 }
