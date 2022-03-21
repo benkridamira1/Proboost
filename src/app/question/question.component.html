@@ -1,0 +1,110 @@
+<style>
+    .unselectable {
+        -webkit-user-select: none;
+        -webkit-touch-callout: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+</style>
+
+
+<div class="container mt-5">
+<div class="card">
+    <div class="d-flex justify-content-around py-3">
+      <div class="score">
+          <h5> {{questionlist[0]?.qcm.titre}}  </h5>
+      </div>
+      <ng-container *ngIf="!showremain">
+      <div class="question-remain">
+          <span>Question {{currentquestion}} Of {{questionlist.length}} Completed</span>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="showremain || progress=='100'">
+        <div class="question-remain" >
+            <span>All The {{questionlist.length}} Questions Are Completed ! </span>
+        </div>
+      </ng-container>
+      <ng-container>
+      <div class="timer" *ngIf="!gored">
+          {{counter}} Seconds
+      </div>
+    </ng-container>
+    <ng-container>
+        <div class="timer" *ngIf="gored" style="color: red;">
+            {{counter}} Seconds
+        </div>
+      </ng-container>
+    
+         
+
+    </div>
+
+    <ng-container *ngIf="!quizCompleted">
+    <div class="progress mt-3">
+        <div class="progress-bar progress-bar-striped bg-danger" role="progressbar" [ngStyle]="{'width':progress+'%'}" aria-valuenow="40"
+        aria-valuemin="0" aria-valuemax="100" >
+          {{progress}}% Answered
+        </div>
+      </div>
+      <div class="question mt-3">
+          <div class="card unselectable">
+              <h4>{{questionlist[currentquestion]?.question}}</h4> 
+          </div>
+      </div>
+
+     <div class="options" class="list-group">
+         <ol *ngFor="let answer of questionlist[currentquestion]?.answers">
+             <li (click)="answercorrection(currentquestion,answer)">
+                 <div appChangeBg class="car list-group-item list-group-item-action unselectable" >
+                     {{answer.text}}
+                 </div>
+             </li>
+             
+         </ol>
+     </div>
+
+     <div class="d-flex justify-content-center">
+       
+       <button class="btn" (click)="alertConfirmation()">Finish Now !</button>
+       <input  type="checkbox" (click)="cheaterNotification()" id="cheated" hidden="true" style="display: none;">
+     </div>
+    </ng-container>
+
+    <ng-container *ngIf="quizCompleted">
+        <div class="row d-flex justify-content-center" >
+     
+       <div class="result text-center col-md-6 col-sm-12" style="text-align: center;">
+
+        <ng-container *ngIf="numscore<70">
+        <div style="margin-top:10%;">
+            <circle-progress [percent]="numscore"  [space]="-10" [radius]="100" [outerStrokeWidth]="10"
+              [innerStrokeWidth]="10" [outerStrokeColor]="'#ce2100'" [innerStrokeColor]="'black'" [animation]="true"
+              [animationDuration]="1000" [subtitle]="'Failed'"></circle-progress>
+          </div>
+        </ng-container>
+
+
+        <ng-container *ngIf="numscore>=70">
+            <div style="margin-top:10%;">
+                <circle-progress [percent]="numscore"  [space]="-10" [radius]="100" [outerStrokeWidth]="10"
+                  [innerStrokeWidth]="10" [outerStrokeColor]="'green'" [innerStrokeColor]="'white'" [animation]="true"
+                  [animationDuration]="1000" [subtitle]="'Sucess'"></circle-progress>
+              </div>
+            </ng-container>
+           <h6>Your Results Are Submitted For Review By The Recruter</h6>
+       </div>
+        </div>
+    </ng-container>
+
+
+
+</div>
+    </div>
+
+
+    <script type='text/javascript'>
+    
+        console.log("hi")
+    </script>
+    

@@ -24,6 +24,14 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { JobDetailsComponent } from './job-details/job-details.component';
+import { WelcomeQuizComponent } from './welcome-quiz/welcome-quiz.component';
+import { QuestionComponent } from './question/question.component';
+
+import { ChangeBgDirective } from './change-bg.directive';
+import { NgCircleProgressModule } from 'ng-circle-progress';
+import { CreatequizComponent } from './createquiz/createquiz.component';
+import { FormsModule } from '@angular/forms';
+import { VideochatComponent } from './videochat/videochat.component';
 
 @NgModule({
   declarations: [
@@ -46,12 +54,29 @@ import { JobDetailsComponent } from './job-details/job-details.component';
     AboutComponent,
     ContactComponent,
     JobDetailsComponent,
+    WelcomeQuizComponent,
+    QuestionComponent,
+    ChangeBgDirective,
+    CreatequizComponent,
+    VideochatComponent
   
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    NgCircleProgressModule.forRoot({
+      "backgroundColor": "#F1F1F1",
+      "backgroundPadding": -18,
+      "radius": 60,
+      "toFixed": 2,
+      "outerStrokeWidth": 10,
+      "outerStrokeColor": "#FF6347",
+      "innerStrokeColor": "#32CD32",
+      "innerStrokeWidth": 1,
+      "startFromZero": true}),
+      FormsModule
+   
   
   ],
   providers: [],

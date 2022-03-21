@@ -7,6 +7,10 @@ import { ContactComponent} from './contact/contact.component';
 
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { WelcomeQuizComponent } from './welcome-quiz/welcome-quiz.component';
+import { QuestionComponent } from './question/question.component';
+import { CreatequizComponent } from './createquiz/createquiz.component';
+import { VideochatComponent } from './videochat/videochat.component';
 
 
 
@@ -16,8 +20,12 @@ const routes: Routes = [
   {path: '' ,  component: HomeComponent},
   {path: 'About' ,  component: AboutComponent},
    {path: 'Contact' ,  component: ContactComponent},
-   {path: 'job_details' ,  component: JobDetailsComponent}
-
+   {path: 'job_details' ,  component: JobDetailsComponent},
+   {path: 'Quiz', component: WelcomeQuizComponent},
+   {path : 'Question', component:QuestionComponent},
+   {path: 'Createquiz',component:CreatequizComponent},
+   {path: "Videochat",component:VideochatComponent}
+  
 
 ];
 

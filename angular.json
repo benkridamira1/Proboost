@@ -59,7 +59,8 @@
               "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
-              "namedChunks": true
+              "namedChunks": true,
+              "inlineStyleLanguage": "scss"
             }
           },
           "defaultConfiguration": "production"
@@ -94,9 +95,11 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/sweetalert2/src/sweetalert2.scss"
             ],
-            "scripts": []
+            "scripts": [
+            ]
           }
         }
       }
