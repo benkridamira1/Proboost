@@ -1,3 +1,4 @@
+import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Offre } from '../models/offre';
 import { ListOffreService } from '../services/list-offre/list-offre.service';
@@ -20,6 +21,7 @@ export class FindAJobComponent implements OnInit {
 
   experiences  : any[] = ["All"];
 
+  offersbydate : any[] = ["All"];
 
   constructor(private listOffreService : ListOffreService) { 
     
@@ -52,14 +54,9 @@ export class FindAJobComponent implements OnInit {
      }
   
     });
-   // console.log( this.recruteurs);
-   //console.log(this.jobsType);
-    //console.log( this.locations);
-
-    console.log( this.experiences);
+ 
+    
       });
-
-      // this.JobType=this.listOffreService.listJobType(); 
 
   
     
@@ -73,13 +70,13 @@ search(event :any , name : string){
   
 
  
-if (event.target.value =='All') {
+if (event.target.value =='All' ) {
  
   this.offres = this.tempOffres;
 }
 else {
 
-  if (name == 'Recruteur') {
+  if (name == 'Recruteur'  ) {
     let data = this.offres.filter(x => x.recruteur.nom == event.target.value) ;
      this.offres = [...data];
 }
@@ -126,5 +123,93 @@ if (name == 'experiencetype' ) {
  
   
 }
+
+
+
+serachTodayOffers(event : any  ){
+
+
+
+  
+      if( event.target.value != ''  && event.target.checked   ) {
+        let currentDay=new Date().getDate();
+        let currentMonth=new Date().getMonth();
+        let currentYear=new Date().getFullYear()
+      
+        console.log("today  job");
+     
+        let data = this.offres.filter(x => new Date(x.postedDate).getMonth()==currentMonth   && new Date(x.postedDate).getDate()==currentDay && new Date(x.postedDate).getFullYear()==currentYear ) ;
+    
+        this.offres = [...data];
+      } 
+      else{ this.offres = this.tempOffres;}
+   
+  
+ 
+  
+
+}
+
+
+
+serachTwodayOffers(event : any){
+
+  if (event.target.value != ''  && event.target.checked) {
+    console.log("two days");
+    let currentDate =new Date() ;
+    let currentDay=new Date().getDate();
+    let yesterday =new Date().getDate()-1  ;
+    let currentMonth=new Date().getMonth();
+    let currentYear=new Date().getFullYear()
+  
+
+ 
+    let data = this.offres.filter(x => new Date(x.postedDate).getMonth()==currentMonth   &&(new Date(x.postedDate).getDate()==currentDay || new Date(x.postedDate).getDate() ==yesterday)  && new Date(x.postedDate).getFullYear()==currentYear ) ;
+
+    this.offres = [...data];
+  }
+  else {this.offres = this.tempOffres;}
+}
+
+
+serachThisWeekOffers(event : any){
+
+  if (event.target.value != ''  && event.target.checked) {
+    console.log("this week");
+ 
+    let currentDay=new Date().getDate();
+
+    let currentMonth=new Date().getMonth();
+    let currentYear=new Date().getFullYear();
+  
+
+ 
+    let data = this.offres.filter(x => new Date(x.postedDate).getMonth()==currentMonth   &&( currentDay - new Date(x.postedDate).getDate()  < 7 )  && new Date(x.postedDate).getFullYear()==currentYear ) ;
+
+    this.offres = [...data];
+  }
+  else {this.offres = this.tempOffres;}
+}
+
+
+serachThisMonthOffers(event : any){
+
+  if (event.target.value != ''  && event.target.checked) {
+    console.log("this month");
+ 
+    let currentDay=new Date().getDate();
+
+    let currentMonth=new Date().getMonth();
+    let currentYear=new Date().getFullYear();
+  
+
+ 
+    let data = this.offres.filter(x => new Date(x.postedDate).getMonth()==currentMonth  && new Date(x.postedDate).getFullYear()==currentYear ) ;
+
+    this.offres = [...data];
+  }
+  else {this.offres = this.tempOffres;}
+}
+
 
 }
