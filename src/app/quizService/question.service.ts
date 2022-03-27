@@ -20,4 +20,24 @@ export class QuestionService {
   {
      return this.http.post<any>("http://localhost:3000/cheaters/save",cheater)
   }
+
+  savequiz(quiz:object)
+  {
+    return this.http.post<any>("http://localhost:3000/qcm/add",quiz);
+  }
+
+  getallquiz()
+  {
+    return this.http.get<any>("http://localhost:3000/qcm/all");
+  }
+
+  getquiz(id:number)
+  {
+    return this.http.get<any>("http://localhost:3000/qcm/get/"+id)
+  }
+
+  addquestion(question:object)
+  {
+    return this.http.post<any>("http://localhost:3000/question/add/",question);
+  }
 }
