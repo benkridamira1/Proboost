@@ -1,7 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Offre } from '../models/offre';
-import { ListOffreService } from '../services/list-offre/list-offre.service';
+import { OffreService } from '../services/OffreSrevice/offreservice.service';
 
 @Component({
   selector: 'app-find-a-job',
@@ -23,7 +23,7 @@ export class FindAJobComponent implements OnInit {
 
   offersbydate : any[] = ["All"];
 
-  constructor(private listOffreService : ListOffreService) { 
+  constructor(private listOffreService : OffreService) { 
     
 
   }

@@ -11,6 +11,8 @@ export class Offre{
 
      postedDate !: Date;
 
+     deadline !: any ;
+    
      jobeType !: string ;
 
      location  !: string;

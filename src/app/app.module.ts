@@ -31,7 +31,10 @@ import { ChangeBgDirective } from './change-bg.directive';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { CreatequizComponent } from './createquiz/createquiz.component';
 import { FormsModule } from '@angular/forms';
+import {ReactiveFormsModule } from '@angular/forms';
+
 import { VideochatComponent } from './videochat/videochat.component';
+
 
 @NgModule({
   declarations: [
@@ -75,7 +78,8 @@ import { VideochatComponent } from './videochat/videochat.component';
       "innerStrokeColor": "#32CD32",
       "innerStrokeWidth": 1,
       "startFromZero": true}),
-      FormsModule
+      FormsModule,
+      ReactiveFormsModule
    
   
   ],
