@@ -15,6 +15,7 @@ export class QuizdetailsComponent implements OnInit {
   id:any;
   quiz:any;
   questions:any =[];
+  newquestion:any;
   constructor(private _Activatedroute:ActivatedRoute, private quizservice:QuestionService,private formbuilder:FormBuilder
     ,private router:Router) { }
 
@@ -41,10 +42,20 @@ export class QuizdetailsComponent implements OnInit {
 
   addquestion()
   {
+    
     this.formValue.value.qcm={id:this.id}
-    this.quizservice.addquestion(this.formValue.value).subscribe();
+    this.quizservice.addquestion(this.formValue.value).subscribe(res =>{
+      this.newquestion=res;
+    });
+    this.quizservice.addanswer(this.formValue.value.correctanswer,this.newquestion.id).subscribe();
     document.getElementById("cancel")?.click();
   this.reloadComponent();
+  }
+
+  deletequiz()
+  {
+    this.quizservice.deletequiz(this.id).subscribe();
+    this.router.navigate(["Createquiz"]);
   }
 
   reloadComponent() {

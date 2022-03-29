@@ -40,4 +40,36 @@ export class QuestionService {
   {
     return this.http.post<any>("http://localhost:3000/question/add/",question);
   }
+
+  deletequiz(id:number)
+  {
+    return this.http.delete<any>("http://localhost:3000/qcm/delete/"+id);
+  }
+
+  getquestiondetails(id:number)
+  {
+    return this.http.get<any>("http://localhost:3000/question/getone/"+id);
+  }
+
+  addanswer(answer:object,id:number)
+  {
+    return this.http.post<any>("http://localhost:3000/answer/save/"+id,answer);
+  }
+
+  deletequestion(id:number)
+  {
+    return this.http.delete<any>("http://localhost:3000/question/delete/"+id);
+  }
+
+  deleteanswer(id:number)
+  {
+    return this.http.delete<any>("http://localhost:3000/answer/delete/"+id);
+  }
+
+  getoneanswer(id:number)
+  {
+    return this.http.get<any>("http://localhost:3000/answer/get/"+id);
+  }
+
 }
+ 

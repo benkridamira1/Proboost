@@ -45,44 +45,9 @@
     
     
       <!-- Add Question -->
-    <button type="button" style="margin-left: 100px" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-      Add A Question
+    <button type="button" (click)="deletequiz()" style="margin-left: 100px" class="btn btn-primary">
+      Delete This Quiz
     </button>
-    
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Add A Quiz</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-    
-              <form class="form-inline" >
-                  <label class="sr-only" for="inlineFormInputName2">Quiz Name</label>
-                  <input type="text" class="form-control mb-2 mr-sm-2"   style="width: 100%;" id="inlineFormInputName2" placeholder="Quiz Name" >
-              
-    
-                  
-    
-    
-    
-    
-              </form>
-    
-    
-    
-          </div>
-          <div class="modal-footer" >
-            <button type="button"  style="margin-right: 200px;" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" style="margin-right: 10px;"   class="btn btn-primary">Add</button>
-          </div>
-        </div>
-      </div>
-    </div>
     
     
     <table class="table" style="margin-top: 50px;width: 50%;margin-left: 290px;">
@@ -95,7 +60,7 @@
         <tbody>
          
           <tr *ngFor="let question of questions">
-            <td [routerLink]="['/Quizdetails', quiz.id]" style="cursor: pointer;"> {{question.question}}</td>
+            <td [routerLink]="['/Questiondetails', question.id]" style="cursor: pointer;"> {{question.question}}</td>
           </tr>
         
         </tbody>

@@ -1,9 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-
-
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -26,13 +23,13 @@ import { ContactComponent } from './contact/contact.component';
 import { JobDetailsComponent } from './job-details/job-details.component';
 import { WelcomeQuizComponent } from './welcome-quiz/welcome-quiz.component';
 import { QuestionComponent } from './question/question.component';
-
 import { ChangeBgDirective } from './change-bg.directive';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { CreatequizComponent } from './createquiz/createquiz.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { VideochatComponent } from './videochat/videochat.component';
 import { QuizdetailsComponent } from './quizdetails/quizdetails.component';
+import { QuestiondetailsComponent } from './questiondetails/questiondetails.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +57,8 @@ import { QuizdetailsComponent } from './quizdetails/quizdetails.component';
     ChangeBgDirective,
     CreatequizComponent,
     VideochatComponent,
-    QuizdetailsComponent
+    QuizdetailsComponent,
+    QuestiondetailsComponent
   
   ],
   imports: [

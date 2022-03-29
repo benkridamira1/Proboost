@@ -1,0 +1,110 @@
+<div class="container" >
+    <h3>Question : {{question.question}} </h3>
+    
+    
+    
+      
+    
+    
+    
+    <!-- Add Question -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        Add An Option
+      </button>
+    
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Add New Option</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+    
+                <form class="form-inline" [formGroup]="formValue">
+                    <label class="sr-only" for="inlineFormInputName2">New Option</label>
+                    <input type="text" class="form-control mb-2 mr-sm-2"  formControlName="text" style="width: 100%;" id="inlineFormInputName2" placeholder="Question" >
+                </form>
+    
+    
+    
+            </div>
+            <div class="modal-footer" >
+              <button type="button"  style="margin-right: 200px;" id="cancel" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" style="margin-right: 10px;"   (click)="addoption()" class="btn btn-primary">Add</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    
+    
+    
+      <!-- Delete Question -->
+    <button type="button" (click)="deletequestion()" style="margin-left: 100px" class="btn btn-primary">
+      Delete This Question
+    </button>
+    
+    
+
+
+<!-- Modal -->
+<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Update This Option</h5>
+          <img  (click)="deleteoption()" style="margin-top: -23px;cursor: pointer;" width="15%" height="10%" src="assets/img/animated/trash-mini.gif">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+            <form class="form-inline" [formGroup]="formValue">
+                <label class="sr-only" for="inlineFormInputName2">New Option Text</label>
+                <input type="text" [value]="updateanswer" class="form-control mb-2 mr-sm-2"  formControlName="text" style="width: 100%;" id="inlineFormInputName2" placeholder="Question" >
+            </form>
+
+
+
+        </div>
+        <div class="modal-footer" >
+          <button type="button"  style="margin-right: 200px;" id="cancelupdate" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" style="margin-right: 10px;"   (click)="updateoption()" class="btn btn-primary">Update</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+    <table class="table" style="margin-top: 50px;width: 50%;margin-left: 290px;">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Options</th>
+          </tr>
+        </thead>
+      
+        <tbody>
+         
+          <tr *ngFor="let answer of answers">
+            <td  style="cursor: pointer;" data-toggle="modal" data-target="#updateModal" (click)="setupdateid(answer.id)"> {{answer.text}} </td>
+   
+          </tr>
+        
+        </tbody>
+      </table>
+    
+    
+    
+        </div>

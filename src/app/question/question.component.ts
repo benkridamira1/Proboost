@@ -60,7 +60,7 @@ export class QuestionComponent implements OnInit {
 
   getquestions()
   {
-    this.questionService.getQuestions(1)
+    this.questionService.getQuestions(19)
     .subscribe(res =>{
       this.questionlist=res;
       this.quizlength=res.length;
@@ -79,7 +79,7 @@ export class QuestionComponent implements OnInit {
     {
      user:"AngularUser",
      date:date.toUTCString(),
-     qcm:{id:1},
+     qcm:{id:19},
      score:this.finalscore
     }
     this.questionService.saveRecords(record).subscribe();
@@ -199,7 +199,7 @@ export class QuestionComponent implements OnInit {
       date:new Date().toUTCString(),
       qcm:
       {
-        id:1
+        id:19
       }
     }
     this.questionService.saveCheater(cheater).subscribe();
