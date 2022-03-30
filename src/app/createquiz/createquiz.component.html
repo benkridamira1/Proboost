@@ -96,7 +96,7 @@
   <tbody>
    
     <tr *ngFor="let quiz of allquiz">
-      <td [routerLink]="['/Quizdetails', quiz.id]" style="cursor: pointer;"> {{quiz.titre}}</td>
+      <td [routerLink]="['/Quizdetails', quiz.id]"   style="cursor: pointer;"><span class="hvr-buzz-out"> {{quiz.titre}}</span></td>
     </tr>
   
   </tbody>

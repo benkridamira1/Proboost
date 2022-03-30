@@ -61,9 +61,16 @@ export class QuestiondetailsComponent implements OnInit {
 
   updateoption()
   {
+    if(this.updateanswer==this.question.correctanswer)
+    {
+      this.formValue.value.id=this.updateid;
+      this.questionservice.updatecorrectanswer(this.question.id,this.formValue.value).subscribe();
+      this.questionservice.addanswer(this.formValue.value,this.id).subscribe();
+      document.getElementById("cancelupdate")?.click();
+      this.reloadComponent();
+    }
+    
     this.formValue.value.id=this.updateid;
-    console.log(this.updateid)
-    console.log(this.formValue.value.id);
     this.questionservice.addanswer(this.formValue.value,this.id).subscribe();
     document.getElementById("cancelupdate")?.click();
   this.reloadComponent();

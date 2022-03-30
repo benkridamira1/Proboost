@@ -30,6 +30,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { VideochatComponent } from './videochat/videochat.component';
 import { QuizdetailsComponent } from './quizdetails/quizdetails.component';
 import { QuestiondetailsComponent } from './questiondetails/questiondetails.component';
+import { InterviewmanagerComponent } from './interviewmanager/interviewmanager.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { QuestiondetailsComponent } from './questiondetails/questiondetails.comp
     CreatequizComponent,
     VideochatComponent,
     QuizdetailsComponent,
-    QuestiondetailsComponent
+    QuestiondetailsComponent,
+    InterviewmanagerComponent
   
   ],
   imports: [

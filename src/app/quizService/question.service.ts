@@ -71,5 +71,10 @@ export class QuestionService {
     return this.http.get<any>("http://localhost:3000/answer/get/"+id);
   }
 
+  updatecorrectanswer(id:number,answer:object)
+  {
+    return this.http.post<any>("http://localhost:3000/question/updatecorrectanswer/"+id,answer);
+  }
+
 }
  

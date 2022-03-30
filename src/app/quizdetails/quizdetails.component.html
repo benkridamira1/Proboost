@@ -60,7 +60,7 @@
         <tbody>
          
           <tr *ngFor="let question of questions">
-            <td [routerLink]="['/Questiondetails', question.id]" style="cursor: pointer;"> {{question.question}}</td>
+            <td [routerLink]="['/Questiondetails', question.id]" style="cursor: pointer;"> <span class="hvr-buzz-out">{{question.question}}</span></td>
           </tr>
         
         </tbody>

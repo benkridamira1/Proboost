@@ -98,7 +98,8 @@
         <tbody>
          
           <tr *ngFor="let answer of answers">
-            <td  style="cursor: pointer;" data-toggle="modal" data-target="#updateModal" (click)="setupdateid(answer.id)"> {{answer.text}} </td>
+            <td *ngIf="answer.text == question.correctanswer" style="cursor: pointer;color:green;font-weight: bold;"class="hvr-buzz-auto" data-toggle="modal" data-target="#updateModal" (click)="setupdateid(answer.id)"> {{answer.text}}</td>
+            <td  *ngIf="answer.text != question.correctanswer" style="cursor: pointer;" data-toggle="modal" data-target="#updateModal" (click)="setupdateid(answer.id)"> <span class="hvr-bounce-in">{{answer.text}}</span> </td>
    
           </tr>
         

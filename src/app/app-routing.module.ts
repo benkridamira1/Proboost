@@ -13,6 +13,7 @@ import { CreatequizComponent } from './createquiz/createquiz.component';
 import { VideochatComponent } from './videochat/videochat.component';
 import { QuizdetailsComponent } from './quizdetails/quizdetails.component';
 import { QuestiondetailsComponent } from './questiondetails/questiondetails.component';
+import { InterviewmanagerComponent } from './interviewmanager/interviewmanager.component';
 
 
 
@@ -28,7 +29,8 @@ const routes: Routes = [
    {path: 'Createquiz',component:CreatequizComponent},
    {path: "Videochat",component:VideochatComponent},
    {path: "Quizdetails/:id",component:QuizdetailsComponent},
-   {path: "Questiondetails/:id",component:QuestiondetailsComponent}
+   {path: "Questiondetails/:id",component:QuestiondetailsComponent},
+   {path : "Interviewmanager",component:InterviewmanagerComponent}
   
 
 ];

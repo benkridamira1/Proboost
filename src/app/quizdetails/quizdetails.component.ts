@@ -47,7 +47,6 @@ export class QuizdetailsComponent implements OnInit {
     this.quizservice.addquestion(this.formValue.value).subscribe(res =>{
       this.newquestion=res;
     });
-    this.quizservice.addanswer(this.formValue.value.correctanswer,this.newquestion.id).subscribe();
     document.getElementById("cancel")?.click();
   this.reloadComponent();
   }
