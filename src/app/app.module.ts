@@ -34,6 +34,9 @@ import { FormsModule } from '@angular/forms';
 import {ReactiveFormsModule } from '@angular/forms';
 
 import { VideochatComponent } from './videochat/videochat.component';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {NgxPaginationModule} from 'ngx-pagination'; 
 
 
 @NgModule({
@@ -79,7 +82,10 @@ import { VideochatComponent } from './videochat/videochat.component';
       "innerStrokeWidth": 1,
       "startFromZero": true}),
       FormsModule,
-      ReactiveFormsModule
+      ReactiveFormsModule,
+      ToastrModule.forRoot(),
+      BrowserAnimationsModule,
+      NgxPaginationModule
    
   
   ],

@@ -14,7 +14,8 @@ export class FindAJobComponent implements OnInit {
   tempOffres : Offre[] = [];
   offresRecherche  !: Offre[];
   jobsType :any [] = ["All"];
-
+  recruteurSearch  =  '';
+  jobtypeSearch: any[] = [];
   recruteurs : any[] = ["All"];
 
   locations  : any[] = ["All"];
@@ -22,7 +23,7 @@ export class FindAJobComponent implements OnInit {
   experiences  : any[] = ["All"];
 
   offersbydate : any[] = ["All"];
-
+  p : number =1;
   constructor(private listOffreService : OffreService) { 
     
 
@@ -77,19 +78,89 @@ if (event.target.value =='All' ) {
 else {
 
   if (name == 'Recruteur'  ) {
+    this.offres = this.tempOffres;
+    // variable globale sera paratgé 
+    this.recruteurSearch = event.target.value;
     let data = this.offres.filter(x => x.recruteur.nom == event.target.value) ;
-     this.offres = [...data];
+    this.offres = [...data];
+    
+    // if checkbox is not empty 
+    
+    if (this.jobtypeSearch.length == 1 ) {
+      // one value has selected 
+        data = this.offres.filter(x => x.jobeType ==  this.jobtypeSearch[0]);
+        this.offres = [...data];
+     }
+     else if (this.jobtypeSearch.length > 1 ) {
+        let data1 =  this.offres.filter(x => x.jobeType ==  (this.jobtypeSearch[0])   )
+        let data2 = this.offres.filter(x => x.jobeType ==  (this.jobtypeSearch[1])   ) ;
+        this.offres  = [ ...data2, ...data1];
+  
+     }
 }
 if (name == 'jobtype' ) {
+  
 
   if (event.target.value != ''  && event.target.checked) {
-
+    let option :any = '' ;
+    // recupérer array comme valeur globale
+    this.jobtypeSearch.push(event.target.value) ;
+    let data :any[] = [] ;
   
-    let data = this.offres.filter(x => x.jobeType == event.target.value) ;
-    this.offres = [...data];
-  }
-  else {
+  if (this.jobtypeSearch.length == 1 ) {
     this.offres = this.tempOffres;
+     data = this.offres.filter(x => x.jobeType ==  this.jobtypeSearch[0 ]);
+     if (this.recruteurSearch !== '') {
+      let data1 = data.filter(x => x.recruteur.nom ==this.recruteurSearch) ;
+      this.offres = [...data1];
+   }
+   else{
+    this.offres = [...data];
+   }
+
+     
+  }
+  else if (this.jobtypeSearch.length > 1 ) {
+
+    this.offres = this.tempOffres;
+     let data1 =  this.offres.filter(x => x.jobeType ==  (this.jobtypeSearch[0 ])  )
+     let data2 = this.offres.filter(x => x.jobeType ==  (this.jobtypeSearch[1])  ) ;
+     this.offres  = [ ...data2, ...data1];
+     if (this.recruteurSearch !== '') {
+      data =  this.offres.filter(x => x.recruteur.nom ==this.recruteurSearch) 
+      this.offres = [...data];
+      console.log(data);
+
+   }
+  }
+ 
+    
+   
+  }
+       // when deselection jobtype
+
+  else {
+    let data :any[] = [] ;
+    this.offres = this.tempOffres;
+    // delete elemet déséléctionner 
+    this.jobtypeSearch =  this.jobtypeSearch.filter(x => x !==  event.target.value);
+    console.log( this.jobtypeSearch);
+    
+    if (this.jobtypeSearch.length == 0) {
+       if (this.recruteurSearch !== '') {
+        let data1 = this.offres.filter(x => x.recruteur.nom ==this.recruteurSearch) ;
+        this.offres = [...data1];
+     }
+    }
+    else if (this.jobtypeSearch.length == 1 ) {
+       let data1 =  this.offres.filter(x => x.jobeType ==  (this.jobtypeSearch[0 ])  )
+       this.offres  = [ ...data1];
+       if (this.recruteurSearch !== '') {
+        data =  this.offres.filter(x => x.recruteur.nom ==this.recruteurSearch) 
+        this.offres = [...data];
+     }
+    }
+
   }
  
 }
@@ -108,7 +179,9 @@ if (name == 'experiencetype' ) {
     this.offres = [...data];
   }
   else {
+    let data :any[] = [] ;
     this.offres = this.tempOffres;
+
   }
  
 }

@@ -1,45 +1,127 @@
-<div class="container">
-    <div>
-    <h2>Ajouter un Produit :</h2>
-    </div>
-    <form  >
-      
 
-        <div class="col-sm-2 col-md-2 col-lg-2 form-group">
-        <label > Title </label>
-        <input type="text" [(ngModel)]= "newoffre.title"  name="title"  class="form-control" >
-        </div>
-        <div class="col-sm-4 col-md-4 col-lg-4 form-group" >
-        <label > Description</label>
-        <input type="text" [(ngModel)]= "newoffre.description"  name="description" class="form-control" >
+  <div class="container">
+    <div class="title">Add a new Job Offer</div>
+    <div class="content">
+      <form [formGroup]="this.crudApi.dataForm">
+        <div class="user-details">
+          <div class="input-box">
+            <span class="details"> Title </span>
+        <input type="text"   name="title"   formControlName="title"  id="title" class="form-control   " [ngClass]="{'is-invalid': submitted && f['title'].errors}" >
+        <div *ngIf="submitted && f['title'].errors" class="invalid-feedback">
+            <div *ngIf="f['title'].errors['required']">Title  is required</div>
         </div>
 
-        <div class="col-sm-4 col-md-4 col-lg-4 form-group">
-        <label > jobeType </label>
-        <input type="text" [(ngModel)]= "newoffre.jobeType"  name="jobeType"  class="form-control">
-        </div>
+          </div>
 
-        <div class="col-sm-4 col-md-4 col-lg-4 form-group">
-            <label > location </label>
-            <input type="text" [(ngModel)]= "newoffre.location"  name="location"  class="form-control" >
-            </div>
+          <div class="input-box">
+            <span class="details">job Type</span>
+            <select class="form-select" aria-label="Default select example" formControlName="jobeType" id="jobeType" class="form-control" [ngClass]="{'is-invalid': submitted && f['jobeType'].errors}">
+                <option value="Full Time">Full Time</option>
+                <option value="Part Time">Part Time</option>
+                <div *ngIf="submitted && f['jobeType'].errors" class="invalid-feedback">
+                    <div *ngIf="f['jobeType'].errors['required']"> JobeType  is required</div>
+                </div>
+             
+              </select>
 
-       <div class="col-sm-4 col-md-4 col-lg-4 form-group">
-            <label > experience </label>
-            <input type="text" [(ngModel)]= "newoffre.experience"   name="experience" class="form-control" >
-            </div>
-            
-        <div class="col-sm-4 col-md-4 col-lg-4 form-group">
-                <label > salary </label>
-                <input type="text" [(ngModel)]= "newoffre.salary"    name="salary" class="form-control"  >
-                </div>   
-        <div class="col-sm-4 col-md-4 col-lg-4 form-group">
-                    <label > Deadline </label>
-                    <input type="date" [(ngModel)]= "newoffre.deadline "  [ngModel]="newoffre.deadline | date: 'yyyy-MM-dd'"  name="deadline"   >
-                    </div>    
-        <div class="mt-2 form-group">
-        <button type="submit" (click)="addOffre()"  class="btn btn-success">Ajouter</button>
-        </div>
-        </form>
-        </div>
+
+
+          </div>
+
+
+          <div class="input-box">
+            <span class="details"> Required Knowledge and Skills</span>
+            <input type="text"  name="requiredKnowledge" formControlName="requiredKnowledge"  id="requiredKnowledge" class="form-control" [ngClass]="{'is-invalid': submitted && f['requiredKnowledge'].errors}" >
+            <div *ngIf="submitted && f['requiredKnowledge'].errors" class="invalid-feedback">
+                <div *ngIf="f['requiredKnowledge'].errors['required']"> Required Knowledge  is required</div>
+                </div>
+          </div>
+          <div class="input-box">
+            <span class="details">Education</span>
+
+            <input type="text"   name="education" formControlName="education" id="education" class="form-control" [ngClass]="{'is-invalid': submitted && f['education'].errors}">
+            <div *ngIf="submitted && f['education'].errors" class="invalid-feedback">
+                <div *ngIf="f['education'].errors['required']"> Education  is required</div>
+                </div>
         
+
+
+          </div>
+          <div class="input-box">
+            <span class="details"> Experience</span>
+            <input type="text"    name="experience" formControlName="experience" id="experience" class="form-control" [ngClass]="{'is-invalid': submitted && f['experience'].errors}">
+            <div *ngIf="submitted && f['experience'].errors" class="invalid-feedback">
+                <div *ngIf="f['experience'].errors['required']"> Experience  is required</div>
+                </div>
+
+          </div>
+          <div class="input-box">
+            <span class="details">Location</span>
+            <input type="text"   name="location" formControlName="location" id="location" class="form-control" [ngClass]="{'is-invalid': submitted && f['location'].errors}">
+            <div *ngIf="submitted && f['location'].errors" class="invalid-feedback">
+                <div *ngIf="f['location'].errors['required']"> Location  is required</div>
+                </div>
+    
+          </div>
+
+          <div class="input-box">
+            <span class="details"> Salary</span>
+            <input type="text"    name="salary"  formControlName="salary"  id="salary" class="form-control"  [ngClass]="{'is-invalid': submitted && f['salary'].errors}">
+            <div *ngIf="submitted && f['salary'].errors" class="invalid-feedback">
+                <div *ngIf="f['salary'].errors['required']"> Salary  is required</div>
+                </div>
+
+          </div>
+
+
+          <div class="input-box">
+            <span class="details"> Vacancy</span>
+            <input type="text"  name="vacancy" formControlName="vacancy"   id="vacancy" class="form-control"  [ngClass]="{'is-invalid': submitted && f['vacancy'].errors}">
+            <div *ngIf="submitted && f['vacancy'].errors" class="invalid-feedback">
+                <div *ngIf="f['vacancy'].errors['required']"> Vacancy  is required</div>
+                </div>
+
+          </div>
+
+          <div class="input-box">
+            <span class="details"> Deadline</span>
+            <input type="date"    name="deadline"  formControlName="deadline"  id="deadline"  class="form-control"  [ngClass]="{'is-invalid': submitted && f['deadline'].errors}">
+            <div *ngIf="submitted && f['deadline'].errors" class="invalid-feedback">
+                <div *ngIf="f['deadline'].errors['required']"> Description  is required</div>
+                </div>
+
+          </div>
+
+          
+          
+
+
+        </div>
+
+        <div class="gender-details">
+   
+          <span class="gender-title"> Job Description</span>
+     
+            
+            <input type="text"  name="description" formControlName="description" id="description" class="form-control"  [ngClass]="{'is-invalid': submitted && f['description'].errors}">
+            <div *ngIf="submitted && f['description'].errors" class="invalid-feedback">
+            <div *ngIf="f['description'].errors['required']"> Description  is required</div>
+            </div>
+          </div>
+        <div class="button">
+            <button type="submit" (click)="onSubmit()"  class="btn btn-success">Ajouter</button>
+          <input type="submit" value="Add" (click)="onSubmit()">
+          
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+      

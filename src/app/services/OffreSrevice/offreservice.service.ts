@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Offre } from 'src/app/models/offre';
 import { FormBuilder, FormGroup, FormControl, ReactiveFormsModule,Validators } from '@angular/forms';
+import { identifierName } from '@angular/compiler';
 const httpOptions = {
 headers: new HttpHeaders( {'Content-Type': 'application/json'} )
 };
@@ -16,6 +17,8 @@ export class OffreService {
   apiURL : string ='http://localhost:3000/offre/add';
 
   apiURLgetAll: string = 'http://localhost:3000/offre/all';
+
+  baseURL :  string ='http://localhost:3000/offre';
 
  
 
@@ -33,7 +36,7 @@ export class OffreService {
 
 
   getOffreByID(id: number) : Observable<Object> {
-    return this.http.get <Offre>(`${this.apiURL}/${id}`);
+    return this.http.get <Offre>(`${this.baseURL}/${id}`);
   }
 
     
@@ -43,11 +46,11 @@ export class OffreService {
     }
 
 
-    
+  editOffre(){}
 
     deleteOffre(id: number): Observable<any> {
    
-      return this.http.delete(`${this.apiURL}/${id}`, { responseType: 'text' });
+      return this.http.delete(`${this.baseURL}/${id}`, { responseType: 'text' });
     }
 
 

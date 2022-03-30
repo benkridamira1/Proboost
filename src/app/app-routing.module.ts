@@ -12,6 +12,7 @@ import { QuestionComponent } from './question/question.component';
 import { CreatequizComponent } from './createquiz/createquiz.component';
 import { VideochatComponent } from './videochat/videochat.component';
 import { PostJobComponent } from './post-job/post-job.component';
+import { CvUploadComponent } from './cv-upload/cv-upload.component';
 
 
 
@@ -21,15 +22,16 @@ const routes: Routes = [
   {path: '' ,  component: HomeComponent},
   {path: 'About' ,  component: AboutComponent},
    {path: 'Contact' ,  component: ContactComponent},
-   {path: 'job_details' ,  component: JobDetailsComponent},
+   {path: 'FindAJob/job_details/:id' ,  component: JobDetailsComponent},
    {path: 'Quiz', component: WelcomeQuizComponent},
    {path : 'Question', component:QuestionComponent},
    {path: 'Createquiz',component:CreatequizComponent},
    {path: "Videochat",component:VideochatComponent},
-   {path: "PostJob",component:PostJobComponent}
+   {path: "PostJob",component:PostJobComponent},
+   {path: "PostJob",component:CvUploadComponent}
 
 
-  
+   
   
 
 ];

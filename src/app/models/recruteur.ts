@@ -8,7 +8,7 @@ export class Recruteur{
 
     username !: string;
 
-    nom  !: string;
+    nom  !: string ;
 
    prenom  !: string;
 
