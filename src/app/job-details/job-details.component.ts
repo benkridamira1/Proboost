@@ -34,4 +34,11 @@ export class JobDetailsComponent implements OnInit {
     })
   }
 
+  updateOffre(off : Offre){
+    this.crudApi.updateOffre(off).subscribe(data=>{
+      console.log("joboffer updated");
+    });
+
+  }
+
 }

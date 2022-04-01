@@ -2,6 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Offre } from '../models/offre';
 import { OffreService } from '../services/OffreSrevice/offreservice.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-find-a-job',
@@ -13,6 +14,7 @@ export class FindAJobComponent implements OnInit {
   offres : Offre[] = [];
   tempOffres : Offre[] = [];
   offresRecherche  !: Offre[];
+  offresRechercheSalary  !: Offre[];
   jobsType :any [] = ["All"];
   recruteurSearch  =  '';
   jobtypeSearch: any[] = [];
@@ -24,7 +26,7 @@ export class FindAJobComponent implements OnInit {
 
   offersbydate : any[] = ["All"];
   p : number =1;
-  constructor(private listOffreService : OffreService) { 
+  constructor(private listOffreService : OffreService ,  private router : Router ) { 
     
 
   }
@@ -186,8 +188,6 @@ if (name == 'experiencetype' ) {
  
 }
 
-
-
 }
  
  
@@ -197,7 +197,18 @@ if (name == 'experiencetype' ) {
   
 }
 
+onValueChanged(e:any) {
+  const resultRechercheSalary: any[] = [];
+console.log("dans range");
+  this.offres.forEach((item, index) => {
+    if (item.salary >= e.value[0] && item.salary <= e.value[1]) {
+      resultRechercheSalary.push(item);
+    }
+  });
 
+  this.offresRechercheSalary = resultRechercheSalary;
+  this.offres = [...resultRechercheSalary];
+}
 
 serachTodayOffers(event : any  ){
 
@@ -283,6 +294,8 @@ serachThisMonthOffers(event : any){
   }
   else {this.offres = this.tempOffres;}
 }
+
+
 
 
 }

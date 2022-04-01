@@ -20,6 +20,10 @@ export class OffreService {
 
   baseURL :  string ='http://localhost:3000/offre';
 
+  salarySearchURL : string ='http://localhost:3000/offre/salary'; 
+
+
+
  
 
   choixmenu : string  = 'A';
@@ -35,8 +39,9 @@ export class OffreService {
     }
 
 
-  getOffreByID(id: number) : Observable<Object> {
-    return this.http.get <Offre>(`${this.baseURL}/${id}`);
+  getOffreByID(id: number) : Observable<Offre> {
+    return this.http.get<Offre>(`${this.baseURL}/${id}`);
+    //`${this.baseURL}/${id}`
   }
 
     
@@ -46,7 +51,9 @@ export class OffreService {
     }
 
 
-  editOffre(){}
+  updateOffre(offre : Offre): Observable<Offre> { 
+    return this.http.put<Offre>(this.baseURL, offre,httpOptions);
+  }
 
     deleteOffre(id: number): Observable<any> {
    
@@ -54,8 +61,17 @@ export class OffreService {
     }
 
 
+    offreSalaryRange(min :number , max : number){
+      return this.http.get(`${this.salarySearchURL}/${min}/${max}`)
+    }
    
-  
+
+    maxSalary(){
+      return this.http.get('http://localhost:3000/offre/maxSalary')
+    }
+    minSalary(){
+      return this.http.get('http://localhost:3000/offre/minSalary')
+    }
 
 }
 
