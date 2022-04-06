@@ -32,6 +32,8 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
 import { CreatequizComponent } from './createquiz/createquiz.component';
 import { FormsModule } from '@angular/forms';
 import { VideochatComponent } from './videochat/videochat.component';
+import { LoginComponent } from './login/login.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +60,9 @@ import { VideochatComponent } from './videochat/videochat.component';
     QuestionComponent,
     ChangeBgDirective,
     CreatequizComponent,
-    VideochatComponent
+    VideochatComponent,
+    LoginComponent,
+    RegistrationComponent
   
   ],
   imports: [

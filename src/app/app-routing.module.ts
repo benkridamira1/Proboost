@@ -11,6 +11,8 @@ import { WelcomeQuizComponent } from './welcome-quiz/welcome-quiz.component';
 import { QuestionComponent } from './question/question.component';
 import { CreatequizComponent } from './createquiz/createquiz.component';
 import { VideochatComponent } from './videochat/videochat.component';
+import { LoginComponent } from './login/login.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 
 
@@ -24,7 +26,9 @@ const routes: Routes = [
    {path: 'Quiz', component: WelcomeQuizComponent},
    {path : 'Question', component:QuestionComponent},
    {path: 'Createquiz',component:CreatequizComponent},
-   {path: "Videochat",component:VideochatComponent}
+   {path: "Videochat",component:VideochatComponent},
+   {path: "login",component:LoginComponent},
+   {path: "register",component:RegistrationComponent},
   
 
 ];
