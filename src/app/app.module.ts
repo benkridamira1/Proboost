@@ -31,6 +31,7 @@ import { VideochatComponent } from './videochat/videochat.component';
 import { QuizdetailsComponent } from './quizdetails/quizdetails.component';
 import { QuestiondetailsComponent } from './questiondetails/questiondetails.component';
 import { InterviewmanagerComponent } from './interviewmanager/interviewmanager.component';
+import { InterviewdetailsComponent } from './interviewdetails/interviewdetails.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { InterviewmanagerComponent } from './interviewmanager/interviewmanager.c
     VideochatComponent,
     QuizdetailsComponent,
     QuestiondetailsComponent,
-    InterviewmanagerComponent
+    InterviewmanagerComponent,
+    InterviewdetailsComponent
   
   ],
   imports: [

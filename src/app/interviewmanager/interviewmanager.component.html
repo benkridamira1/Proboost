@@ -29,8 +29,8 @@
                     <input type="text" class="form-control mb-2 mr-sm-2"   formControlName="titre" style="width: 100%;" id="inlineFormInputName2" placeholder="Interview Title" >
                     <input type="text" class="form-control mb-2 mr-sm-2"   formControlName="type" style="width: 100%;"  placeholder="Interview Type" >
                     <input type="date" class="form-control mb-2 mr-sm-2"   formControlName="date" style="width: 100%;">
-                    <input type="number" class="form-control mb-2 mr-sm-2"   formControlName="hour" min="8" max="18" style="width: 100%;">
-                    <input type="number" class="form-control mb-2 mr-sm-2"   formControlName="minute" min ="0" max="59" style="width: 100%;">
+                    <input type="number" class="form-control mb-2 mr-sm-2"   formControlName="hour" min="8" max="18" style="width: 100%;" placeholder="Hour">
+                    <input type="number" class="form-control mb-2 mr-sm-2"   formControlName="minute" min ="0" max="59" style="width: 100%;" placeholder="Minutes">
 
                 </form>
     
@@ -100,7 +100,7 @@
       <tbody>
        
         <tr *ngFor="let interview of interviews">
-          <td   style="cursor: pointer;"><span class="hvr-buzz-out"> {{interview.titre}}</span></td>
+          <td   [routerLink]="['/Interviewdetails', interview.id]" style="cursor: pointer;"><span class="hvr-buzz-out"> {{interview.titre}}</span></td>
         </tr>
       
       </tbody>

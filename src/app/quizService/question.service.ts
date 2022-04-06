@@ -76,5 +76,9 @@ export class QuestionService {
     return this.http.post<any>("http://localhost:3000/question/updatecorrectanswer/"+id,answer);
   }
 
+  getbycreator(id:number)
+  {
+    return this.http.get<any>("http://localhost:3000/qcm/getbycreator/"+id);
+  }
 }
  

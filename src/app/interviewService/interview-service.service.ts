@@ -18,4 +18,13 @@ export class InterviewServiceService {
     return this.http.post<any>("http://localhost:3000/entretien/save",interview);
   } 
 
+  getoneinterview(id:number)
+  {
+    return this.http.get<any>("http://localhost:3000/entretien/get/"+id);
+  }
+
+  getquiznumber(id:number)
+  {
+    return this.http.get<any>("http://localhost:3000/entretien/getquiznumber/"+id)
+  }
 }
