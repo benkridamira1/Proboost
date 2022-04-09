@@ -15,6 +15,9 @@ export class InterviewdetailsComponent implements OnInit {
   interview:any;
   Quizs: any =[];
   quiznumber!:any;
+  currentquiz:any;
+  istherecurrentquiz:boolean=false;
+  exist!:number;
   constructor(private _Activatedroute:ActivatedRoute,private interviewService:InterviewServiceService,private quizService:QuestionService
     ,private router:Router) { }
 
@@ -50,14 +53,17 @@ export class InterviewdetailsComponent implements OnInit {
       
     }
 
+
   })
-  
+
   
   if(localStorage.getItem("showquiz")=="true")
   {
     document.getElementById("showquiz")?.click();
     localStorage.setItem("showquiz","false");
   }
+  
+this.showquiz();
 
   }
 
@@ -66,12 +72,55 @@ export class InterviewdetailsComponent implements OnInit {
     quiz.entretiens.push({id:this.interview.id});
     this.quizService.savequiz(quiz).subscribe();
     document.getElementById("cancel")?.click();
+    this.assignshow();
+    this.showquiz();
     localStorage.setItem("showquiz","true");
     this.reloadComponent();
-    
   }
 
+
+  showquiz()
+  {
+    this.interviewService.getqcmbyentretien(this.interview.id).subscribe(res =>{
+      this.currentquiz=res;
+      this.exist=res.length;
+    })
+  
+   if(this.currentquiz.length!=0)
+   {
+     this.istherecurrentquiz=true;
+   }
+   else
+   {
+   this.istherecurrentquiz=false;
+   }
+  }
+
+  assignshow()
+  {
+    for(var i=0;i< this.Quizs.length;i++)
+    {
+      for(var j=0;j < this.Quizs[i].entretiens.length;j++)
+      {
+        if(this.Quizs[i].entretiens[j].id==this.interview.id)
+        {
+          this.Quizs.splice(i,1);
+        }
+      }
+      
+    }
+  }
+
+  deleteqcm(qcm_id:number)
+  {
+    this.interviewService.deleteqcm(this.interview.id,qcm_id).subscribe();
+    document.getElementById("cancelassigned")?.click();
+    this.reloadComponent();
+  }
+  
+
   reloadComponent() {
+
     let currentUrl = this.router.url;
         this.router.routeReuseStrategy.shouldReuseRoute = () => false;
         this.router.onSameUrlNavigation = 'reload';

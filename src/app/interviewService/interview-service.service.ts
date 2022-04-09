@@ -27,4 +27,14 @@ export class InterviewServiceService {
   {
     return this.http.get<any>("http://localhost:3000/entretien/getquiznumber/"+id)
   }
+
+  getqcmbyentretien(id:number)
+  {
+    return this.http.get<any>("http://localhost:3000/entretien/getqcmbyentretien/"+id)
+  }
+
+  deleteqcm(interview_id:number,qcm_id:number)
+  {
+    return this.http.delete<any>("http://localhost:3000/entretien/deleteqcm/"+interview_id+"/"+qcm_id);
+  }
 }
