@@ -30,7 +30,7 @@ import { QuestionComponent } from './question/question.component';
 import { ChangeBgDirective } from './change-bg.directive';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { CreatequizComponent } from './createquiz/createquiz.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule , ReactiveFormsModule } from '@angular/forms';
 import { VideochatComponent } from './videochat/videochat.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
@@ -68,6 +68,7 @@ import { RegistrationComponent } from './registration/registration.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     HttpClientModule,
     NgCircleProgressModule.forRoot({
       "backgroundColor": "#F1F1F1",

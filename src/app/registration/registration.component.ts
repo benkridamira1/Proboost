@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { registerRequest } from '../models/registration/register-request/registerRequest';
 import { RegisterService } from '../services/register.service';
+import { FormGroup,FormControl,Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-registration',
@@ -15,6 +16,14 @@ export class RegistrationComponent implements OnInit {
 
     regreq : registerRequest = new registerRequest();
     err !: string ; 
+    emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$";
+
+    registerForm = new FormGroup({
+      firstname : new FormControl('',Validators.required),
+      lastname : new FormControl('',Validators.required),
+      email : new FormControl('',[Validators.pattern(this.emailPattern),Validators.required]),
+      password : new FormControl('',Validators.required)
+    })
 
 
 
@@ -37,9 +46,6 @@ register(){
     
 }
 
-onSubmit() {
-  // some stuff
-  this.router.navigate(['/login']);
-}
+get email(){return this.registerForm.get('email')?.invalid;}
 
 }
