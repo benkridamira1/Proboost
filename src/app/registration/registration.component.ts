@@ -14,6 +14,7 @@ export class RegistrationComponent implements OnInit {
 
 
     regreq : registerRequest = new registerRequest();
+    err !: string ; 
 
 
 
@@ -23,9 +24,17 @@ export class RegistrationComponent implements OnInit {
   ngOnInit(): void {
   }
 register(){
-   this.registerService.register(this.regreq).subscribe();
- 
-    this.router.navigateByUrl("/login");
+   this.registerService.register(this.regreq).subscribe((data)=>
+   {
+     console.log('it works');
+     this.router.navigateByUrl("/login");
+     
+   },(error)=>{
+     console.log(error);
+     this.err = error ;
+   });
+   //this.router.navigateByUrl("/login");
+    
 }
 
 onSubmit() {
