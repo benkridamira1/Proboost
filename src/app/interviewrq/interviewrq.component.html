@@ -1,0 +1,35 @@
+<h1 class="text-center">Your Interview Requests</h1>
+
+
+<div class="pricing-box-container" >
+	<div class="pricing-box text-center" *ngFor="let interview of myinterview">
+		<h5> {{interview.titre}} </h5>
+
+        <ng-container *ngIf="late[interview.id]==true;else notlate">
+		<p class="price hvr-buzz-auto" style="color: red;"  >Late !</p>
+    </ng-container>
+
+    <ng-template #notlate>
+        <p class="price" style="color: blue;">On Time</p>
+    </ng-template>
+
+
+		<ul class="features-list">
+			<li><strong> {{interview.recruteur.nom}}  </strong> </li>
+			<li><strong> Type </strong> {{interview.type}} </li>
+			<li><strong>Date </strong> {{interview.date}} </li>
+			<li><strong>Time </strong> {{interview.hour}}:{{interview.minute}} </li>
+		</ul>
+  
+        <ng-container *ngIf="late[interview.id]==true;else notlateb">
+            <button class="btn-primary" disabled style="color: black;background-color: grey;" >Get Started</button>
+        </ng-container>
+    
+        <ng-template #notlateb>
+            <button class="btn-primary" [routerLink]="['/Passquiz', interview.id]">Get Started</button>
+        </ng-template>
+
+	</div>
+
+</div>
+

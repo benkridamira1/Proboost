@@ -3,7 +3,7 @@ import { interval } from 'rxjs';
 import { QuestionService } from '../quizService/question.service';
 import Swal from 'sweetalert2';
 import {  DOCUMENT } from '@angular/common';
-import {Router} from "@angular/router"
+import {ActivatedRoute, Router} from "@angular/router"
 
 
 @Component({
@@ -13,6 +13,7 @@ import {Router} from "@angular/router"
 })
 export class QuestionComponent implements OnInit {
 
+  id:any;
   public questionlist:any = [];
   public currentquestion:number = 0;
   public score:number=0;
@@ -26,11 +27,15 @@ export class QuestionComponent implements OnInit {
   public quizlength:number=0;
   public numscore:number=0;
   constructor(private questionService:QuestionService, private _renderer2: Renderer2,
-    @Inject(DOCUMENT) private _document: Document,private router:Router) { }
+    @Inject(DOCUMENT) private _document: Document,private router:Router,private _Activatedroute:ActivatedRoute) { }
 
 
   ngOnInit(): void 
   {
+
+    this._Activatedroute.paramMap.subscribe(params => { 
+      this.id=params.get('id');
+      })
 
     let script = this._renderer2.createElement('script');
     script.type = `text/javascript`;
@@ -60,7 +65,7 @@ export class QuestionComponent implements OnInit {
 
   getquestions()
   {
-    this.questionService.getQuestions(19)
+    this.questionService.getQuestions(this.id)
     .subscribe(res =>{
       this.questionlist=res;
       this.quizlength=res.length;

@@ -15,6 +15,8 @@ import { QuizdetailsComponent } from './quizdetails/quizdetails.component';
 import { QuestiondetailsComponent } from './questiondetails/questiondetails.component';
 import { InterviewmanagerComponent } from './interviewmanager/interviewmanager.component';
 import { InterviewdetailsComponent } from './interviewdetails/interviewdetails.component';
+import { InterviewrqComponent } from './interviewrq/interviewrq.component';
+import { PassquizComponent } from './passquiz/passquiz.component';
 
 
 
@@ -26,14 +28,15 @@ const routes: Routes = [
    {path: 'Contact' ,  component: ContactComponent},
    {path: 'job_details' ,  component: JobDetailsComponent},
    {path: 'Quiz', component: WelcomeQuizComponent},
-   {path : 'Question', component:QuestionComponent},
+   {path : 'Question/:id', component:QuestionComponent},
    {path: 'Createquiz',component:CreatequizComponent},
    {path: "Videochat",component:VideochatComponent},
    {path: "Quizdetails/:id",component:QuizdetailsComponent},
    {path: "Questiondetails/:id",component:QuestiondetailsComponent},
    {path : "Interviewmanager",component:InterviewmanagerComponent},
-   {path: "Interviewdetails/:id",component:InterviewdetailsComponent}
-  
+   {path: "Interviewdetails/:id",component:InterviewdetailsComponent},
+   {path: "Interviewrq",component:InterviewrqComponent},
+   {path: "Passquiz/:id",component:PassquizComponent}
 
 ];
 

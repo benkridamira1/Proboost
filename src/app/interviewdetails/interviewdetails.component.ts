@@ -118,6 +118,11 @@ this.showquiz();
     this.reloadComponent();
   }
   
+  deleteinterview()
+  {
+    this.interviewService.deleteinterview(this.interview.id).subscribe();
+    this.router.navigateByUrl("Interviewmanager");
+  }
 
   reloadComponent() {
 
