@@ -1,14 +1,19 @@
 
 <div class="container-fluid container-sm" style="max-width: 39%;margin-top: 100px;margin-bottom: 100px;">
-    <form>
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+
     <div class="form-outline mb-4">
-      <input type="email" id="form2Example1" class="form-control" />
+      <span class="error" *ngIf="!loginForm.controls['username'].valid && 
+      loginForm.controls['username']?.touched" >email is invalid</span>
+      <input type="email" id="form2Example1" formControlName="username" [(ngModel)]="loginRequest.username" class="form-control" />
       <label class="form-label" for="form2Example1">Email address</label>
+      <br>
+   
     </div>
   
   
     <div class="form-outline mb-4">
-      <input type="password" id="form2Example2" class="form-control" />
+      <input type="password" [(ngModel)]="loginRequest.password" id="form2Example2" formControlName="password" class="form-control" />
       <label class="form-label" for="form2Example2">Password</label>
     </div>
   
@@ -29,7 +34,7 @@
     </div>
   
 
-    <button type="button" class="btn btn-primary btn-block mb-4">Sign in</button>
+    <button type="submit" (click)="login()" class="btn btn-primary btn-block mb-4">Sign in</button>
   
 
     <div class="text-center">
