@@ -26,6 +26,7 @@ export class QuestionComponent implements OnInit {
   public gored:boolean=false;
   public quizlength:number=0;
   public numscore:number=0;
+  interviewid:any;
   constructor(private questionService:QuestionService, private _renderer2: Renderer2,
     @Inject(DOCUMENT) private _document: Document,private router:Router,private _Activatedroute:ActivatedRoute) { }
 
@@ -35,6 +36,7 @@ export class QuestionComponent implements OnInit {
 
     this._Activatedroute.paramMap.subscribe(params => { 
       this.id=params.get('id');
+      this.interviewid=params.get('interviewid');
       })
 
     let script = this._renderer2.createElement('script');
@@ -84,10 +86,14 @@ export class QuestionComponent implements OnInit {
     {
      user:"AngularUser",
      date:date.toUTCString(),
-     qcm:{id:19},
-     score:this.finalscore
+     qcm:{id:this.id},
+     score:this.finalscore,
+     entretien:{id:this.interviewid}
     }
     this.questionService.saveRecords(record).subscribe();
+    setTimeout(()=>{
+      this.router.navigateByUrl("/Interviewrq");
+    },3000);
   }
 
 
@@ -204,7 +210,7 @@ export class QuestionComponent implements OnInit {
       date:new Date().toUTCString(),
       qcm:
       {
-        id:19
+        id:this.id
       }
     }
     this.questionService.saveCheater(cheater).subscribe();

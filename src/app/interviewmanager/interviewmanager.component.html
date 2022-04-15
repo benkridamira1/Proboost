@@ -39,7 +39,7 @@
             </div>
             <div class="modal-footer" >
               <button type="button"  style="margin-right: 200px;" id="cancel" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" style="margin-right: 10px;"  (click)="saveinterview()" class="btn btn-primary">Add</button>
+              <button type="button" style="margin-right: 10px;"  (click)="saveinterview()" class="btn btn-secondary">Add</button>
             </div>
           </div>
         </div>
@@ -49,25 +49,28 @@
     
     
       
-    
-    
-    
-    <table class="table" style="margin-top: 50px;width: 50%;margin-left: 290px;">
-      <thead class="thead-dark">
-        <tr>
-          <th scope="col">Interviews List</th>
-        </tr>
-      </thead>
-    
-      <tbody>
-       
-        <tr *ngFor="let interview of interviews">
-          <td   [routerLink]="['/Interviewdetails', interview.id]" style="cursor: pointer;"><span class="hvr-buzz-out"> {{interview.titre}}</span></td>
-        </tr>
+      <div class="pricing-box-container" >
+        <div class="pricing-box text-center hvr-grow" *ngFor="let interview of interviews">
+          <h5> {{interview.titre}} </h5>
       
-      </tbody>
-    </table>
-    
+              <ng-container>
+          <p class="price" style="color: black;font-size: large;"  > {{interview.candidat.prenom}} {{interview.candidat.nom}}</p>
+          </ng-container>
+      
+          <ul class="features-list">
+            <li><strong> {{interview.recruteur.nom}}  </strong> </li>
+            <li><strong> Type </strong> {{interview.type}} </li>
+            <li><strong>Date </strong> {{interview.date}} </li>
+            <li><strong>Time </strong> {{interview.hour}}:{{interview.minute}} </li>
+          </ul>
+        
+              <ng-container>
+                  <button class="btn-primary" [routerLink]="['/Interviewdetails', interview.id]" style="margin-right: 20px;" >Details</button>
+                  <button class="btn-primary" [routerLink]="['/Records', interview.id]" >Results</button>
+              </ng-container>
+          
+      
+        </div>
     
     
     

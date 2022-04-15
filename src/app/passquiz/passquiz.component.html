@@ -35,15 +35,19 @@
                 <div class="pricing-row-title">
                   <div class="pricing_row_title">{{quiz.titre}}</div>
                 </div>
-                <figure class="pricing-row">Photo sharing school</figure>
-                <figure class="pricing-row"><span style="color: #5f727f;">Drop out ramen hustle</span></figure>
-                <figure class="pricing-row"><span style="color: #5f727f;">Crush revenue traction</span></figure>
-                <figure class="pricing-row">Crush revenue traction</figure>
-                <figure class="pricing-row">User base minimum</figure>
-                <figure class="pricing-row strike">Lorem ipsum dolor</figure>
-                <div class="pricing-footer">
-                  <div class="gem-button-container gem-button-position-center"><a class="gem-button gem-yellow" [routerLink]="['/Question', quiz.id]" >Pass Now</a></div>
+                <figure class="pricing-row" style="color: white;"> Number Of Questions : {{numberquestions[quiz.id]}} </figure>
+                
+                <div class="pricing-footer" *ngIf="!passed[quiz.id];else cantpass">
+                  <div class="gem-button-container gem-button-position-center"><a class="gem-button gem-yellow" [routerLink]="['/Quiz', quiz.id,interview.id]" >Pass Now</a></div>
                 </div>
+                
+                <ng-template #cantpass>
+                  <div class="pricing-footer">
+                    <div class="gem-button-container gem-button-position-center"><a class="gem-button" style="color: black;background-color: green;">Already Passed</a></div>
+                  </div>
+                </ng-template>
+
+
               </div>
       </div>
     </div>

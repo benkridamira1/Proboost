@@ -34,6 +34,7 @@ import { InterviewmanagerComponent } from './interviewmanager/interviewmanager.c
 import { InterviewdetailsComponent } from './interviewdetails/interviewdetails.component';
 import { InterviewrqComponent } from './interviewrq/interviewrq.component';
 import { PassquizComponent } from './passquiz/passquiz.component';
+import { RecordsComponent } from './records/records.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import { PassquizComponent } from './passquiz/passquiz.component';
     InterviewmanagerComponent,
     InterviewdetailsComponent,
     InterviewrqComponent,
-    PassquizComponent
+    PassquizComponent,
+    RecordsComponent
   
   ],
   imports: [

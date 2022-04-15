@@ -30,7 +30,7 @@ export class InterviewServiceService {
 
   getqcmbyentretien(id:number)
   {
-    return this.http.get<any>("http://localhost:3000/entretien/getqcmbyentretien/"+id)
+    return this.http.get<any>("http://localhost:3000/entretien/getqcmbyentretien/"+id);
   }
 
   deleteqcm(interview_id:number,qcm_id:number)

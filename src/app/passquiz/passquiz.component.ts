@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute , Router} from '@angular/router';
 import { InterviewServiceService } from '../interviewService/interview-service.service';
+import { QuestionService } from '../quizService/question.service';
+import { RecordServiceService } from '../recordservice/record-service.service';
 
 @Component({
   selector: 'app-passquiz',
@@ -13,7 +15,10 @@ export class PassquizComponent implements OnInit {
   interview:any;
   quizs:any= [];
   index:number=0;
-  constructor(private _Activatedroute:ActivatedRoute,private interviewService:InterviewServiceService) { }
+  numberquestions:any =[];
+  passed:any=[];
+  constructor(private _Activatedroute:ActivatedRoute,private interviewService:InterviewServiceService,private questionService:QuestionService
+    ,private recordService:RecordServiceService) { }
 
   ngOnInit(): void {
 
@@ -24,9 +29,17 @@ export class PassquizComponent implements OnInit {
       })
       this.interviewService.getqcmbyentretien(this.id).subscribe(res =>{
         this.quizs=res;
+        this.quizs.map((q:any )=>{
+         this.questionService.getnumberofquestiosn(q.id).subscribe(res =>{
+           this.numberquestions[q.id]=res;
+         });
+         this.recordService.getrecord("AngularUser",q.id).subscribe(res =>{
+           this.passed[q.id]=res;
+         })
+        })
       })
 
-      console.log(this.quizs)
+     
   });
 
 

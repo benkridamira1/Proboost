@@ -80,5 +80,10 @@ export class QuestionService {
   {
     return this.http.get<any>("http://localhost:3000/qcm/getbycreator/"+id);
   }
+
+  getnumberofquestiosn(id:number)
+  {
+    return this.http.get<any>(("http://localhost:3000/qcm/getnumberquestions/"+id));
+  }
 }
  

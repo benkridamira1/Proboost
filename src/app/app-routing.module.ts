@@ -17,6 +17,7 @@ import { InterviewmanagerComponent } from './interviewmanager/interviewmanager.c
 import { InterviewdetailsComponent } from './interviewdetails/interviewdetails.component';
 import { InterviewrqComponent } from './interviewrq/interviewrq.component';
 import { PassquizComponent } from './passquiz/passquiz.component';
+import { RecordsComponent } from './records/records.component';
 
 
 
@@ -27,8 +28,8 @@ const routes: Routes = [
   {path: 'About' ,  component: AboutComponent},
    {path: 'Contact' ,  component: ContactComponent},
    {path: 'job_details' ,  component: JobDetailsComponent},
-   {path: 'Quiz', component: WelcomeQuizComponent},
-   {path : 'Question/:id', component:QuestionComponent},
+   {path: 'Quiz/:id/:interviewid', component: WelcomeQuizComponent},
+   {path : 'Question/:id/:interviewid', component:QuestionComponent},
    {path: 'Createquiz',component:CreatequizComponent},
    {path: "Videochat",component:VideochatComponent},
    {path: "Quizdetails/:id",component:QuizdetailsComponent},
@@ -36,7 +37,8 @@ const routes: Routes = [
    {path : "Interviewmanager",component:InterviewmanagerComponent},
    {path: "Interviewdetails/:id",component:InterviewdetailsComponent},
    {path: "Interviewrq",component:InterviewrqComponent},
-   {path: "Passquiz/:id",component:PassquizComponent}
+   {path: "Passquiz/:id",component:PassquizComponent},
+   {path: "Records/:id",component:RecordsComponent}
 
 ];
 

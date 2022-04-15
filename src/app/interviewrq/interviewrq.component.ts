@@ -18,20 +18,11 @@ export class InterviewrqComponent implements OnInit {
     this.myinterview=res;
     this.myinterview.map((val:any)=> 
     {
-      console.log(new Date(val.date));
-      console.log(new Date(this.dateOne));
-      if(new Date(val.date).getFullYear()==new Date().getFullYear() && new Date(val.date).getMonth()==new Date().getMonth() && new Date(val.date).getDay()==new Date().getDay())
-      {
-        if (((parseInt(val.hour)+parseInt(val.minute)) < new Date().getHours()+new Date().getMinutes()))
-        {
-          this.late[val.id]=true;
-        }
-      }
-
-      if ( (new Date(val.date).getFullYear()+new Date(val.date).getMonth()+new Date(val.date).getDay()) < (this.dateOne.getFullYear()+this.dateOne.getMonth()+this.dateOne.getDay()) )
+      if(new Date(val.date+":"+val.hour+":"+val.minute) < new Date())
       {
         this.late[val.id]=true;
-      } 
+      }
+     
     } );
 
   })
