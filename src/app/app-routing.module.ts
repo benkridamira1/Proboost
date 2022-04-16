@@ -14,6 +14,7 @@ import { VideochatComponent } from './videochat/videochat.component';
 import { PostJobComponent } from './post-job/post-job.component';
 import { CvUploadComponent } from './cv-upload/cv-upload.component';
 import { UpdateJobComponent } from './update-job/update-job.component';
+import { CvComponent } from './cv/cv.component';
 
 
 
@@ -29,7 +30,11 @@ const routes: Routes = [
    {path: 'Createquiz',component:CreatequizComponent},
    {path: "Videochat",component:VideochatComponent},
    {path: "PostJob",component:PostJobComponent},
-   {path: "FindAJob/job_details/:id/updateJobOffer",component:UpdateJobComponent}
+   {path: "FindAJob/job_details/:id/updateJobOffer",component:UpdateJobComponent},
+   {path: "FindAJob/job_details/:id/uploadCv",component:CvUploadComponent},
+   {path: "FindAJob/job_details/:id/uploadCv/CV",component:CvComponent},
+
+
 
 
    

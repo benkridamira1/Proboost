@@ -37,7 +37,8 @@ import { VideochatComponent } from './videochat/videochat.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {NgxPaginationModule} from 'ngx-pagination';
-import { UpdateJobComponent } from './update-job/update-job.component'; 
+import { UpdateJobComponent } from './update-job/update-job.component';
+import { CvComponent } from './cv/cv.component'; 
 
 
 @NgModule({
@@ -66,7 +67,8 @@ import { UpdateJobComponent } from './update-job/update-job.component';
     ChangeBgDirective,
     CreatequizComponent,
     VideochatComponent,
-    UpdateJobComponent
+    UpdateJobComponent,
+    CvComponent
   
   ],
   imports: [
