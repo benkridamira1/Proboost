@@ -17,6 +17,7 @@ export class RegistrationComponent implements OnInit {
     regreq : registerRequest = new registerRequest();
     err !: string ; 
     emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$";
+    token = localStorage.getItem('access_token');
 
     registerForm = new FormGroup({
       firstname : new FormControl('',Validators.required),

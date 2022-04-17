@@ -5,6 +5,7 @@ import { LoginRequest } from '../models/login-request.model';
 import { AuthenticationService } from '../services/authentication.service';
 
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,8 +14,12 @@ import { AuthenticationService } from '../services/authentication.service';
 export class LoginComponent implements OnInit {
 
   emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$";
+  echec !: string ;
 
-  loginForm !: FormGroup;
+  loginForm : FormGroup = new FormGroup({
+    username : new FormControl('',[Validators.pattern(this.emailPattern),Validators.required]),
+    password : new FormControl('',Validators.required)
+  }) ;
 
   loginRequest : LoginRequest = new LoginRequest() ;
 
@@ -23,10 +28,10 @@ export class LoginComponent implements OnInit {
   constructor(private authservice : AuthenticationService, private router : Router) { }
 
   ngOnInit(): void {
-    this.loginForm = new FormGroup({
+    /**this.loginForm = new FormGroup({
       username : new FormControl('',[Validators.pattern(this.emailPattern),Validators.required]),
       password : new FormControl('',Validators.required)
-    })
+    })*/
   }
 
   login(){
@@ -37,12 +42,18 @@ export class LoginComponent implements OnInit {
 
     this.authservice.login(this.loginRequest).subscribe(success => {
       if(success){
-        this.router.navigate(['/register']) ;
-      }else{
-        return;
+        
+        this.router.navigate(['/offre']) ;
       }
+    },(error)=>{
+      console.log(error);
+      this.echec = error ;
     });
 
+  }
+
+  test(){
+    this.echec = "Hello" ;
   }
 
 }

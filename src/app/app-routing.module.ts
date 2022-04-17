@@ -13,6 +13,7 @@ import { CreatequizComponent } from './createquiz/createquiz.component';
 import { VideochatComponent } from './videochat/videochat.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { OffreComponent } from './offre/offre.component';
 
 
 
@@ -29,6 +30,7 @@ const routes: Routes = [
    {path: "Videochat",component:VideochatComponent},
    {path: "login",component:LoginComponent},
    {path: "register",component:RegistrationComponent},
+   {path: "offre",component:OffreComponent},
   
 
 ];

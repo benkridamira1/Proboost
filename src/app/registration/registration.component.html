@@ -18,6 +18,7 @@
                   <div *ngIf="err" class="alert alert-danger" role="alert">
                     {{err}}
                   </div>
+      
                   <form [formGroup]="registerForm" (ngSubmit)="register()">
                   <div class="row">
                     <div class="col-md-6 mb-4">

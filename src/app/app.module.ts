@@ -34,6 +34,8 @@ import { FormsModule , ReactiveFormsModule } from '@angular/forms';
 import { VideochatComponent } from './videochat/videochat.component';
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { OffreComponent } from './offre/offre.component';
+import { AuthInterceptorProvider } from './auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -62,7 +64,8 @@ import { RegistrationComponent } from './registration/registration.component';
     CreatequizComponent,
     VideochatComponent,
     LoginComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    OffreComponent
   
   ],
   imports: [
@@ -84,7 +87,7 @@ import { RegistrationComponent } from './registration/registration.component';
    
   
   ],
-  providers: [],
+  providers: [AuthInterceptorProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

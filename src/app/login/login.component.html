@@ -1,7 +1,12 @@
 
 <div class="container-fluid container-sm" style="max-width: 39%;margin-top: 100px;margin-bottom: 100px;">
+  <div *ngIf="echec" class="alert alert-danger" role="alert">
+    {{echec}}
+  </div>
   <form [formGroup]="loginForm" (ngSubmit)="login()">
-
+  <div *ngIf="echec" class="alert alert-danger" role="alert">
+                    {{echec}}
+                  </div>
     <div class="form-outline mb-4">
       <span class="error" *ngIf="!loginForm.controls['username'].valid && 
       loginForm.controls['username']?.touched" >email is invalid</span>
@@ -34,9 +39,9 @@
     </div>
   
 
-    <button type="submit" (click)="login()" class="btn btn-primary btn-block mb-4">Sign in</button>
+    <button type="submit"  class="btn btn-primary btn-block mb-4">Sign in</button>
   
-
+  </form>
     <div class="text-center">
       <p>Not a member? <a href="#!">Register</a></p>
       <p>or sign up with:</p>
@@ -56,5 +61,5 @@
         <i class="fab fa-github"></i>
       </button>
     </div>
-  </form>
+ 
   </div>
