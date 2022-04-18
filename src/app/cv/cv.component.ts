@@ -17,6 +17,7 @@ export class CvComponent implements OnInit {
   message = '';
   fileInfos: cv[]=[];
   p : number =1;
+  url !:String;
 
 
 
@@ -68,5 +69,9 @@ export class CvComponent implements OnInit {
   }
 
 
+download(id :number){
+this.url="http://localhost:3000/files/"+id;
+
+}
   
 }

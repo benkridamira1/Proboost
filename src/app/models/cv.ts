@@ -5,8 +5,9 @@ export class cv{
 
     id  !: string ;
 
-
     fileName !: string;
+
+    downloadURL !: string;
 
     fileType  !: string ;
 
