@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { cv } from '../models/cv';
 import { CVService } from '../services/CvService/cv.service';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-cv',
@@ -18,14 +20,19 @@ export class CvComponent implements OnInit {
   fileInfos: cv[]=[];
   p : number =1;
   url !:String;
+  id !: any;
 
 
 
-  constructor(private uploadService: CVService) { }
+
+  constructor(private uploadService: CVService,private activatedroute:ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.activatedroute.paramMap.subscribe(params => { 
+      this.id = params.get('id'); 
+  });
 
-     this.uploadService.getFiles().subscribe(data=>this.fileInfos=data);
+     this.uploadService.getFiles(this.id).subscribe(data=>this.fileInfos=data);
 
   }
 
@@ -40,7 +47,7 @@ export class CvComponent implements OnInit {
       const file: File | null = this.selectedFiles.item(0);
       if (file) {
         this.currentFile = file;
-        this.uploadService.upload(this.currentFile).subscribe({
+        this.uploadService.upload(this.currentFile,this.id).subscribe({
           next: (event: any) => {
             if (event.type === HttpEventType.UploadProgress) {
               this.progress = Math.round(100 * event.loaded / event.total);
@@ -48,7 +55,7 @@ export class CvComponent implements OnInit {
 
               console.log(this.fileInfos);
               this.message = event.body.message;
-              this.uploadService.getFiles().subscribe(data=>this.fileInfos=data);
+              this.uploadService.getFiles(this.id).subscribe(data=>this.fileInfos=data);
 
             }
           },

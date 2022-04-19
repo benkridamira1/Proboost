@@ -9,21 +9,24 @@ import { cv } from 'src/app/models/cv';
 })
 export class CVService {
 
-  private baseUrl = 'http://localhost:3000';
+  private getUrl = 'http://localhost:3000/offre';
+  private postUrl = 'http://localhost:3000';
+
+ 
 
   constructor(private http: HttpClient) { }
 
-  upload(file: File ): Observable<HttpEvent<any>> {
+  upload(file: File , id: number ): Observable<HttpEvent<any>> {
     const formData: FormData = new FormData();
     formData.append('file', file);
-    const req = new HttpRequest('POST', `${this.baseUrl}/upload`, formData, {
+    const req = new HttpRequest('POST', `${this.postUrl}/upload/${id}`, formData, {
       reportProgress: true,
       responseType: 'json'
     });
     return this.http.request(req);
   }
 
-  getFiles(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}/files`);
+  getFiles(id: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.getUrl}/${id}/CVs`);
   }
 }
