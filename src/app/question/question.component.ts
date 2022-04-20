@@ -211,6 +211,10 @@ export class QuestionComponent implements OnInit {
       qcm:
       {
         id:this.id
+      },
+      entretien :
+      {
+        id:this.interviewid
       }
     }
     this.questionService.saveCheater(cheater).subscribe();

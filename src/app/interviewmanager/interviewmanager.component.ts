@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import {Router} from "@angular/router"
+import { interval } from 'rxjs';
 import { InterviewServiceService } from '../interviewService/interview-service.service';
 
 @Component({
@@ -12,12 +13,13 @@ export class InterviewmanagerComponent implements OnInit {
 
   interviews:any;
   formValue!:FormGroup;
+  cheaters:any=[];
+  cheaterdetails:any=[];
   constructor(private interviewService:InterviewServiceService,private formbuilder:FormBuilder,private router:Router) { }
 
   ngOnInit(): void {
-  this.interviewService.getInterviews(1).subscribe(res =>{
-    this.interviews=res;
-  })
+  
+  this.loadinterview();
 
   this.formValue=this.formbuilder.group({
     date: Date,
@@ -27,6 +29,9 @@ export class InterviewmanagerComponent implements OnInit {
     minute : Number
   })
 
+interval(3000).subscribe(()=>{
+  this.refresh();
+})
   }
 
   saveinterview()
@@ -36,6 +41,34 @@ export class InterviewmanagerComponent implements OnInit {
     this.interviewService.saveinterview(this.formValue.value).subscribe();
     document.getElementById("cancel")?.click();
     this.reloadComponent();
+  }
+
+  getcheaterdetails(id:number)
+  {
+    this.interviewService.getcheaters(id).subscribe(res =>{
+      this.cheaterdetails=res;
+    })
+  }
+
+loadinterview()
+{
+  this.interviewService.getInterviews(1).subscribe(res =>{
+    this.interviews=res;
+    for(let i = 0; i < this.interviews.length; i++)
+    {
+     
+      this.interviewService.verifycheaters(this.interviews[i].id).subscribe(res => {
+        this.cheaters[this.interviews[i].id]=res;
+        
+      })
+    
+    }
+    
+  })
+}
+  refresh()
+  {
+   this.loadinterview()
   }
 
   reloadComponent() {

@@ -46,6 +46,42 @@
       </div>
     
     
+
+
+
+       <!-- Modal -->
+       <div class="modal fade" id="cheaters" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Cheaters</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+
+
+              <table class="table table-dark table-hover">
+                <tr>
+                  <td>Date</td>
+                  <td>Quiz</td>
+                </tr>
+                <tr *ngFor="let detail of cheaterdetails" >
+                  <td> {{detail.date}} </td>
+                  <td> {{detail.qcm.titre}} </td>
+                </tr>
+              </table>
+    
+    
+            </div>
+            <div class="modal-footer" >
+              <button type="button"  style="margin-right: 200px;" id="cancel" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" style="margin-right: 10px;"  (click)="saveinterview()" class="btn btn-secondary">Block</button>
+            </div>
+          </div>
+        </div>
+      </div>
     
     
       
@@ -55,6 +91,7 @@
       
               <ng-container>
           <p class="price" style="color: black;font-size: large;"  > {{interview.candidat.prenom}} {{interview.candidat.nom}}</p>
+          <a  href="" *ngIf="cheaters[interview.id]"  (click)="getcheaterdetails(interview.id)" class="price " style="color: red;font-size: large;"  data-toggle="modal" data-target="#cheaters"> <span class="hvr-buzz-auto">Cheater !</span>  </a>
           </ng-container>
       
           <ul class="features-list">

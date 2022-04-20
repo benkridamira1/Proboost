@@ -47,4 +47,14 @@ export class InterviewServiceService {
   {
     return this.http.get<any>("http://localhost:3000/entretien/getbycandidat/"+id);
   }
+
+  getcheaters(id:number)
+  {
+    return this.http.get<any>("http://localhost:3000/entretien/getcheaters/"+id);
+  }
+
+  verifycheaters(id:number)
+  {
+    return this.http.get<any>("http://localhost:3000/entretien/verifycheaters/"+id);
+  }
 }
