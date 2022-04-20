@@ -80,5 +80,7 @@ download(id :number){
 this.url="http://localhost:3000/files/"+id;
 
 }
+
+
   
 }

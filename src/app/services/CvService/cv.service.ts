@@ -10,7 +10,7 @@ import { cv } from 'src/app/models/cv';
 export class CVService {
 
   private getUrl = 'http://localhost:3000/offre';
-  private postUrl = 'http://localhost:3000';
+  private baseUrl = 'http://localhost:3000';
 
  
 
@@ -19,7 +19,7 @@ export class CVService {
   upload(file: File , id: number ): Observable<HttpEvent<any>> {
     const formData: FormData = new FormData();
     formData.append('file', file);
-    const req = new HttpRequest('POST', `${this.postUrl}/upload/${id}`, formData, {
+    const req = new HttpRequest('POST', `${this.baseUrl}/upload/${id}`, formData, {
       reportProgress: true,
       responseType: 'json'
     });
@@ -28,5 +28,10 @@ export class CVService {
 
   getFiles(id: number): Observable<any[]> {
     return this.http.get<any[]>(`${this.getUrl}/${id}/CVs`);
+  }
+
+
+  showFile(id: number): Observable<any[]>{
+    return this.http.get<any[]>(`${this.baseUrl}/showFile/${id}`);
   }
 }

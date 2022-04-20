@@ -1,109 +1,84 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 
 
-<div class="row">
-    <div class="col-8">
-      <label class="btn btn-default p-0">
-        <input type="file"  class="form-control" id="customFile" (change)="selectFile($event)" />
-      </label>
-    </div>
-    <div class="col-4">
-      <button class="btn btn-success btn-sm" [disabled]="!selectedFiles" (click)="upload()">
-        Upload
-      </button>
-    </div>
+
+
+<div class="row" style="margin-top: 7%;" >
+ 
+  <div class="col-sm-8">
+ 
+    <label class="btn btn-default p-0" style="width: 100%;    border: 2px dashed #c2cdda;    align-items: center;
+  justify-content: center;  border-radius: 10px;     padding: 8px 20px;   background-color: white;
+margin-left: 6%;
+
+
+    " >
+      <input type="file"  class="form-control wrapper" id="customFile" (change)="selectFile($event)  "  hidden />
+      <i class="fas fa-cloud-upload-alt fa-5x"  style="align-content: center;   align-items: center ;
+      justify-content: center;   width: 100%; height: 70px ;   color: blue;
+"></i>
+      <p>Browse File to Upload</p>
+
+    </label>
   </div>
-  <div *ngIf="currentFile" class="progress my-3">
-    <div
-      class="progress-bar progress-bar-info progress-bar-striped"
-      role="progressbar"
-      attr.aria-valuenow="{{ progress }}"
-      aria-valuemin="0"
-      aria-valuemax="100"
-      [ngStyle]="{ width: progress + '%' }"
-    >
-      {{ progress }}%
-    </div>
+  <div class="col-sm-4 ">
+    <button class="btn  btn-sm"  style="margin-left: 15%; margin-top: 7%;"  [disabled]="!selectedFiles" (click)="upload()">
+      Upload
+    </button>
   </div>
-  <div *ngIf="message" class="alert alert-secondary" role="alert">{{ message }}</div>
-  <div class="card mt-3">
-    <div class="card-header">List of Files</div>
-<!-- 
-    <ul
-      class="list-group list-group-flush  list-group-item" 
-      *ngFor="let file of fileInfos"
-    >   {{ file.fileName }}
-
-      <li class="list-group-item">
-        
-      </li>
-    </ul> -->
-
-
-    <div>
-         
-    </div>
+</div>
+<div *ngIf="currentFile" class="progress my-3">
+  <div
+    class="progress-bar progress-bar-info progress-bar-striped"
+    role="progressbar"
+    attr.aria-valuenow="{{ progress }}"
+    aria-valuemin="0"
+    aria-valuemax="100"
+    [ngStyle]="{ width: progress + '%' }"
+  >
+    {{ progress }}%
   </div>
-  
-
-
-
-  <div class="job-listing-area pt-120 pb-120">
+</div>
+<div *ngIf="message" class="alert alert-secondary" role="alert">{{ message }}</div>
+<div class="content">
     <div class="container">
         <div class="row">
-            <!-- Left content -->
-            <div class="col-xl-3 col-lg-3 col-md-4">
-                <div class="row">
-                    <div class="col-12">
-                            <div class="small-section-tittle2 mb-45">
-                            <div class="ion"> <svg 
-                                xmlns="http://www.w3.org/2000/svg"
-                                xmlns:xlink="http://www.w3.org/1999/xlink"
-                                width="20px" height="12px">
-                            <path fill-rule="evenodd"  fill="rgb(27, 207, 107)"
-                                d="M7.778,12.000 L12.222,12.000 L12.222,10.000 L7.778,10.000 L7.778,12.000 ZM-0.000,-0.000 L-0.000,2.000 L20.000,2.000 L20.000,-0.000 L-0.000,-0.000 ZM3.333,7.000 L16.667,7.000 L16.667,5.000 L3.333,5.000 L3.333,7.000 Z"/>
-                            </svg>
-                            </div>
-                        
+            <div class="col-12">
+                <div class="card-box">
+                    <div class="row" style="margin-top: 4%;" >
+                        <div class="col-lg-6 col-xl-6">
+                            <h4 class="header-title m-b-30">My Files</h4>
                         </div>
                     </div>
+
+                    <div class="row" style="margin-top: 4%;">
+                        <div class="col-lg-3 col-xl-2"   *ngFor="let file of fileInfos | paginate: { itemsPerPage: 5, currentPage: p }">
+                            <div class="file-man-box">
+                              <a href="http://localhost:3000/showFile/{{file.id}}">
+                                <div class="file-img-box"> 
+                                   
+                                     <img src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/pdf.svg" alt="icon">
+                                
+                                    </div>
+                                  </a>
+                                <a href="http://localhost:3000/download/{{file.id}}" class="file-download"> <i class="fa fa-download" style="color: #FB246A;"></i></a>
+                                <div class="file-man-title">
+                                 <a  href="http://localhost:3000/showFile/{{file.id}}">
+                                    <h5 class="mb-0 text-overflow">{{ file.fileName }}</h5>
+                                  </a> 
+                                </div>
+                            </div>
+                        </div>
+  
+                        <pagination-controls  (pageChange)="p = $event"> </pagination-controls>
+                    </div>
+        
+                   
                 </div>
-                <!-- Job Category Listing start -->
-           
-                <!-- Job Category Listing End -->
             </div>
-            <!-- Right content -->
-            <div class="col-xl-9 col-lg-9 col-md-8">
-                <!-- Featured_job_start -->
-                <section class="featured-job-area">
-                    <div class="container">
-                  
-                     
-<!--   _______________________test get Amira _____________________________________ -->
-                        <!-- single-job-content -->
-                        <div class="single-job-items mb-30"   *ngFor="let file of fileInfos | paginate: { itemsPerPage: 3, currentPage: p }">
-                            <div class="job-items">
-                                <div class="company-img">
-                                    <a href="#"><img src="assets/img/icon/job-list4.png" alt=""></a>
-                                </div>
-                                <div class="job-tittle job-tittle2">
-                                  <a href="http://localhost:3000/download/{{file.id}}">  <h4> {{file.fileName}} </h4>  </a>   
-                                         <!-- <a   href="http://localhost:3000/files/{{file.id}}" > {{file.fileName}} </a>   -->
-                                    
-
-
-                                </div>
-                            </div>
-                           
-                        </div>
-
-                        <pagination-controls (pageChange)="p = $event"></pagination-controls>
-                    
-
-                    </div>
-                    
-                </section>
-                <!-- Featured_job_end -->
-            </div>
+            <!-- end col -->
         </div>
+        <!-- end row -->
     </div>
+    <!-- container -->
 </div>
