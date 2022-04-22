@@ -32,6 +32,16 @@ export class RegistrationComponent implements OnInit {
     ,private router :Router) { }
 
   ngOnInit(): void {
+    if(this.isLogged()){
+      this.router.navigate(['/']);
+    }
+  }
+  isLogged():boolean{
+    if(!localStorage.getItem('access_token')){
+      return false ;
+
+    }
+    return true ;
   }
 register(){
    this.registerService.register(this.regreq).subscribe((data)=>

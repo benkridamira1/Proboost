@@ -28,10 +28,22 @@ export class LoginComponent implements OnInit {
   constructor(private authservice : AuthenticationService, private router : Router) { }
 
   ngOnInit(): void {
+
+    if(this.isLogged()){
+      this.router.navigate(['/'])
+    }
     /**this.loginForm = new FormGroup({
       username : new FormControl('',[Validators.pattern(this.emailPattern),Validators.required]),
       password : new FormControl('',Validators.required)
     })*/
+  }
+
+  isLogged():boolean{
+    if(!localStorage.getItem('access_token')){
+      return false ;
+
+    }
+    return true ;
   }
 
   login(){
