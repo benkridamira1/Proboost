@@ -36,6 +36,7 @@ import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { OffreComponent } from './offre/offre.component';
 import { AuthInterceptorProvider } from './auth.interceptor';
+import { ProfilComponent } from './profil/profil.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { AuthInterceptorProvider } from './auth.interceptor';
     VideochatComponent,
     LoginComponent,
     RegistrationComponent,
-    OffreComponent
+    OffreComponent,
+    ProfilComponent
   
   ],
   imports: [

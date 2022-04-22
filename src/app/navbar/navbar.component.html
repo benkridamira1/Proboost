@@ -39,9 +39,13 @@
                                
                             </div>          
                             <!-- Header-btn -->
-                            <div class="header-btn d-none f-right d-lg-block">
+                            <div *ngIf="!isLogged()"  class="header-btn d-none f-right d-lg-block">
                                 <a href="#" routerLink="register" class="btn head-btn1">Register</a>
                                 <a href="#" routerLink="login" class="btn head-btn2">Login</a>
+                            </div>
+                            <div *ngIf="isLogged()" class="header-btn d-none f-right d-lg-block">
+                                <a  class="btn head-btn1" type="submit" (click)="logout()">logout</a>
+                                
                             </div>
                         </div>
                     </div>

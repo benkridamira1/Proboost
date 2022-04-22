@@ -51,6 +51,21 @@ export class AuthenticationService {
     return this.http.get<any>(this.CurrentUserUrl);
   }
 
+  logout()
+  {
+
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('refresh_token');
+   
+  }
+
+  isLogged():boolean{
+    if(localStorage.getItem('access_token')){
+      return true
+    }
+    return false ;
+  }
+
 
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {

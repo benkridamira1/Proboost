@@ -1,5 +1,6 @@
 import { ArrayType } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 import { Offre } from '../models/offre';
 import { AuthenticationService } from '../services/authentication.service';
 import { ListOffreService } from '../services/list-offre/list-offre.service';
@@ -12,9 +13,14 @@ import { ListOffreService } from '../services/list-offre/list-offre.service';
 export class OffreComponent implements OnInit {
  list : any;
  user !: any ;
-  constructor(private offreservice : ListOffreService,private authService : AuthenticationService) { }
+  constructor(private offreservice : ListOffreService,private authService : AuthenticationService
+    ,private router : Router) { }
 
   ngOnInit(): void {
+    if(!localStorage.getItem('access_token')){
+      this.router.navigate(['/login']);
+
+    }
      this.authService.CurrentUser().subscribe(
        data => this.user = data
      ) ;
@@ -22,7 +28,13 @@ export class OffreComponent implements OnInit {
       data => this.list = data
     );
   }
+logout(){
+  console.log("logout works");
+  this.authService.logout() ;
+  this.router.navigate(['/login']);
+  
 
+}
 
 
 

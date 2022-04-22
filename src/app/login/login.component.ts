@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
     this.authservice.login(this.loginRequest).subscribe(success => {
       if(success){
         
-        this.router.navigate(['/offre']) ;
+        this.router.navigate(['/profil']) ;
       }
     },(error)=>{
       console.log(error);
