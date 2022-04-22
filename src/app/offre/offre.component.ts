@@ -25,7 +25,10 @@ export class OffreComponent implements OnInit {
        data => this.user = data
      ) ;
      this.offreservice.listeOffre().subscribe(
-      data => this.list = data
+      data => this.list = data,(error)=>{
+        console.log(error);
+        this.router.navigate(['/']);
+      }
     );
   }
 logout(){
