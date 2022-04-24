@@ -11,19 +11,21 @@ import { WelcomeQuizComponent } from './welcome-quiz/welcome-quiz.component';
 import { QuestionComponent } from './question/question.component';
 import { CreatequizComponent } from './createquiz/createquiz.component';
 import { VideochatComponent } from './videochat/videochat.component';
-import { QuizdetailsComponent } from './quizdetails/quizdetails.component';
-import { QuestiondetailsComponent } from './questiondetails/questiondetails.component';
-import { InterviewmanagerComponent } from './interviewmanager/interviewmanager.component';
-import { InterviewdetailsComponent } from './interviewdetails/interviewdetails.component';
-import { InterviewrqComponent } from './interviewrq/interviewrq.component';
-import { PassquizComponent } from './passquiz/passquiz.component';
-import { RecordsComponent } from './records/records.component';
+
 import { VideochatrqComponent } from './videochatrq/videochatrq.component';
-import { VideochatmanagerComponent } from './videochatmanager/videochatmanager.component';
+
 import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { OffreComponent } from './offre/offre.component';
 import { ProfilComponent } from './profil/profil.component';
+import { QuizdetailsComponent } from './quizdetails/quizdetails.component';
+import { InterviewmanagerComponent } from './interviewmanager/interviewmanager.component';
+import { PassquizComponent } from './passquiz/passquiz.component';
+import { InterviewrqComponent } from './interviewrq/interviewrq.component';
+import { InterviewdetailsComponent } from './interviewdetails/interviewdetails.component';
+import { QuestiondetailsComponent } from './questiondetails/questiondetails.component';
+import { RecordsComponent } from './records/records.component';
+import { VideochatmanagerComponent } from './videochatmanager/videochatmanager.component';
 
 
 
@@ -46,7 +48,7 @@ const routes: Routes = [
    {path: "Passquiz/:id",component:PassquizComponent},
    {path: "Records/:id",component:RecordsComponent},
    {path: "Videochatrq",component:VideochatrqComponent},
-   {path: "Videochatmanager",component:VideochatmanagerComponent}
+   {path: "Videochatmanager",component:VideochatmanagerComponent},
    {path: "login",component:LoginComponent},
    {path: "register",component:RegistrationComponent},
    {path: "profil",component:ProfilComponent},
