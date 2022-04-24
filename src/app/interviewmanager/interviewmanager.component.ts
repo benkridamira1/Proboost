@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import {Router} from "@angular/router"
-import { interval } from 'rxjs';
+import { interval, Subscription } from 'rxjs';
 import { InterviewServiceService } from '../interviewService/interview-service.service';
+
 
 @Component({
   selector: 'app-interviewmanager',
@@ -15,11 +16,13 @@ export class InterviewmanagerComponent implements OnInit {
   formValue!:FormGroup;
   cheaters:any=[];
   cheaterdetails:any=[];
-  constructor(private interviewService:InterviewServiceService,private formbuilder:FormBuilder,private router:Router) { }
+  constructor(private interviewService:InterviewServiceService,private formbuilder:FormBuilder,private router:Router)
+  {
+    
+    }
 
   ngOnInit(): void {
-  
-  this.loadinterview();
+
 
   this.formValue=this.formbuilder.group({
     date: Date,

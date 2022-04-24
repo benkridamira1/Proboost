@@ -9,7 +9,6 @@ import { InterviewServiceService } from '../interviewService/interview-service.s
 export class InterviewrqComponent implements OnInit {
 
   myinterview:any = [];
-  dateOne:Date=new Date();
   late:any = [];
   constructor(private interviewService:InterviewServiceService) { }
 

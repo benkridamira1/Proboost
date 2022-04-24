@@ -35,6 +35,8 @@ import { InterviewdetailsComponent } from './interviewdetails/interviewdetails.c
 import { InterviewrqComponent } from './interviewrq/interviewrq.component';
 import { PassquizComponent } from './passquiz/passquiz.component';
 import { RecordsComponent } from './records/records.component';
+import { VideochatrqComponent } from './videochatrq/videochatrq.component';
+import { VideochatmanagerComponent } from './videochatmanager/videochatmanager.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +70,9 @@ import { RecordsComponent } from './records/records.component';
     InterviewdetailsComponent,
     InterviewrqComponent,
     PassquizComponent,
-    RecordsComponent
+    RecordsComponent,
+    VideochatrqComponent,
+    VideochatmanagerComponent
   
   ],
   imports: [

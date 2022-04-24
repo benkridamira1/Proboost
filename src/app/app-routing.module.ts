@@ -18,6 +18,8 @@ import { InterviewdetailsComponent } from './interviewdetails/interviewdetails.c
 import { InterviewrqComponent } from './interviewrq/interviewrq.component';
 import { PassquizComponent } from './passquiz/passquiz.component';
 import { RecordsComponent } from './records/records.component';
+import { VideochatrqComponent } from './videochatrq/videochatrq.component';
+import { VideochatmanagerComponent } from './videochatmanager/videochatmanager.component';
 
 
 
@@ -38,7 +40,9 @@ const routes: Routes = [
    {path: "Interviewdetails/:id",component:InterviewdetailsComponent},
    {path: "Interviewrq",component:InterviewrqComponent},
    {path: "Passquiz/:id",component:PassquizComponent},
-   {path: "Records/:id",component:RecordsComponent}
+   {path: "Records/:id",component:RecordsComponent},
+   {path: "Videochatrq",component:VideochatrqComponent},
+   {path: "Videochatmanager",component:VideochatmanagerComponent}
 
 ];
 

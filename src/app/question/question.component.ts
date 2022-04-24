@@ -6,6 +6,7 @@ import {  DOCUMENT } from '@angular/common';
 import {ActivatedRoute, Router} from "@angular/router"
 
 
+
 @Component({
   selector: 'app-question',
   templateUrl: './question.component.html',
@@ -217,6 +218,7 @@ export class QuestionComponent implements OnInit {
         id:this.interviewid
       }
     }
+    
     this.questionService.saveCheater(cheater).subscribe();
     this.router.navigate([""]);
   }
