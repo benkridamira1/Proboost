@@ -1,0 +1,128 @@
+<div class="container" >
+    <h1>Inteview : {{interview.titre}} </h1>
+    
+    
+    
+      
+    
+    
+    
+    <!-- Add Quiz -->
+    <button type="button" (mouseenter)= "assignshow()" class="btn btn-primary" data-toggle="modal" id="showquiz"  data-target="#exampleModal">
+        Assign A Quiz
+      </button>
+    
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Quiz List</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+
+
+
+            <div class="modal-body">
+
+                <ul *ngFor="let quiz of Quizs" class="list-group list-group-flush">
+                    <li   class="list-group-item" style="cursor: pointer;"> <span class="hvr-pulse" (click)="assignquiz(quiz)">{{quiz.titre}}</span></li>
+                  </ul>
+    
+            </div>
+
+
+            <div class="modal-footer" >
+              <button type="button"  style="margin-right: 200px;" (click)="reloadComponent()" id="cancel" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" style="margin-right: 10px;"   class="btn btn-primary">Add</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+
+
+
+       <!-- Add Quiz -->
+    <button type="button" (focus)="showquiz()"  style="margin-left: 90px;" class="btn btn-primary" data-toggle="modal" id="showquiz"  data-target="#assignedquiz">
+      Assigned Quizs
+    </button>
+  
+    <!-- Modal -->
+    <div class="modal fade" id="assignedquiz" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel"> {{interview.titre}} Quizs </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+
+
+          <div class="modal-body" >
+         
+            <ul *ngFor="let quiz of currentquiz;else emptylist"  class="list-group list-group-flush">
+                <li  *ngIf="currentquiz.length!=0"    class="list-group-item" style="cursor: pointer;"> <span class="hvr-pulse" (click)="assignquiz(quiz)">{{quiz.titre}}</span>
+                  <img  (click)="deleteqcm(quiz.id)" style="margin-top: -10px;cursor: pointer;" width="15%" height="10%" src="assets/img/animated/trash-mini.gif">
+                </li>
+              </ul>
+       
+              <ng-container *ngIf="!istherecurrentquiz && exist == 0">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item" > <span class="hvr-buzz-auto"> No Quiz Assigned To {{interview.titre}} Yet ! </span></li>
+  
+              </ul>
+            </ng-container>
+
+        </div>
+
+        
+
+
+          <div class="modal-footer" >
+            <button type="button"  style="margin-right: 200px;"  id="cancelassigned" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" style="margin-right: 10px;"   class="btn btn-primary">Add</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <!-- Add Question -->
+    <button type="button"  (click)="deleteinterview()" style="margin-left: 100px" class="btn btn-primary">
+      Delete This Interview
+    </button>
+    
+    
+    <table class="table" style="margin-top: 50px;width: 50%;margin-left: 290px;">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Candidat</th>
+            <th scope="col">Type</th>
+            <th scope="col">Date</th>
+            <th scope="col">Time</th>
+            <th scope="col">Quiz</th>
+          </tr>
+        </thead>
+      
+        <tbody>
+         
+          <tr>
+            <td> {{interview.candidat.username}} </td>
+            <td> {{interview.type}} </td>
+            <td> {{interview.date}} </td>
+            <td> {{interview.hour}} : {{interview.minute}} </td>
+            <td> {{quiznumber}} </td>
+          </tr>
+        
+        </tbody>
+      </table>
+    
+    
+    
+        </div>

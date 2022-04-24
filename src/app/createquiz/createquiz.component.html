@@ -1,17 +1,110 @@
 <div class="container" >
-<h1>Create A Quiz</h1>
+<h1>Quiz Manager</h1>
 
 
-<form class="form-inline" >
-    <label class="sr-only" for="inlineFormInputName2">Quiz Name</label>
-    <input type="text" class="form-control mb-2 mr-sm-2" id="inlineFormInputName2" placeholder="Quiz Name" ngModel>
-    
 
-    
-    <div style="margin-top: 200px; margin-right: 220px; margin-left: -175px;">
-    <button class="btn" >Save</button>
-</div>
   
 
-</form>
+
+
+<!-- Add Quiz -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Add A Quiz
+  </button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add A Quiz</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+            <form class="form-inline" [formGroup]="formValue">
+                <label class="sr-only" for="inlineFormInputName2">Quiz Name</label>
+                <input type="text" class="form-control mb-2 mr-sm-2"  formControlName="titre" style="width: 100%;" id="inlineFormInputName2" placeholder="Quiz Name" >
+            
+            </form>
+
+
+
+        </div>
+        <div class="modal-footer" >
+          <button type="button"  style="margin-right: 200px;" id="cancel" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" style="margin-right: 10px;"  (click)="addquiz()" class="btn btn-primary">Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <!-- Add Question -->
+<button type="button" style="margin-left: 100px" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Add A Question
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add A Quiz</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+          <form class="form-inline" [formGroup]="formValue">
+              <label class="sr-only" for="inlineFormInputName2">Quiz Name</label>
+              <input type="text" class="form-control mb-2 mr-sm-2"  formControlName="titre" style="width: 100%;" id="inlineFormInputName2" placeholder="Quiz Name" >
+          
+
+              
+
+
+
+
+          </form>
+
+
+
+      </div>
+      <div class="modal-footer" >
+        <button type="button"  style="margin-right: 200px;" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" style="margin-right: 10px;"  (click)="addquiz()" class="btn btn-primary">Add</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<table class="table" style="margin-top: 50px;width: 50%;margin-left: 290px;">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Quiz List</th>
+    </tr>
+  </thead>
+
+  <tbody>
+   
+    <tr *ngFor="let quiz of allquiz">
+      <td [routerLink]="['/Quizdetails', quiz.id]"   style="cursor: pointer;"><span class="hvr-buzz-out"> {{quiz.titre}}</span></td>
+    </tr>
+  
+  </tbody>
+</table>
+
+
+
+
+
+
     </div>

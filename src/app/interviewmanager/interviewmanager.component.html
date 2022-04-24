@@ -1,0 +1,116 @@
+<div class="container" >
+    <h1>Interview Manager</h1>
+    
+    
+    
+      
+    
+    
+    
+    <!-- Add Quiz -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        Add A Interview
+      </button>
+    
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Add A Interview</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+    
+                <form class="form-inline" [formGroup]="formValue">
+                    <label class="sr-only" for="inlineFormInputName2">Interview Title</label>
+                    <input type="text" class="form-control mb-2 mr-sm-2"   formControlName="titre" style="width: 100%;" id="inlineFormInputName2" placeholder="Interview Title" >
+                    <input type="text" class="form-control mb-2 mr-sm-2"   formControlName="type" style="width: 100%;"  placeholder="Interview Type" >
+                    <input type="date" class="form-control mb-2 mr-sm-2"   formControlName="date" style="width: 100%;">
+                    <input type="number" class="form-control mb-2 mr-sm-2"   formControlName="hour" min="8" max="18" style="width: 100%;" placeholder="Hour">
+                    <input type="number" class="form-control mb-2 mr-sm-2"   formControlName="minute" min ="0" max="59" style="width: 100%;" placeholder="Minutes">
+
+                </form>
+    
+    
+    
+            </div>
+            <div class="modal-footer" >
+              <button type="button"  style="margin-right: 200px;" id="cancel" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" style="margin-right: 10px;"  (click)="saveinterview()" class="btn btn-secondary">Add</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    
+
+
+
+       <!-- Modal -->
+       <div class="modal fade" id="cheaters" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Cheaters</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+
+
+              <table class="table table-dark table-hover">
+                <tr>
+                  <td>Date</td>
+                  <td>Quiz</td>
+                </tr>
+                <tr *ngFor="let detail of cheaterdetails" >
+                  <td> {{detail.date}} </td>
+                  <td> {{detail.qcm.titre}} </td>
+                </tr>
+              </table>
+    
+    
+            </div>
+            <div class="modal-footer" >
+              <button type="button"  style="margin-right: 200px;" id="cancel" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" style="margin-right: 10px;"  (click)="saveinterview()" class="btn btn-secondary">Block</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    
+      
+      <div class="pricing-box-container" >
+        <div class="pricing-box text-center hvr-grow" *ngFor="let interview of interviews">
+          <h5> {{interview.titre}} </h5>
+      
+              <ng-container>
+          <p class="price" style="color: black;font-size: large;"  > {{interview.candidat.prenom}} {{interview.candidat.nom}}</p>
+          <a  href="" *ngIf="cheaters[interview.id]"  (click)="getcheaterdetails(interview.id)" class="price " style="color: red;font-size: large;"  data-toggle="modal" data-target="#cheaters"> <span class="hvr-buzz-auto">Cheater !</span>  </a>
+          </ng-container>
+      
+          <ul class="features-list">
+            <li><strong> {{interview.recruteur.nom}}  </strong> </li>
+            <li><strong> Type </strong> {{interview.type}} </li>
+            <li><strong>Date </strong> {{interview.date}} </li>
+            <li><strong>Time </strong> {{interview.hour}}:{{interview.minute}} </li>
+          </ul>
+        
+              <ng-container>
+                  <button class="btn-primary" [routerLink]="['/Interviewdetails', interview.id]" style="margin-right: 20px;" >Details</button>
+                  <button class="btn-primary" [routerLink]="['/Records', interview.id]" >Results</button>
+              </ng-container>
+          
+      
+        </div>
+    
+    
+    
+    
+    
+        </div>

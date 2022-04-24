@@ -1,0 +1,71 @@
+<div class="container" >
+    <h1>Quiz : {{quiz.titre}} </h1>
+    
+    
+    
+      
+    
+    
+    
+    <!-- Add Quiz -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        Add A Question
+      </button>
+    
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Add A Question</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+    
+                <form class="form-inline" [formGroup]="formValue">
+                    <label class="sr-only" for="inlineFormInputName2">Quiz Name</label>
+                    <input type="text" class="form-control mb-2 mr-sm-2"  formControlName="question" style="width: 100%;" id="inlineFormInputName2" placeholder="Question" >
+                    <input type="text" class="form-control mb-2 mr-sm-2"  formControlName="correctanswer" style="width: 100%;" id="inlineFormInputName2" placeholder="Correct Answer" >
+                </form>
+    
+    
+    
+            </div>
+            <div class="modal-footer" >
+              <button type="button"  style="margin-right: 200px;" id="cancel" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" style="margin-right: 10px;"   (click)="addquestion()" class="btn btn-primary">Add</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+    
+    
+    
+      <!-- Add Question -->
+    <button type="button" (click)="deletequiz()" style="margin-left: 100px" class="btn btn-primary">
+      Delete This Quiz
+    </button>
+    
+    
+    <table class="table" style="margin-top: 50px;width: 50%;margin-left: 290px;">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Questions</th>
+          </tr>
+        </thead>
+      
+        <tbody>
+         
+          <tr *ngFor="let question of questions">
+            <td [routerLink]="['/Questiondetails', question.id]" style="cursor: pointer;"> <span class="hvr-buzz-out">{{question.question}}</span></td>
+          </tr>
+        
+        </tbody>
+      </table>
+    
+    
+    
+        </div>

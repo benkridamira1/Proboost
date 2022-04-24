@@ -1,9 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-
-
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -26,12 +23,20 @@ import { ContactComponent } from './contact/contact.component';
 import { JobDetailsComponent } from './job-details/job-details.component';
 import { WelcomeQuizComponent } from './welcome-quiz/welcome-quiz.component';
 import { QuestionComponent } from './question/question.component';
-
 import { ChangeBgDirective } from './change-bg.directive';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { CreatequizComponent } from './createquiz/createquiz.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { VideochatComponent } from './videochat/videochat.component';
+import { QuizdetailsComponent } from './quizdetails/quizdetails.component';
+import { QuestiondetailsComponent } from './questiondetails/questiondetails.component';
+import { InterviewmanagerComponent } from './interviewmanager/interviewmanager.component';
+import { InterviewdetailsComponent } from './interviewdetails/interviewdetails.component';
+import { InterviewrqComponent } from './interviewrq/interviewrq.component';
+import { PassquizComponent } from './passquiz/passquiz.component';
+import { RecordsComponent } from './records/records.component';
+import { VideochatrqComponent } from './videochatrq/videochatrq.component';
+import { VideochatmanagerComponent } from './videochatmanager/videochatmanager.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +63,16 @@ import { VideochatComponent } from './videochat/videochat.component';
     QuestionComponent,
     ChangeBgDirective,
     CreatequizComponent,
-    VideochatComponent
+    VideochatComponent,
+    QuizdetailsComponent,
+    QuestiondetailsComponent,
+    InterviewmanagerComponent,
+    InterviewdetailsComponent,
+    InterviewrqComponent,
+    PassquizComponent,
+    RecordsComponent,
+    VideochatrqComponent,
+    VideochatmanagerComponent
   
   ],
   imports: [
@@ -75,8 +89,8 @@ import { VideochatComponent } from './videochat/videochat.component';
       "innerStrokeColor": "#32CD32",
       "innerStrokeWidth": 1,
       "startFromZero": true}),
-      FormsModule
-   
+      FormsModule,
+   ReactiveFormsModule
   
   ],
   providers: [],

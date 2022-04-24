@@ -1,0 +1,35 @@
+<h1 class="text-center">Your Video Interview Requests</h1>
+
+
+<div class="pricing-box-container" >
+	<div class="pricing-box text-center" *ngFor="let chat of videochats">
+		<h5>  </h5>
+
+        <ng-container *ngIf="late[chat.id]==true;else notlate">
+            <p class="price hvr-buzz-auto" style="color: red;"  >Late !</p>
+        </ng-container>
+    
+        <ng-template #notlate>
+            <p class="price" style="color: blue;">On Time</p>
+        </ng-template>
+
+		<ul class="features-list">
+			<li><strong> {{chat.titre}} </strong> </li>
+			<li><strong> Code </strong> {{chat.code}} </li>
+			<li><strong> Date </strong> {{chat.date}} </li>
+			<li><strong> Time </strong> {{chat.hour}}:{{chat.minute}} </li>
+		</ul>
+  
+        <ng-container *ngIf="late[chat.id]==true;else notlateb">
+            <button class="btn-primary" disabled style="color: black;background-color: grey;" >Get Started</button>
+        </ng-container>
+    
+        <ng-template #notlateb>
+            <button class="btn-primary" [routerLink]="['/Videochat']">Get Started</button>
+        </ng-template>
+
+
+	</div>
+
+</div>
+

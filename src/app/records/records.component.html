@@ -1,0 +1,22 @@
+
+    
+    <table class="container" style="width: 70%;margin-bottom: 200px;" *ngIf="records.length!=0;else norecords">
+        <thead>
+            <tr >
+                <th style="color: white;"><h1>Date</h1></th>
+                <th><h1>Score</h1></th>
+                <th><h1>Quiz</h1></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let record of records">
+                <td> {{record.date}} </td>
+                <td> {{record.score}} %</td>
+                <td> {{record.qcm.titre}} </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ng-template #norecords>
+     <h2 class="hvr-buzz-auto" style="text-align: center;" ><b>No Results For {{interview.titre}} Yet ! </b></h2>
+    </ng-template>
