@@ -13,7 +13,7 @@ export class InterviewrqComponent implements OnInit {
   constructor(private interviewService:InterviewServiceService) { }
 
   ngOnInit(): void {
-  this.interviewService.getbycandidat(2).subscribe(res =>{
+  this.interviewService.getbycandidat(1).subscribe(res =>{
     this.myinterview=res;
     this.myinterview.map((val:any)=> 
     {

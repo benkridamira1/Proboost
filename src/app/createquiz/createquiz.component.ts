@@ -42,7 +42,7 @@ export class CreatequizComponent implements OnInit {
 
   addquiz()
   {
-    
+    this.formValue.value.createur={id:1};
      this.quizservice.savequiz(this.formValue.value)
      .subscribe(res=>{
        console.log(res)

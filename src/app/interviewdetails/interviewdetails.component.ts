@@ -69,6 +69,7 @@ this.showquiz();
 
   assignquiz(quiz:any)
   {
+    alert(this.interview.id)
     quiz.entretiens.push({id:this.interview.id});
     this.quizService.savequiz(quiz).subscribe();
     document.getElementById("cancel")?.click();
@@ -120,7 +121,9 @@ this.showquiz();
   
   deleteinterview()
   {
-    this.interviewService.deleteinterview(this.interview.id).subscribe();
+    this.interviewService.deleteinterview(this.interview.id).subscribe(res =>{
+      alert(res);
+    });
     this.router.navigateByUrl("Interviewmanager");
   }
 

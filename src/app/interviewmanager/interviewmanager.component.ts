@@ -40,7 +40,7 @@ interval(3000).subscribe(()=>{
   saveinterview()
   {
     this.formValue.value.recruteur={id:1};
-    this.formValue.value.candidat={id:2};
+    this.formValue.value.candidat={id:1};
     this.interviewService.saveinterview(this.formValue.value).subscribe();
     document.getElementById("cancel")?.click();
     this.reloadComponent();
