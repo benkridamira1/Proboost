@@ -20,6 +20,10 @@ import { PassquizComponent } from './passquiz/passquiz.component';
 import { RecordsComponent } from './records/records.component';
 import { VideochatrqComponent } from './videochatrq/videochatrq.component';
 import { VideochatmanagerComponent } from './videochatmanager/videochatmanager.component';
+import { LoginComponent } from './login/login.component';
+import { RegistrationComponent } from './registration/registration.component';
+import { OffreComponent } from './offre/offre.component';
+import { ProfilComponent } from './profil/profil.component';
 
 
 
@@ -43,11 +47,18 @@ const routes: Routes = [
    {path: "Records/:id",component:RecordsComponent},
    {path: "Videochatrq",component:VideochatrqComponent},
    {path: "Videochatmanager",component:VideochatmanagerComponent}
+   {path: "login",component:LoginComponent},
+   {path: "register",component:RegistrationComponent},
+   {path: "profil",component:ProfilComponent},
+   {path: "offre",component:OffreComponent},
+  
 
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {
+    scrollPositionRestoration: 'enabled'
+  })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

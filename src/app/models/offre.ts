@@ -19,7 +19,10 @@ export class Offre{
 
      salary !: number  ;
 
+     vacancy !: string ;
+
      recruteur !: Recruteur ;
+
 
 
      

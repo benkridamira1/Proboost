@@ -37,6 +37,11 @@ import { PassquizComponent } from './passquiz/passquiz.component';
 import { RecordsComponent } from './records/records.component';
 import { VideochatrqComponent } from './videochatrq/videochatrq.component';
 import { VideochatmanagerComponent } from './videochatmanager/videochatmanager.component';
+import { LoginComponent } from './login/login.component';
+import { RegistrationComponent } from './registration/registration.component';
+import { OffreComponent } from './offre/offre.component';
+import { AuthInterceptorProvider } from './auth.interceptor';
+import { ProfilComponent } from './profil/profil.component';
 
 @NgModule({
   declarations: [
@@ -72,12 +77,17 @@ import { VideochatmanagerComponent } from './videochatmanager/videochatmanager.c
     PassquizComponent,
     RecordsComponent,
     VideochatrqComponent,
-    VideochatmanagerComponent
+    VideochatmanagerComponent,
+    LoginComponent,
+    RegistrationComponent,
+    OffreComponent,
+    ProfilComponent
   
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     HttpClientModule,
     NgCircleProgressModule.forRoot({
       "backgroundColor": "#F1F1F1",
@@ -93,7 +103,7 @@ import { VideochatmanagerComponent } from './videochatmanager/videochatmanager.c
    ReactiveFormsModule
   
   ],
-  providers: [],
+  providers: [AuthInterceptorProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,11 @@
+<p>offre works!</p>
+
+
+
+<p *ngFor="let elem of list">{{ elem.id }}</p>
+
+<h1 *ngIf="user" >{{user.id}} </h1>
+
+<h1 *ngIf="user" >{{user.email}} </h1>
+
+<a class="nav-item nav-link" (click)="logout()">Logout</a>
