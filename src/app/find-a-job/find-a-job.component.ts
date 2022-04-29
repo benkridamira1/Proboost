@@ -1,7 +1,8 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Offre } from '../models/offre';
-import { ListOffreService } from '../services/list-offre/list-offre.service';
+import { OffreService } from '../services/OffreSrevice/offreservice.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-find-a-job',
@@ -13,8 +14,10 @@ export class FindAJobComponent implements OnInit {
   offres : Offre[] = [];
   tempOffres : Offre[] = [];
   offresRecherche  !: Offre[];
+  offresRechercheSalary  !: Offre[];
   jobsType :any [] = ["All"];
-
+  recruteurSearch  =  '';
+  jobtypeSearch: any[] = [];
   recruteurs : any[] = ["All"];
 
   locations  : any[] = ["All"];
@@ -22,8 +25,8 @@ export class FindAJobComponent implements OnInit {
   experiences  : any[] = ["All"];
 
   offersbydate : any[] = ["All"];
-
-  constructor(private listOffreService : ListOffreService) { 
+  p : number =1;
+  constructor(private listOffreService : OffreService ,  private router : Router ) { 
     
 
   }
@@ -77,19 +80,89 @@ if (event.target.value =='All' ) {
 else {
 
   if (name == 'Recruteur'  ) {
+    this.offres = this.tempOffres;
+    // variable globale sera paratgé 
+    this.recruteurSearch = event.target.value;
     let data = this.offres.filter(x => x.recruteur.nom == event.target.value) ;
-     this.offres = [...data];
+    this.offres = [...data];
+    
+    // if checkbox is not empty 
+    
+    if (this.jobtypeSearch.length == 1 ) {
+      // one value has selected 
+        data = this.offres.filter(x => x.jobeType ==  this.jobtypeSearch[0]);
+        this.offres = [...data];
+     }
+     else if (this.jobtypeSearch.length > 1 ) {
+        let data1 =  this.offres.filter(x => x.jobeType ==  (this.jobtypeSearch[0])   )
+        let data2 = this.offres.filter(x => x.jobeType ==  (this.jobtypeSearch[1])   ) ;
+        this.offres  = [ ...data2, ...data1];
+  
+     }
 }
 if (name == 'jobtype' ) {
+  
 
   if (event.target.value != ''  && event.target.checked) {
-
+    let option :any = '' ;
+    // recupérer array comme valeur globale
+    this.jobtypeSearch.push(event.target.value) ;
+    let data :any[] = [] ;
   
-    let data = this.offres.filter(x => x.jobeType == event.target.value) ;
-    this.offres = [...data];
-  }
-  else {
+  if (this.jobtypeSearch.length == 1 ) {
     this.offres = this.tempOffres;
+     data = this.offres.filter(x => x.jobeType ==  this.jobtypeSearch[0 ]);
+     if (this.recruteurSearch !== '') {
+      let data1 = data.filter(x => x.recruteur.nom ==this.recruteurSearch) ;
+      this.offres = [...data1];
+   }
+   else{
+    this.offres = [...data];
+   }
+
+     
+  }
+  else if (this.jobtypeSearch.length > 1 ) {
+
+    this.offres = this.tempOffres;
+     let data1 =  this.offres.filter(x => x.jobeType ==  (this.jobtypeSearch[0 ])  )
+     let data2 = this.offres.filter(x => x.jobeType ==  (this.jobtypeSearch[1])  ) ;
+     this.offres  = [ ...data2, ...data1];
+     if (this.recruteurSearch !== '') {
+      data =  this.offres.filter(x => x.recruteur.nom ==this.recruteurSearch) 
+      this.offres = [...data];
+      console.log(data);
+
+   }
+  }
+ 
+    
+   
+  }
+       // when deselection jobtype
+
+  else {
+    let data :any[] = [] ;
+    this.offres = this.tempOffres;
+    // delete elemet déséléctionner 
+    this.jobtypeSearch =  this.jobtypeSearch.filter(x => x !==  event.target.value);
+    console.log( this.jobtypeSearch);
+    
+    if (this.jobtypeSearch.length == 0) {
+       if (this.recruteurSearch !== '') {
+        let data1 = this.offres.filter(x => x.recruteur.nom ==this.recruteurSearch) ;
+        this.offres = [...data1];
+     }
+    }
+    else if (this.jobtypeSearch.length == 1 ) {
+       let data1 =  this.offres.filter(x => x.jobeType ==  (this.jobtypeSearch[0 ])  )
+       this.offres  = [ ...data1];
+       if (this.recruteurSearch !== '') {
+        data =  this.offres.filter(x => x.recruteur.nom ==this.recruteurSearch) 
+        this.offres = [...data];
+     }
+    }
+
   }
  
 }
@@ -108,12 +181,12 @@ if (name == 'experiencetype' ) {
     this.offres = [...data];
   }
   else {
+    let data :any[] = [] ;
     this.offres = this.tempOffres;
+
   }
  
 }
-
-
 
 }
  
@@ -124,7 +197,18 @@ if (name == 'experiencetype' ) {
   
 }
 
+onValueChanged(e:any) {
+  const resultRechercheSalary: any[] = [];
+console.log("dans range");
+  this.offres.forEach((item, index) => {
+    if (item.salary >= e.value[0] && item.salary <= e.value[1]) {
+      resultRechercheSalary.push(item);
+    }
+  });
 
+  this.offresRechercheSalary = resultRechercheSalary;
+  this.offres = [...resultRechercheSalary];
+}
 
 serachTodayOffers(event : any  ){
 
@@ -210,6 +294,8 @@ serachThisMonthOffers(event : any){
   }
   else {this.offres = this.tempOffres;}
 }
+
+
 
 
 }

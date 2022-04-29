@@ -26,8 +26,8 @@ import { QuestionComponent } from './question/question.component';
 import { ChangeBgDirective } from './change-bg.directive';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { CreatequizComponent } from './createquiz/createquiz.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { VideochatComponent } from './videochat/videochat.component';
+//import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+//import { VideochatComponent } from './videochat/videochat.component';
 import { QuizdetailsComponent } from './quizdetails/quizdetails.component';
 import { QuestiondetailsComponent } from './questiondetails/questiondetails.component';
 import { InterviewmanagerComponent } from './interviewmanager/interviewmanager.component';
@@ -42,6 +42,16 @@ import { RegistrationComponent } from './registration/registration.component';
 import { OffreComponent } from './offre/offre.component';
 import { AuthInterceptorProvider } from './auth.interceptor';
 import { ProfilComponent } from './profil/profil.component';
+import { FormsModule } from '@angular/forms';
+import {ReactiveFormsModule } from '@angular/forms';
+
+import { VideochatComponent } from './videochat/videochat.component';
+//import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+//import {NgxPaginationModule} from 'ngx-pagination';
+import { UpdateJobComponent } from './update-job/update-job.component';
+import { CvComponent } from './cv/cv.component'; 
+
 
 @NgModule({
   declarations: [
@@ -81,7 +91,9 @@ import { ProfilComponent } from './profil/profil.component';
     LoginComponent,
     RegistrationComponent,
     OffreComponent,
-    ProfilComponent
+    ProfilComponent,
+    UpdateJobComponent,
+    CvComponent
   
   ],
   imports: [
@@ -100,7 +112,12 @@ import { ProfilComponent } from './profil/profil.component';
       "innerStrokeWidth": 1,
       "startFromZero": true}),
       FormsModule,
-   ReactiveFormsModule
+   ReactiveFormsModule,
+      ReactiveFormsModule,
+      //ToastrModule.forRoot(),
+      BrowserAnimationsModule,
+      //NgxPaginationModule
+   
   
   ],
   providers: [AuthInterceptorProvider],

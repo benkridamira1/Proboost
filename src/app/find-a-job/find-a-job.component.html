@@ -130,8 +130,8 @@
                                     </div>
                                     <div class="widgets_inner">
                                         <div class="range_item">
-                                            <!-- <div id="slider-range"></div> -->
-                                            <input type="text" class="js-range-slider" value="" />
+ 
+                                            <input type="text" class="js-range-slider"   value="" >
                                             <div class="d-flex align-items-center">
                                                 <div class="price_text">
                                                     <p>Price :</p>
@@ -159,13 +159,13 @@
                              
     <!--   _______________________test get Amira _____________________________________ -->
                                 <!-- single-job-content -->
-                                <div class="single-job-items mb-30"   *ngFor="let offre of offres ">
+                                <div class="single-job-items mb-30"   *ngFor="let offre of offres  | paginate: { itemsPerPage: 5, currentPage: p }">
                                     <div class="job-items">
                                         <div class="company-img">
                                             <a href="#"><img src="assets/img/icon/job-list4.png" alt=""></a>
                                         </div>
                                         <div class="job-tittle job-tittle2">
-                                            <a href="#">
+                                            <a  routerLink="job_details/{{offre.id}}">
                                                 <h4> {{offre.title}} </h4>
                                             </a>
                                             <ul>
@@ -181,10 +181,11 @@
                                     </div>
                                 </div>
 
-                               
+                                <pagination-controls (pageChange)="p = $event"></pagination-controls>
                             
 
                             </div>
+                            
                         </section>
                         <!-- Featured_job_end -->
                     </div>
@@ -193,3 +194,18 @@
         </div>
         <!-- Job List Area End -->
         <!--Pagination Start  -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        

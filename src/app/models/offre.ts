@@ -9,8 +9,10 @@ export class Offre{
 
      description !: string;
 
-     postedDate !: Date;
+     postedDate !: any;
 
+     deadline !: any ;
+    
      jobeType !: string ;
 
      location  !: string;
@@ -20,6 +22,9 @@ export class Offre{
      salary !: number  ;
 
      vacancy !: string ;
+     requiredKnowledge !: string ;
+
+     education !: string ; 
 
      recruteur !: Recruteur ;
 
