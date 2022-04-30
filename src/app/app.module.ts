@@ -26,8 +26,6 @@ import { QuestionComponent } from './question/question.component';
 import { ChangeBgDirective } from './change-bg.directive';
 import { NgCircleProgressModule } from 'ng-circle-progress';
 import { CreatequizComponent } from './createquiz/createquiz.component';
-//import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-//import { VideochatComponent } from './videochat/videochat.component';
 import { QuizdetailsComponent } from './quizdetails/quizdetails.component';
 import { QuestiondetailsComponent } from './questiondetails/questiondetails.component';
 import { InterviewmanagerComponent } from './interviewmanager/interviewmanager.component';
@@ -46,9 +44,9 @@ import { FormsModule } from '@angular/forms';
 import {ReactiveFormsModule } from '@angular/forms';
 
 import { VideochatComponent } from './videochat/videochat.component';
-//import { ToastrModule } from 'ngx-toastr';
+import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-//import {NgxPaginationModule} from 'ngx-pagination';
+import {NgxPaginationModule} from 'ngx-pagination';
 import { UpdateJobComponent } from './update-job/update-job.component';
 import { CvComponent } from './cv/cv.component'; 
 
@@ -114,9 +112,9 @@ import { CvComponent } from './cv/cv.component';
       FormsModule,
    ReactiveFormsModule,
       ReactiveFormsModule,
-      //ToastrModule.forRoot(),
+      ToastrModule.forRoot(),
       BrowserAnimationsModule,
-      //NgxPaginationModule
+      NgxPaginationModule
    
   
   ],
