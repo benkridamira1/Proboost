@@ -23,8 +23,18 @@ export class VideochatService {
     return this.http.post<any>("http://localhost:3000/videochat/save",chat);
   }
 
-  getcandidat(username:any)
+  getcandidat(email:any)
   {
-    return this.http.get<any>("http://localhost:3000/videochat/getuser/aminechiba");
+    return this.http.get<any>("http://localhost:3000/videochat/getuser/"+email);
+  }
+
+  getcandidatbeta(id:any)
+  {
+    return this.http.get<any>("http://localhost:3000/videochat/getcandidat/"+id);
+  }
+
+  savecandidat(id:any,candidat_id:any)
+  {
+    return this.http.get<any>("http://localhost:3000/videochat/setcandidat/"+id+"/"+candidat_id);
   }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { AuthenticationService } from '../services/authentication.service';
 import { VideochatService } from '../videochatservice/videochat.service';
 
 @Component({
@@ -12,7 +13,9 @@ export class VideochatmanagerComponent implements OnInit {
   form!:FormGroup;
   chats:any=[];
   candidat:any;
-  constructor(private videochatservice:VideochatService,private formbuilder:FormBuilder) { }
+  currentuser:any;
+  candidats:any=[];
+  constructor(private videochatservice:VideochatService,private formbuilder:FormBuilder,private authservice:AuthenticationService) { }
 
   ngOnInit(): void {
 
@@ -21,30 +24,56 @@ export class VideochatmanagerComponent implements OnInit {
       titre :[''],
       date: Date,
       hour :Number,
-      minute:Number
+      minute:Number,
+      email:['']
     })
 
-    this.videochatservice.getrecruterchats(1).subscribe(res =>{
-      this.chats=res;
+    this.authservice.CurrentUser().subscribe(res=>{
+      this.currentuser=res;
+      this.getchats(this.currentuser.id);
     })
+
+    
+
+    
+
   }
+
+
+  getchats(id:any)
+{
+  
+  this.videochatservice.getrecruterchats(id).subscribe(res =>{
+    this.chats=res;
+    this.chats.map((data:any)=>{
+       this.videochatservice.getcandidatbeta(data.id).subscribe(res=>{
+         this.candidats[data.id]=res;
+       })
+    })
+  })
+}
 
   savechat()
   {
-    setTimeout(()=>{
-      this.videochatservice.getcandidat(this.form.value.username).subscribe(res =>{
-        this.candidat=res;
-        console.log(this.candidat)
-      })
-    },2000)
     
+   
+      this.videochatservice.getcandidat(this.form.value.email).subscribe(res =>{
+        this.candidat=res;
+        this.form.value.candidat={id:Number(this.candidat.id)}
+        this.form.value.recruter={id:this.currentuser.id}
+        this.videochatservice.savechat(this.form.value).subscribe(res =>{
+          this.videochatservice.savecandidat(res.id,this.form.value.candidat.id).subscribe();
+        });
+      })
+    
+ 
 
-
-    this.form.value.candidat={id:this.candidat.id}
-    this.form.value.recruteur={id:1}
-    this.videochatservice.savechat(this.form.value).subscribe();
+     
+    
+   
+    
     document.getElementById("cancel")?.click();
-    this.videochatservice.getrecruterchats(1).subscribe(res =>{
+    this.videochatservice.getrecruterchats(this.currentuser.id).subscribe(res =>{
       this.chats=res;
     })
   }
