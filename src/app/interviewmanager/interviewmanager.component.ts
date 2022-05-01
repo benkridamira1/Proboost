@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import {Router} from "@angular/router"
 import { interval, Subscription } from 'rxjs';
 import { InterviewServiceService } from '../interviewService/interview-service.service';
+import { AuthenticationService } from '../services/authentication.service';
+import { VideochatService } from '../videochatservice/videochat.service';
 
 
 @Component({
@@ -16,20 +18,26 @@ export class InterviewmanagerComponent implements OnInit {
   formValue!:FormGroup;
   cheaters:any=[];
   cheaterdetails:any=[];
-  constructor(private interviewService:InterviewServiceService,private formbuilder:FormBuilder,private router:Router)
+  currentuser:any;
+  constructor(private interviewService:InterviewServiceService,private formbuilder:FormBuilder,private router:Router
+    ,private authservice:AuthenticationService,private videochatservice:VideochatService)
   {
     
     }
 
   ngOnInit(): void {
 
+    this.authservice.CurrentUser().subscribe(res =>{
+      this.currentuser=res;
+    })
 
   this.formValue=this.formbuilder.group({
     date: Date,
     titre : [''],
     type : [''],
     hour: Number,
-    minute : Number
+    minute : Number,
+    Candidat:['']
   })
 
 interval(3000).subscribe(()=>{
@@ -39,11 +47,14 @@ interval(3000).subscribe(()=>{
 
   saveinterview()
   {
-    this.formValue.value.recruteur={id:1};
-    this.formValue.value.candidat={id:1};
-    this.interviewService.saveinterview(this.formValue.value).subscribe();
-    document.getElementById("cancel")?.click();
-    this.reloadComponent();
+    this.formValue.value.recruteur={id:this.currentuser.id};
+    this.videochatservice.getcandidat(this.formValue.value.Candidat).subscribe(res =>{
+      this.formValue.value.candidat={id:res.id};
+      this.interviewService.saveinterview(this.formValue.value).subscribe();
+      document.getElementById("cancel")?.click();
+      this.reloadComponent();
+    })
+    
   }
 
   getcheaterdetails(id:number)
@@ -55,7 +66,7 @@ interval(3000).subscribe(()=>{
 
 loadinterview()
 {
-  this.interviewService.getInterviews(1).subscribe(res =>{
+  this.interviewService.getInterviews(this.currentuser.id).subscribe(res =>{
     this.interviews=res;
     for(let i = 0; i < this.interviews.length; i++)
     {

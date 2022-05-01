@@ -24,14 +24,22 @@
                                         <li><a routerLink="FindAJob">Find a Jobs </a></li>
                                        
                                         <li><a routerLink="About">About</a></li>
-                                        <li><a href="#">Page</a>
+                                        <li style="z-index: 1000;"><a href="#" *ngIf="currentrole=='RECRUTER'" >Recruit</a>
                                             <ul class="submenu">
-                                                <li><a routerLink="PostJob"> Post a new Job</a></li>
-                                                <li><a href="single-blog.html">Blog Details</a></li>
-                                                <li><a href="elements.html">Elements</a></li>
-                                                <li><a routerLink="job_details">job Details</a></li>
+                                                <li><a routerLink="PostJob"> Post A Job</a></li>
+                                                <li><a routerLink="Interviewmanager">Interview Manager</a></li>
+                                                <li><a routerLink="Videochatmanager">Screening Manager</a></li>
+                                                <li><a routerLink="Createquiz">Quiz Manager</a></li>
                                             </ul>
                                         </li>
+
+                                        <li><a href="#" *ngIf="currentrole!='RECRUTER'" >Replies</a>
+                                            <ul class="submenu">
+                                                <li><a routerLink="Interviewrq"> Interview Requests</a></li>
+                                                <li><a routerLink="Videochatrq"> Screening Requests</a></li>
+                                            </ul>
+                                        </li>
+
                                         <li><a routerLink="Contact">Contact</a></li>
                                     </ul>
 

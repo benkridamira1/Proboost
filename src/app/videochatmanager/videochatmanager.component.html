@@ -64,10 +64,15 @@
             <li><strong>Time </strong> {{chat.hour}}:{{chat.minute}} </li>
           </ul>
         
-              <ng-container>
-                  <button class="btn-primary" [routerLink]="" style="margin-right: 20px;" >Details</button>
-                  <button class="btn-primary" [routerLink]="" >Results</button>
+             
+
+              <ng-container *ngIf="chat.finished==true">
+                <button class="btn-primary" disabled style="color: black;background-color: grey;margin-right: 20px;" >Finish</button>
               </ng-container>
+
+              <ng-container *ngIf="chat.finished!=true">
+                <button class="btn-primary" (click)="finishchat(chat.id)"  style="margin-right: 20px;" >Finish</button>
+            </ng-container>
           
       
         </div>

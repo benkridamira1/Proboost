@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from "@angular/router";
+import { InterviewServiceService } from '../interviewService/interview-service.service';
 import { AuthenticationService } from '../services/authentication.service';
 import { VideochatService } from '../videochatservice/videochat.service';
 
@@ -15,7 +17,8 @@ export class VideochatmanagerComponent implements OnInit {
   candidat:any;
   currentuser:any;
   candidats:any=[];
-  constructor(private videochatservice:VideochatService,private formbuilder:FormBuilder,private authservice:AuthenticationService) { }
+  constructor(private videochatservice:VideochatService,private formbuilder:FormBuilder,private authservice:AuthenticationService
+    ,private router:Router) { }
 
   ngOnInit(): void {
 
@@ -77,5 +80,18 @@ export class VideochatmanagerComponent implements OnInit {
       this.chats=res;
     })
   }
+
+  finishchat(id:Number)
+  {
+    this.videochatservice.finishchat(id).subscribe();
+    this.reloadComponent()
+  }
+
+  reloadComponent() {
+    let currentUrl = this.router.url;
+        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+        this.router.onSameUrlNavigation = 'reload';
+        this.router.navigate([currentUrl]);
+    }
 
 }

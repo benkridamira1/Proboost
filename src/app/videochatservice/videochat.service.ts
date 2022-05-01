@@ -37,4 +37,9 @@ export class VideochatService {
   {
     return this.http.get<any>("http://localhost:3000/videochat/setcandidat/"+id+"/"+candidat_id);
   }
+
+  finishchat(id:any)
+  {
+    return this.http.get<any>("http://localhost:3000/videochat/finishchat/"+id);
+  }
 }

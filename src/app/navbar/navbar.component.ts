@@ -1,6 +1,8 @@
+import { not } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../services/authentication.service';
+import { NotificationService } from '../services/notification.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,13 +11,26 @@ import { AuthenticationService } from '../services/authentication.service';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private router : Router,private authService : AuthenticationService) { }
+  currentrole:any;
+  notif:any;
+  constructor(private router : Router,private authService : AuthenticationService,private notifservice:NotificationService) { }
 islogged !: boolean ;
   ngOnInit(): void {
     
+    this.authService.CurrentUser().subscribe(res =>{
+      this.currentrole=res.role;
+      this.getnotif(res.id)
+      console.log(this.notif);
+    })
+     
     
- 
-    
+  }
+
+  getnotif(id:any)
+  {
+    this.notifservice.getnotif(id).subscribe(res =>{
+       this.notif=res;
+    })
   }
 
   logout(){

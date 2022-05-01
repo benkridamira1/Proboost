@@ -4,6 +4,7 @@ import { TestBed } from '@angular/core/testing';
 import { FormBuilder,FormGroup } from '@angular/forms';
 import { QuestionService } from '../quizService/question.service';
 import {Router} from "@angular/router"
+import { AuthenticationService } from '../services/authentication.service';
 @Component({
   selector: 'app-createquiz',
   templateUrl: './createquiz.component.html',
@@ -13,19 +14,25 @@ export class CreatequizComponent implements OnInit {
 
   formValue !:FormGroup;
   allquiz: any =[];
+  currentuser:any;
   constructor(private _renderer2: Renderer2,
     @Inject(DOCUMENT) private _document: Document,private formbuilder:FormBuilder,private quizservice:QuestionService,
-    private router:Router) { }
+    private router:Router,private authservice:AuthenticationService) { }
 
   ngOnInit(): void {
+
+    this.authservice.CurrentUser().subscribe(res =>{
+      this.currentuser=res;
+      this.quizservice.getbycreator(this.currentuser.id).subscribe(res=>{
+        this.allquiz=res;
+      });
+    })
 
     this.formValue=this.formbuilder.group({
       titre : [''],
     })
 
-    this.quizservice.getallquiz().subscribe(res=>{
-      this.allquiz=res;
-    });
+    
 
     let script = this._renderer2.createElement('script');
     script.type = `text/javascript`;
@@ -42,7 +49,7 @@ export class CreatequizComponent implements OnInit {
 
   addquiz()
   {
-    this.formValue.value.createur={id:1};
+    this.formValue.value.createur={id:this.currentuser.id};
      this.quizservice.savequiz(this.formValue.value)
      .subscribe(res=>{
        console.log(res)
