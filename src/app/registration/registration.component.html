@@ -49,10 +49,19 @@
                 
                   </div>
                   <div class="form-outline mb-4">
-                    <input type="password" name="password" formControlName="password"  [(ngModel)]="regreq.password" id="password" class="form-control form-control-lg" />
+                    <input type="password" name="password" formControlName="password"   [(ngModel)]="regreq.password" id="password" class="form-control form-control-lg" />
                     <label class="form-label" for="password">password</label>
                   </div>
-  
+
+                  <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio"  class="btn-check" name="role" value="USER" formControlName="role" id="btnradio1" autocomplete="off" checked>
+                    <label class="btn btn-outline-primary" for="btnradio1">USER</label>
+                  
+                    <input type="radio" class="btn-check" name="role" formControlName="role" value="EMPLOYER" id="btnradio2" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="btnradio2">EMPLOYER</label>
+                  
+          
+                  </div>
                   <div class="d-flex justify-content-end pt-3">
               
                     <button type="submit" class="btn btn-warning btn-lg ms-2">Submit form</button>

@@ -11,6 +11,8 @@ export class registerRequest{
 
     password  !: string ;
 
+    role  !: string ;
+
  
 
 

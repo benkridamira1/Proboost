@@ -23,7 +23,8 @@ export class RegistrationComponent implements OnInit {
       firstname : new FormControl('',Validators.required),
       lastname : new FormControl('',Validators.required),
       email : new FormControl('',[Validators.pattern(this.emailPattern),Validators.required]),
-      password : new FormControl('',Validators.required)
+      password : new FormControl('',Validators.required),
+      role : new FormControl('',Validators.required),
     })
 
 
@@ -44,9 +45,10 @@ export class RegistrationComponent implements OnInit {
     return true ;
   }
 register(){
+  this.regreq = this.registerForm.value ;
    this.registerService.register(this.regreq).subscribe((data)=>
    {
-     console.log('it works');
+     console.log('it works',this.regreq);
      this.router.navigateByUrl("/login");
      
    },(error)=>{
@@ -55,6 +57,11 @@ register(){
    });
    //this.router.navigateByUrl("/login");
     
+}
+
+register1(){
+  this.regreq = this.registerForm.value ;
+  console.log(this.regreq);
 }
 
 get email(){return this.registerForm.get('email')?.invalid;}
