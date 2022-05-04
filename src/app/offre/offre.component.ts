@@ -13,6 +13,7 @@ import { ListOffreService } from '../services/list-offre/list-offre.service';
 export class OffreComponent implements OnInit {
  list : any;
  user !: any ;
+ listuser : any ;
   constructor(private offreservice : ListOffreService,private authService : AuthenticationService
     ,private router : Router) { }
 
@@ -27,11 +28,16 @@ export class OffreComponent implements OnInit {
      this.offreservice.listeOffre().subscribe(
       data => this.list = data
     );
+
+    this.authService.Users().subscribe(
+      data=>this.listuser = data
+      
+      
+    );
   }
 logout(){
-  console.log("logout works");
-  this.authService.logout() ;
-  this.router.navigate(['/login']);
+  console.log(this.listuser);
+
   
 
 }

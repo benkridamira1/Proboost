@@ -30,6 +30,7 @@ import { InterviewdetailsComponent } from './interviewdetails/interviewdetails.c
 import { QuestiondetailsComponent } from './questiondetails/questiondetails.component';
 import { RecordsComponent } from './records/records.component';
 import { VideochatmanagerComponent } from './videochatmanager/videochatmanager.component';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 
 
 
@@ -66,7 +67,7 @@ const routes: Routes = [
    {path: "FindAJob/job_details/:id/updateJobOffer",component:UpdateJobComponent},
    {path: "FindAJob/job_details/:id/uploadCv",component:CvUploadComponent},
    {path: "FindAJob/job_details/:id/uploadCv/CV",component:CvComponent},
-
+   {path: 'admin' ,  component: AdminDashboardComponent},
 
 
 

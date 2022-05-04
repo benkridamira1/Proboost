@@ -48,7 +48,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { UpdateJobComponent } from './update-job/update-job.component';
-import { CvComponent } from './cv/cv.component'; 
+import { CvComponent } from './cv/cv.component';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component'; 
 
 
 @NgModule({
@@ -91,7 +92,8 @@ import { CvComponent } from './cv/cv.component';
     OffreComponent,
     ProfilComponent,
     UpdateJobComponent,
-    CvComponent
+    CvComponent,
+    AdminDashboardComponent
   
   ],
   imports: [

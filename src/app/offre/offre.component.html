@@ -8,4 +8,15 @@
 
 <h1 *ngIf="user" >{{user.email}} </h1>
 
+<h1 *ngIf="user" >{{user.role}} </h1>
+
+<h1 *ngIf="user.role === 'USER' " >{{user.email}} </h1>
+
+
+<h1 *ngIf="user.role === 'EMPLOYER' " >I am a employer </h1>
+
+<p *ngFor="let user of listuser">{{ user.email }}</p>
+
+
+
 <a class="nav-item nav-link" (click)="logout()">Logout</a>

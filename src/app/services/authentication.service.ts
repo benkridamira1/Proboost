@@ -10,6 +10,7 @@ import {
   HttpHandler,
   HttpRequest,
 } from '@angular/common/http';
+import { Offre } from '../models/offre';
 
 
 @Injectable({
@@ -46,9 +47,46 @@ export class AuthenticationService {
     )
   }
 
+  
+
   CurrentUser():Observable<any>
   {
     return this.http.get<any>(this.CurrentUserUrl);
+  }
+
+  Users():Observable<any>
+  {
+    return this.http.get<any>('http://localhost:3000/api/users/users');
+  }
+  toAdmin(id : any):Observable<any>
+  {
+    console.log('http://localhost:3000/api/users/toadmin/'+id);
+    const body = { title: 'Angular PUT Request Example' };
+    
+    return this.http.post<any>('http://localhost:3000/api/users/toadmin/'+id,body);
+  }
+
+  toUser(id : any):Observable<any>
+  {
+    console.log('http://localhost:3000/api/users/touser/'+id);
+    const body = { title: 'Angular PUT Request Example' };
+    
+    return this.http.post<any>('http://localhost:3000/api/users/touser/'+id,body);
+  }
+
+  toEmployer(id : any):Observable<any>
+  {
+    console.log('http://localhost:3000/api/users/toemployer/'+id);
+    const body = { title: 'Angular PUT Request Example' };
+    
+    return this.http.post<any>('http://localhost:3000/api/users/toemployer/'+id,body);
+  }
+  locked(id : any):Observable<any>
+  {
+    console.log('http://localhost:3000/api/users/locked/'+id);
+    const body = { title: 'Angular PUT Request Example' };
+    
+    return this.http.post<any>('http://localhost:3000/api/users/locked/'+id,body);
   }
 
   logout()

@@ -38,6 +38,10 @@ export class OffreService {
    
     }
 
+    listUsers():Observable<any>{
+      return this.http.get<any>('http://localhost:3000/api/users/users')
+    }
+
 
   getOffreByID(id: number) : Observable<Offre> {
     return this.http.get<Offre>(`${this.baseURL}/${id}`);

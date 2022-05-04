@@ -1,0 +1,45 @@
+
+<div class="container-fluid" style="width: auto;">
+
+<table class="table" >
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Email</th>
+        <th scope="col">Role</th>
+        <th scope="col">Change Role</th>
+        <th scope="col">Block user</th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let user of users |  paginate: { id: 'foo',
+    itemsPerPage: 5,
+    currentPage: p,
+    totalItems: total }">
+      <tr>
+        <th scope="row">{{user.id}}</th>
+        <td>{{user.prenom}}</td>
+        <td>{{user.nom}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.role}}</td>
+        <td *ngIf="user.role !=='ADMIN'"><button  type="button" class="btn btn-primary" (click)="toAdmin(user.id)">ToAdmin</button></td>
+        <td *ngIf="user.role ==='ADMIN'">
+            <button type="button" class="btn btn-primary" style="margin: 3px;" (click)="toUser(user.id)">toUser </button>
+            <br>
+            <button type="button" class="btn btn-primary" style="margin: 3px;" (click)="toEmployer(user.id)">toEmployer</button>
+        </td>
+        <td>
+            <button type="button" class="btn btn-primary" style="margin: 3px;" (click)="locked(user.id)"> {{user.locked}} </button>
+            
+        </td>
+      </tr>
+ 
+   
+    </tbody>
+  </table>
+  <pagination-controls id="foo" (pageChange)="pageChangeEvent($event)"></pagination-controls>
+
+
+
+</div>

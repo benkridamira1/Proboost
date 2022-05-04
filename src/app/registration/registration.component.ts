@@ -45,7 +45,7 @@ export class RegistrationComponent implements OnInit {
     return true ;
   }
 register(){
-  this.regreq = this.registerForm.value ;
+  this.regreq.role = this.registerForm.get('role')?.value ;
    this.registerService.register(this.regreq).subscribe((data)=>
    {
      console.log('it works',this.regreq);
