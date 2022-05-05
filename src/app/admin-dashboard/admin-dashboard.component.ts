@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../services/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -16,13 +17,24 @@ export class AdminDashboardComponent implements OnInit {
 
   
 
-  constructor(private authService : AuthenticationService) { }
+  constructor(private authService : AuthenticationService , private route : Router) { }
 
   ngOnInit(): void {
+     //to logout if the token expire
+     if(this.authService.isLogged()){
+      this.authService.CurrentUser().subscribe(res =>{
+        this.currentuser = res ;
+      },error=>{
+        this.authService.logout();
+        window.location.reload();
+      })
 
-    this.authService.CurrentUser().subscribe(
-      data => this.currentuser = data
-    )
+   
+
+    }else{
+      this.route.navigate(['/login'])
+    }//end
+
 
     this.authService.Users().subscribe(
       (data) => {
@@ -30,8 +42,16 @@ export class AdminDashboardComponent implements OnInit {
         this.total = data.length;
       console.log(this.total);
       
+      },error=>{
+        this.route.navigate(['/'])
       }
     )
+
+ /*    this.authService.CurrentUser().subscribe(
+      data => this.currentuser = data
+    ) */
+
+   
   }
 
   getUsers(){

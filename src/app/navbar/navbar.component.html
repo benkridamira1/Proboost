@@ -16,7 +16,7 @@
                             <div class="main-menu">
                                 <nav class="d-none d-lg-block">
                                     <ul id="navigation">
-                                        <li><a href="index.html">Home</a></li>
+                                        <li><a routerLink="">Home</a></li>
 
 
                                         <!-- <li><a href="job_listing.html">Find a Jobs </a></li> -->
@@ -41,11 +41,16 @@
                                         </li>
 
                                         <li><a routerLink="Contact">Contact</a></li>
+                                        <li *ngIf="currentrole === 'ADMIN'"><a routerLink="admin">Admin</a></li>
                                     </ul>
 
                                 </nav>
                                
-                            </div>          
+                            </div>       
+                            <div *ngIf="isLogged()" class="header-btn d-none f-right d-lg-block">
+                                <li><a style="color: black;" routerLink="profil">{{currentUser.email}}</a></li>
+                                
+                            </div>   
                             <!-- Header-btn -->
                             <div *ngIf="!isLogged()"  class="header-btn d-none f-right d-lg-block">
                                 <a href="#" routerLink="register" class="btn head-btn1">Register</a>
