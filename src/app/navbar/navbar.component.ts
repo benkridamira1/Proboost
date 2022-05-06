@@ -11,7 +11,7 @@ import { NotificationService } from '../services/notification.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-
+  currentUser !: any ;
   currentrole:any;
   notif:any;
   currentuser:any;

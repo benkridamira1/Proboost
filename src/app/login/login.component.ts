@@ -55,7 +55,11 @@ export class LoginComponent implements OnInit {
     this.authservice.login(this.loginRequest).subscribe(success => {
       if(success){
         
-        this.router.navigate(['/profil']) ;
+        
+        this.router.navigate(['/profil'])
+        .then(() => {
+          window.location.reload();
+         });
       }
     },(error)=>{
       console.log(error);

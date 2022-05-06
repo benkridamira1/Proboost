@@ -10,6 +10,7 @@ import { AuthenticationService } from '../services/authentication.service';
 export class ProfilComponent implements OnInit {
 
   user : any ;
+  date !: any ;
 
   constructor(private authService : AuthenticationService,private router :Router) { 
     
@@ -20,9 +21,15 @@ export class ProfilComponent implements OnInit {
     if(!this.isLogged()){
       this.router.navigate(['/login']);
     }
-    this.authService.CurrentUser().subscribe(
-      data => this.user = data
-    ) ;
+    //to logout if the token expire
+    if(this.authService.isLogged()){
+      this.authService.CurrentUser().subscribe(res =>{
+        this.user = res ;
+      },error=>{
+        this.authService.logout();
+        window.location.reload();
+      })
+    }//end
   }
 
   isLogged():boolean{

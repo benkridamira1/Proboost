@@ -49,7 +49,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { UpdateJobComponent } from './update-job/update-job.component';
 import { CvComponent } from './cv/cv.component';
-import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component'; 
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { ErrorComponent } from './error/error.component'; 
 
 
 @NgModule({
@@ -93,7 +94,8 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
     ProfilComponent,
     UpdateJobComponent,
     CvComponent,
-    AdminDashboardComponent
+    AdminDashboardComponent,
+    ErrorComponent
   
   ],
   imports: [
