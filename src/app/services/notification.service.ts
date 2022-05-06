@@ -10,7 +10,12 @@ export class NotificationService {
 
   savenotif(notif:any)
   {
-    return this.http.post<any>("http://localhost:3000/notification/save",notif);
+    return this.http.post<any>("http://localhost:3000/alerts/save",notif);
+  }
+
+  openall(type:any)
+  {
+    return this.http.get<any>("http://localhost:3000/alerts/open/interview");
   }
 
   deletenotif(id:any)
@@ -20,6 +25,6 @@ export class NotificationService {
 
   getnotif(id:any)
   {
-    return this.http.get<any>("http://localhost:3000/notification/getnotif/"+id);
+    return this.http.get<any>("http://localhost:3000/alerts/getall/"+id);
   }
 }

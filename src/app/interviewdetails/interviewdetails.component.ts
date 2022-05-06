@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { InterviewServiceService } from '../interviewService/interview-service.service';
 import { QuizdetailsComponent } from '../quizdetails/quizdetails.component';
 import { QuestionService } from '../quizService/question.service';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-interviewdetails',
@@ -19,7 +20,7 @@ export class InterviewdetailsComponent implements OnInit {
   istherecurrentquiz:boolean=false;
   exist!:number;
   constructor(private _Activatedroute:ActivatedRoute,private interviewService:InterviewServiceService,private quizService:QuestionService
-    ,private router:Router) { }
+    ,private router:Router,private authservice:AuthenticationService) { }
 
   ngOnInit(): void {
 
@@ -36,9 +37,8 @@ export class InterviewdetailsComponent implements OnInit {
     this.quiznumber=res;
   })
 
- 
-
-  this.quizService.getbycreator(1).subscribe(res =>{
+ this.authservice.CurrentUser().subscribe(res =>{
+  this.quizService.getbycreator(res.id).subscribe(res =>{
     this.Quizs=res;
    
     for(var i=0;i< this.Quizs.length;i++)
@@ -55,6 +55,9 @@ export class InterviewdetailsComponent implements OnInit {
 
 
   })
+ })
+
+  
 
   
   if(localStorage.getItem("showquiz")=="true")
@@ -69,9 +72,7 @@ this.showquiz();
 
   assignquiz(quiz:any)
   {
-    alert(this.interview.id)
-    quiz.entretiens.push({id:this.interview.id});
-    this.quizService.savequiz(quiz).subscribe();
+    this.quizService.addentretien(quiz.id,this.interview).subscribe();
     document.getElementById("cancel")?.click();
     this.assignshow();
     this.showquiz();

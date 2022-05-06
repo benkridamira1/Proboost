@@ -4,6 +4,7 @@ import {Router} from "@angular/router"
 import { interval, Subscription } from 'rxjs';
 import { InterviewServiceService } from '../interviewService/interview-service.service';
 import { AuthenticationService } from '../services/authentication.service';
+import { NotificationService } from '../services/notification.service';
 import { VideochatService } from '../videochatservice/videochat.service';
 
 
@@ -20,7 +21,7 @@ export class InterviewmanagerComponent implements OnInit {
   cheaterdetails:any=[];
   currentuser:any;
   constructor(private interviewService:InterviewServiceService,private formbuilder:FormBuilder,private router:Router
-    ,private authservice:AuthenticationService,private videochatservice:VideochatService)
+    ,private authservice:AuthenticationService,private videochatservice:VideochatService,private notifservice:NotificationService)
   {
     
     }
@@ -51,6 +52,7 @@ interval(3000).subscribe(()=>{
     this.videochatservice.getcandidat(this.formValue.value.Candidat).subscribe(res =>{
       this.formValue.value.candidat={id:res.id};
       this.interviewService.saveinterview(this.formValue.value).subscribe();
+      this.notifservice.savenotif({type:"interview",opened:false,user:{id:res.id}}).subscribe();
       document.getElementById("cancel")?.click();
       this.reloadComponent();
     })

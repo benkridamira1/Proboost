@@ -11,7 +11,10 @@
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
         Add A Interview
       </button>
-    
+      &nbsp;&nbsp;&nbsp;
+      <button   type="button" class="btn btn-primary" (click)="createroom()">
+        Create A Room
+      </button>
       <!-- Modal -->
       <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -28,7 +31,7 @@
                     <label class="sr-only" for="inlineFormInputName2">Interview Title</label>
                     <input type="text" class="form-control mb-2 mr-sm-2"   formControlName="titre" style="width: 100%;" id="inlineFormInputName2" placeholder="Video Interview Title" >
                     <input type="text" class="form-control mb-2 mr-sm-2"   formControlName="code" style="width: 100%;"  placeholder="Room Code" >
-                    <input type="text" class="form-control mb-2 mr-sm-2"    formControlName="email"  style="width: 100%;"  placeholder="Candidat Username" >
+                    <input type="text" class="form-control mb-2 mr-sm-2"    formControlName="email"  style="width: 100%;"  placeholder="Candidat Email" >
                     <input type="date" class="form-control mb-2 mr-sm-2"   formControlName="date" style="width: 100%;">
                     <input type="number" class="form-control mb-2 mr-sm-2"   formControlName="hour" min="8" max="18" style="width: 100%;" placeholder="Hour">
                     <input type="number" class="form-control mb-2 mr-sm-2"   formControlName="minute" min ="0" max="59" style="width: 100%;" placeholder="Minutes">

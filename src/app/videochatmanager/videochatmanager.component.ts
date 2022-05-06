@@ -56,6 +56,11 @@ export class VideochatmanagerComponent implements OnInit {
   })
 }
 
+createroom()
+{
+  this.router.navigate(['Videochat']);
+}
+
   savechat()
   {
     

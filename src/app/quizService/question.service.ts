@@ -83,7 +83,14 @@ export class QuestionService {
 
   getnumberofquestiosn(id:number)
   {
-    return this.http.get<any>(("http://localhost:3000/qcm/getnumberquestions/"+id));
+    return this.http.get<any>("http://localhost:3000/qcm/getnumberquestions/"+id);
+  }
+
+  addentretien(id:number,entretien:any)
+  {
+    console.log("works")
+    var test={id:1}
+    return this.http.post<any>("http://localhost:3000/qcm/addentretien/1",test);
   }
 }
  

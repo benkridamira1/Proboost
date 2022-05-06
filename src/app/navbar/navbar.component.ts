@@ -1,6 +1,7 @@
 import { not } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { interval } from 'rxjs';
 import { AuthenticationService } from '../services/authentication.service';
 import { NotificationService } from '../services/notification.service';
 
@@ -13,17 +14,46 @@ export class NavbarComponent implements OnInit {
 
   currentrole:any;
   notif:any;
+  currentuser:any;
+  interviewalerts:any=[];
+  screenalerts:any=[];
+  i=0;
+  j=0;
   constructor(private router : Router,private authService : AuthenticationService,private notifservice:NotificationService) { }
 islogged !: boolean ;
   ngOnInit(): void {
     
+    this.getrole()
+   
+     
+    interval(3000).subscribe(()=>{
+      this.getrole();
+    })
+
+
+  }
+
+
+  getrole()
+  {
     this.authService.CurrentUser().subscribe(res =>{
       this.currentrole=res.role;
-      this.getnotif(res.id)
-      console.log(this.notif);
+      this.currentuser=res;
+      this.i=0;
+      this.j=0;
+      this.currentuser.alerts.map((data:any) =>{
+        if(data.type=="interview")
+        {
+          this.interviewalerts[this.i]=data;
+          this.i++;
+        }
+        if(data.type=="screen")
+        {
+          this.screenalerts[this.j]=data;
+          this.j++;
+        }
+      })
     })
-     
-    
   }
 
   getnotif(id:any)
@@ -48,5 +78,21 @@ islogged !: boolean ;
     }
     return true ;
   }
+
+
+  read(type:any)
+  {
+    this.notifservice.openall(type).subscribe();
+    this.router.navigateByUrl('Interviewrq');
+    
+  }
+
+  reloadComponent() {
+    let currentUrl = this.router.url;
+        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+        this.router.onSameUrlNavigation = 'reload';
+        this.router.navigate([currentUrl]);
+    }
+
 
 }

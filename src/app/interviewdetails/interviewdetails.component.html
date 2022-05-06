@@ -65,7 +65,7 @@
 
           <div class="modal-body" >
          
-            <ul *ngFor="let quiz of currentquiz;else emptylist"  class="list-group list-group-flush">
+            <ul *ngFor="let quiz of currentquiz"  class="list-group list-group-flush">
                 <li  *ngIf="currentquiz.length!=0"    class="list-group-item" style="cursor: pointer;"> <span class="hvr-pulse" (click)="assignquiz(quiz)">{{quiz.titre}}</span>
                   <img  (click)="deleteqcm(quiz.id)" style="margin-top: -10px;cursor: pointer;" width="15%" height="10%" src="assets/img/animated/trash-mini.gif">
                 </li>
