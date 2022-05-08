@@ -4,6 +4,8 @@ import { QuestionService } from '../quizService/question.service';
 import Swal from 'sweetalert2';
 import {  DOCUMENT } from '@angular/common';
 import {ActivatedRoute, Router} from "@angular/router"
+import { AuthenticationService } from '../services/authentication.service';
+import { NotificationService } from '../services/notification.service';
 
 
 
@@ -29,7 +31,8 @@ export class QuestionComponent implements OnInit {
   public numscore:number=0;
   interviewid:any;
   constructor(private questionService:QuestionService, private _renderer2: Renderer2,
-    @Inject(DOCUMENT) private _document: Document,private router:Router,private _Activatedroute:ActivatedRoute) { }
+    @Inject(DOCUMENT) private _document: Document,private router:Router,private _Activatedroute:ActivatedRoute
+    ,private authservice:AuthenticationService,private notifservice:NotificationService) { }
 
 
   ngOnInit(): void 
@@ -83,15 +86,18 @@ export class QuestionComponent implements OnInit {
     let date=new Date();
     this.finalscore=((this.score/this.questionlist.length)*100).toFixed(1).toString();
     this.numscore=Number(this.finalscore);
-    let record= 
-    {
-     user:"AngularUser",
-     date:date.toUTCString(),
-     qcm:{id:this.id},
-     score:this.finalscore,
-     entretien:{id:this.interviewid}
-    }
-    this.questionService.saveRecords(record).subscribe();
+    this.authservice.CurrentUser().subscribe(res=>{
+      let record= 
+      {
+       user:res.prenom + " "+res.nom,
+       date:date.toUTCString(),
+       qcm:{id:this.id},
+       score:this.finalscore,
+       entretien:{id:this.interviewid}
+      }
+      this.questionService.saveRecords(record).subscribe();
+      this.notifservice.savenotif({type:"result",opened:false,user:{id:res.id},entretien:{id:this.interviewid}}).subscribe();
+    })
     setTimeout(()=>{
       this.router.navigateByUrl("/Interviewrq");
     },3000);
@@ -205,21 +211,24 @@ export class QuestionComponent implements OnInit {
   }
   cheaterNotification() {
     Swal.fire('Cheater', 'You changed the window so the Quiz stopped!', 'error');
-    let cheater= 
-    {
-      user:"AngularUser",
-      date:new Date().toUTCString(),
-      qcm:
+    this.authservice.CurrentUser().subscribe(res =>{
+      let cheater= 
       {
-        id:this.id
-      },
-      entretien :
-      {
-        id:this.interviewid
+        user:res.prenom+" "+res.nom,
+        date:new Date().toUTCString(),
+        qcm:
+        {
+          id:this.id
+        },
+        entretien :
+        {
+          id:this.interviewid
+        }
       }
-    }
+      
+      this.questionService.saveCheater(cheater).subscribe();
+    })
     
-    this.questionService.saveCheater(cheater).subscribe();
     this.router.navigate([""]);
   }
   alertConfirmation() {

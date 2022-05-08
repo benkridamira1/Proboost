@@ -87,6 +87,13 @@ loadinterview()
    this.loadinterview()
   }
 
+  read(id:any)
+  {
+   this.notifservice.openall("result").subscribe();
+  this.router.navigateByUrl("/Records/"+id);
+    
+  }
+
   reloadComponent() {
     let currentUrl = this.router.url;
         this.router.routeReuseStrategy.shouldReuseRoute = () => false;

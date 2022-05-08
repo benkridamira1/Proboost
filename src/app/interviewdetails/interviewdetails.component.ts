@@ -72,7 +72,7 @@ this.showquiz();
 
   assignquiz(quiz:any)
   {
-    this.quizService.addentretien(quiz.id,this.interview).subscribe();
+    this.quizService.addentretien(quiz.id,this.interview.id).subscribe();
     document.getElementById("cancel")?.click();
     this.assignshow();
     this.showquiz();

@@ -26,7 +26,7 @@ islogged !: boolean ;
     
     
      this.getrole() ;
-   
+     this.isLogged();
      
     interval(3000).subscribe(()=>{
       this.getrole();
@@ -36,8 +36,6 @@ islogged !: boolean ;
       this.authService.CurrentUser().subscribe(res =>{
         this.currentuser = res ;
       })}
-
-      console.log(this.currentuser);
       
 
 
@@ -83,10 +81,14 @@ islogged !: boolean ;
 
   isLogged():boolean{
     if(!localStorage.getItem('access_token')){
-      return false ;
+      return false;
+      
+      
 
     }
-    return true ;
+    document.getElementById("log")?.remove();
+    return true;
+  
   }
 
 
@@ -103,6 +105,7 @@ islogged !: boolean ;
     }
     
   }
+
 
 
 

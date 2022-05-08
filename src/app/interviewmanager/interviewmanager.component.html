@@ -78,9 +78,7 @@
     
             </div>
             <div class="modal-footer" >
-              <button type="button"  style="margin-right: 200px;" id="cancel" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="button" style="margin-right: 10px;"  (click)="saveinterview()" class="btn btn-secondary">Block</button>
-            </div>
+              <button type="button"  style="margin-right: 170px;" id="cancel" class="btn btn-secondary" data-dismiss="modal">Close</button>            </div>
           </div>
         </div>
       </div>
@@ -105,7 +103,10 @@
         
               <ng-container>
                   <button class="btn-primary" [routerLink]="['/Interviewdetails', interview.id]" style="margin-right: 20px;" >Details</button>
-                  <button class="btn-primary" [routerLink]="['/Records', interview.id]" >Results</button>
+                  <button class="btn-primary "  *ngIf="interview.alerts.length!=0;else noalerts"  (click)="read(interview.id)" ><span class="hvr-buzz-auto" >Results</span></button>
+                  <ng-template #noalerts>
+                  <button class="btn-primary" (click)="read(interview.id)" >Results</button>
+                </ng-template>
               </ng-container>
           
       

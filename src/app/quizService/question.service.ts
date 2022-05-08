@@ -86,11 +86,9 @@ export class QuestionService {
     return this.http.get<any>("http://localhost:3000/qcm/getnumberquestions/"+id);
   }
 
-  addentretien(id:number,entretien:any)
+  addentretien(id:number,entretien_id:any)
   {
-    console.log("works")
-    var test={id:1}
-    return this.http.post<any>("http://localhost:3000/qcm/addentretien/1",test);
+    return this.http.get<any>("http://localhost:3000/qcm/addentretien/"+id+"/"+entretien_id);
   }
 }
  
