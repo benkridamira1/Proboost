@@ -44,16 +44,16 @@
                                         </li>
 
                                         <li><a routerLink="Contact">Contact</a></li>
-                                        <li *ngIf="currentrole === 'ADMIN'"><a routerLink="admin">Admin</a></li>
+                                        <li *ngIf="currentuser.role === 'ADMIN'"><a routerLink="admin">Admin</a></li>
                                     </ul>
 
                                 </nav>
                                
                             </div>       
                             <div *ngIf="isLogged()" class="header-btn d-none f-right d-lg-block">
-                                <li><a style="color: black;" routerLink="profil">{{currentUser.email}}</a></li>
-                                
+                                <li><a style="color: black;" routerLink="profil">{{currentuser.email}}</a></li>  
                             </div>   
+                            
                             <!-- Header-btn -->
                             <div *ngIf="!isLogged()"  class="header-btn d-none f-right d-lg-block">
                                 <a href="#" routerLink="register" class="btn head-btn1">Register</a>

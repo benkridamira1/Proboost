@@ -58,6 +58,20 @@ export class AuthenticationService {
   {
     return this.http.get<any>('http://localhost:3000/api/users/users');
   }
+
+  updateUser(user : any):Observable<any>
+  {
+    const body = {
+      id : user.id ,
+      email : user.email,
+      nom : user.nom,
+      prenom : user.prenom,
+      naissance : user.naissance
+  }
+  console.log(body);
+  
+    return this.http.put<any>('http://localhost:3000/api/users/update',body);
+  }
   toAdmin(id : any):Observable<any>
   {
     console.log('http://localhost:3000/api/users/toadmin/'+id);

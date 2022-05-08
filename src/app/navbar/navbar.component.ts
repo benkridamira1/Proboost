@@ -11,7 +11,7 @@ import { NotificationService } from '../services/notification.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  currentUser !: any ;
+  //currentUser !: any ;
   currentrole:any;
   notif:any;
   currentuser:any;
@@ -22,13 +22,23 @@ export class NavbarComponent implements OnInit {
   constructor(private router : Router,private authService : AuthenticationService,private notifservice:NotificationService) { }
 islogged !: boolean ;
   ngOnInit(): void {
+
     
-    this.getrole()
+    
+    /**  this.getrole() ;
    
      
     interval(3000).subscribe(()=>{
       this.getrole();
-    })
+    });*/
+
+    if(this.authService.isLogged()){
+      this.authService.CurrentUser().subscribe(res =>{
+        this.currentuser = res ;
+      })}
+
+      console.log(this.currentuser);
+      
 
 
   }

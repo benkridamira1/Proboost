@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../services/authentication.service';
+import { FormGroup,FormControl,Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-profil',
@@ -11,6 +13,15 @@ export class ProfilComponent implements OnInit {
 
   user : any ;
   date !: any ;
+
+  updatereq : any ;
+    emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$";
+
+    updateForm = new FormGroup({
+      prenom : new FormControl('',Validators.required),
+      nom : new FormControl('',Validators.required),
+      date: new FormControl('',Validators.required),
+    })
 
   constructor(private authService : AuthenticationService,private router :Router) { 
     
@@ -38,6 +49,15 @@ export class ProfilComponent implements OnInit {
 
     }
     return true ;
+  }
+
+  update(){
+    //this.user.date = this.updateForm.get('date')?.value ;
+
+    console.log(this.user);
+    
+    return this.authService.updateUser(this.user).subscribe((data)=> console.log(data) );
+    
   }
 
 }
