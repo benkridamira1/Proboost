@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from "@angular/router";
 import { InterviewServiceService } from '../interviewService/interview-service.service';
 import { AuthenticationService } from '../services/authentication.service';
+import { NotificationService } from '../services/notification.service';
 import { VideochatService } from '../videochatservice/videochat.service';
 
 @Component({
@@ -18,7 +19,7 @@ export class VideochatmanagerComponent implements OnInit {
   currentuser:any;
   candidats:any=[];
   constructor(private videochatservice:VideochatService,private formbuilder:FormBuilder,private authservice:AuthenticationService
-    ,private router:Router) { }
+    ,private router:Router,private notifservice:NotificationService) { }
 
   ngOnInit(): void {
 
@@ -72,6 +73,7 @@ createroom()
         this.videochatservice.savechat(this.form.value).subscribe(res =>{
           this.videochatservice.savecandidat(res.id,this.form.value.candidat.id).subscribe();
         });
+        this.notifservice.savenotif({type:"screen",opened:false,user:{id:res.id}}).subscribe();
       })
     
  

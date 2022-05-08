@@ -25,9 +25,9 @@
         <td>{{user.role}}</td>
         <td *ngIf="user.role !=='ADMIN'"><button  type="button" class="btn btn-primary" (click)="toAdmin(user.id)">ToAdmin</button></td>
         <td *ngIf="user.role ==='ADMIN'">
-            <button type="button" class="btn btn-primary" style="margin: 3px;" (click)="toUser(user.id)">toUser </button>
+            <button type="button" class="btn btn-primary" style="margin: 3px;width: 150px;" (click)="toUser(user.id)">toUser </button>
             <br>
-            <button type="button" class="btn btn-primary" style="margin: 3px;" (click)="toEmployer(user.id)">toEmployer</button>
+            <button type="button" class="btn btn-primary" style="margin: 3px;width: 150px;" (click)="toEmployer(user.id)"><span style="margin-left: -12px;">toEmployer</span></button>
         </td>
         <td>
             <button type="button" class="btn btn-primary" style="margin: 3px;" (click)="locked(user.id)"> {{user.locked}} </button>
@@ -38,7 +38,7 @@
    
     </tbody>
   </table>
-  <pagination-controls id="foo" (pageChange)="pageChangeEvent($event)"></pagination-controls>
+  <pagination-controls  id="foo" (pageChange)="pageChangeEvent($event)"></pagination-controls>
 
 
 

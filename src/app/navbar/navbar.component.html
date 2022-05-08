@@ -24,7 +24,7 @@
                                         <li><a routerLink="FindAJob">Find a Jobs </a></li>
                                        
                                         <li><a routerLink="About">About</a></li>
-                                        <li style="z-index: 1000;"><a href="#" *ngIf="currentrole=='EMPLOYER'" >Recruit</a>
+                                        <li style="z-index: 1000;"><a href="#" *ngIf="currentuser.role=='EMPLOYER'" >Recruit</a>
                                             <ul class="submenu">
                                                 <li><a routerLink="PostJob"> Post A Job</a></li>
                                                 <li><a routerLink="Interviewmanager">Interview Manager</a></li>
@@ -34,11 +34,11 @@
                                             </ul>
                                         </li>
 
-                                        <li><a href="#" *ngIf="currentrole!='EMPLOYER' && currentrole" >Replies</a>
+                                        <li><a href="#" *ngIf="currentuser.role=='USER'" >Replies</a>
                                             <ul class="submenu">
                                                 <li *ngIf="interviewalerts.length!=0;else nonotif"><a style="color: red;" class="hvr-buzz-auto" (click)="read('interview')" > Interview Requests  <span style="color:red;"> ° {{interviewalerts.length}} </span> </a></li>
                                                 <ng-template #nonotif><li><a routerLink="Interviewrq" >Interview Requests</a></li></ng-template>
-                                                <li *ngIf="screenalerts.length!=0;else nonotifs"><a  style="color: red;"  class="hvr-buzz-auto" routerLink="Videochatrq"> Screening Requests <span style="color:red;"> ° {{screenalerts.length}} </span> </a></li>
+                                                <li *ngIf="screenalerts.length!=0;else nonotifs"><a  style="color: red;"  class="hvr-buzz-auto" (click)="read('screen')" > Screening Requests <span style="color:red;"> ° {{screenalerts.length}} </span> </a></li>
                                                 <ng-template #nonotifs> <li><a routerLink="Videochatrq"> Screening Requests</a></li></ng-template> 
                                             </ul>
                                         </li>

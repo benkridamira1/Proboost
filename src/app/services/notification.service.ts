@@ -15,7 +15,7 @@ export class NotificationService {
 
   openall(type:any)
   {
-    return this.http.get<any>("http://localhost:3000/alerts/open/interview");
+    return this.http.get<any>("http://localhost:3000/alerts/open/"+type);
   }
 
   deletenotif(id:any)

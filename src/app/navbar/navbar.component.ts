@@ -25,12 +25,12 @@ islogged !: boolean ;
 
     
     
-    /**  this.getrole() ;
+     this.getrole() ;
    
      
     interval(3000).subscribe(()=>{
       this.getrole();
-    });*/
+    });
 
     if(this.authService.isLogged()){
       this.authService.CurrentUser().subscribe(res =>{
@@ -93,9 +93,18 @@ islogged !: boolean ;
   read(type:any)
   {
     this.notifservice.openall(type).subscribe();
+    if(type=="interview")
+    {
     this.router.navigateByUrl('Interviewrq');
+    }
+    else
+    {
+      this.router.navigateByUrl('Videochatrq')
+    }
     
   }
+
+
 
   reloadComponent() {
     let currentUrl = this.router.url;

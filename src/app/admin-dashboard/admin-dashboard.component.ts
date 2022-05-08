@@ -46,6 +46,13 @@ export class AdminDashboardComponent implements OnInit {
         this.route.navigate(['/'])
       }
     )
+    //Amine Version
+    this.authService.CurrentUser().subscribe(res =>{
+      if(res.role!="ADMIN")
+      {
+        this.route.navigateByUrl("login")
+      }
+    })
 
  /*    this.authService.CurrentUser().subscribe(
       data => this.currentuser = data
