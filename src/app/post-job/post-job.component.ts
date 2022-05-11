@@ -5,6 +5,8 @@ import {FormBuilder, FormGroup, FormControl, ReactiveFormsModule,Validators } fr
 import { Router } from '@angular/router';
 import { Offre } from '../models/offre';
 import { OffreService } from '../services/OffreSrevice/offreservice.service';
+import { AuthenticationService } from '../services/authentication.service';
+
 import { ToastrService } from 'ngx-toastr';
 
 
@@ -20,15 +22,22 @@ export class PostJobComponent implements OnInit {
   submitted = false;
 
 newoffre : Offre = new Offre();
+currentuser:any;
 
 
 
 
-  constructor( public  crudApi : OffreService ,public fb: FormBuilder   , private router : Router ) { }
+
+  constructor( public  crudApi : OffreService ,public fb: FormBuilder, private authService : AuthenticationService  , private router : Router ) { }
 
   ngOnInit(): void {
    //  if (this.crudApi.choixmenu == "A")
        this.infoForm();  
+
+       this.authService.CurrentUser().subscribe(res =>{
+        this.currentuser = res ;
+      });
+       
 
    // this.newoffre.postedDate=new Date();
    // this.newoffre.recruteur.id = 1;
@@ -74,6 +83,9 @@ newoffre : Offre = new Offre();
 
     onSubmit() {
     
+
+      console.log(this.currentuser.id);
+
       this.submitted = true;
       console.log("amira");
       if( this.crudApi.dataForm.invalid){
@@ -102,7 +114,10 @@ newoffre : Offre = new Offre();
       const offers = this.crudApi.dataForm.value;
       formData.append('offer', JSON.stringify(offers));
       
-      this.crudApi.addOffre(offers).subscribe( data => {
+      
+
+
+      this.crudApi.addOffre(offers,this.currentuser.id).subscribe( data => {
       console.log( 'Validation Faite avec Success'); 
       this.router.navigate(['/FindAJob']);
     });

@@ -49,9 +49,9 @@ export class OffreService {
   }
 
     
-  addOffre(offre : Offre) : Observable<Offre> {
+  addOffre(offre : Offre, id:number) : Observable<Offre> {
 
-      return this.http.post<Offre>(this.apiURL, offre,httpOptions);
+      return this.http.post<Offre>(`${this.apiURL}/${id}`, offre,httpOptions);
     }
 
 
