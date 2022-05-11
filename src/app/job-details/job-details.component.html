@@ -78,12 +78,65 @@
                                 <div class="col">
                                     <a href="#" class="btn" (click)="deleteOffre()"> Delete </a>
                                 </div>
-                                </div>
-                             </div>
 
+                                <div class="col">
+                                    <button class="btn" *ngIf="{isButtonVisible}" (click)="showCVS()">  Show all Cvs </button>                                </div>
+                                      
+                                    
+
+
+                                    <div class="content">
+                                        <div class="container">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="card-box">
+                                                        <div class="row" style="margin-top: 4%;" >
+                                                            <div class="col-lg-6 col-xl-6">
+                                                                <h4 class="header-title m-b-30">My Files</h4>
+                                                            </div>
+                                                        </div>
+                                    
+                                                        <div class="row" style="margin-top: 4%;">
+                                                            <div class="col-lg-3 col-xl-2"   *ngFor="let file of fileInfos | paginate: { itemsPerPage: 3, currentPage: p }">
+                                                                <div class="file-man-box">
+                                                                  <a href="http://localhost:3000/showFile/{{file.id}}">
+                                                                    <div class="file-img-box"> 
+                                                                       
+                                                                         <img src="https://coderthemes.com/highdmin/layouts/assets/images/file_icons/pdf.svg" alt="icon">
+                                                                    
+                                                                        </div>
+                                                                      </a>
+                                                                    <a href="http://localhost:3000/download/{{file.id}}" class="file-download"> <i class="fa fa-download" style="color: #FB246A;"></i></a>
+                                                                    <div class="file-man-title">
+                                                                     <a  href="http://localhost:3000/showFile/{{file.id}}">
+                                                                        <h5 class="mb-0 text-overflow">{{ file.fileName }}</h5>
+                                                                      </a> 
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                      
+                                                            <pagination-controls  (pageChange)="p = $event"> </pagination-controls>
+                                                        </div>
+                                            
+                                                       
+                                                    </div>
+                                                </div>
+                                                <!-- end col -->
+                                            </div>
+                                            <!-- end row -->
+                                        </div>
+                                        <!-- container -->
+                         
+                                    </div>
+
+
+                                 </div>
+
+                          
                              
-                        </div>
+                              </div>
 
+                         </div>
                     </div>
                     <!-- Right Content -->
                     <div class="col-xl-4 col-lg-4">
