@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { cv } from '../models/cv';
 import { CVService } from '../services/CvService/cv.service';
+import { AuthenticationService } from '../services/authentication.service';
 import { ActivatedRoute } from '@angular/router';
 
 
@@ -21,13 +22,20 @@ export class CvComponent implements OnInit {
   p : number =1;
   url !:String;
   id !: any;
+  currentuser:any;
 
 
 
 
-  constructor(private uploadService: CVService,private activatedroute:ActivatedRoute) { }
+  constructor(private uploadService: CVService,private activatedroute:ActivatedRoute, private authService : AuthenticationService) { }
 
   ngOnInit(): void {
+
+    this.authService.CurrentUser().subscribe(res =>{
+      this.currentuser = res ;
+    });
+     
+
     this.activatedroute.paramMap.subscribe(params => { 
       this.id = params.get('id'); 
   });
@@ -47,7 +55,7 @@ export class CvComponent implements OnInit {
       const file: File | null = this.selectedFiles.item(0);
       if (file) {
         this.currentFile = file;
-        this.uploadService.upload(this.currentFile,this.id).subscribe({
+        this.uploadService.upload(this.currentFile,this.id , this.currentuser.id).subscribe({
           next: (event: any) => {
             if (event.type === HttpEventType.UploadProgress) {
               this.progress = Math.round(100 * event.loaded / event.total);
