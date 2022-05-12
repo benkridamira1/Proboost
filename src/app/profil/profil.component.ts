@@ -42,15 +42,21 @@ export class ProfilComponent implements OnInit {
     if(!this.isLogged()){
       this.router.navigate(['/login']);
     }
+    
     //to logout if the token expire
     if(this.authService.isLogged()){
       this.authService.CurrentUser().subscribe(res =>{
         this.user = res ;
+        this.getImage();
+
       },error=>{
         this.authService.logout();
         window.location.reload();
       })
     }//end
+
+   
+
   }
 
   isLogged():boolean{
@@ -91,11 +97,14 @@ export class ProfilComponent implements OnInit {
         .subscribe((response) => {
           if (response.status === 200) {
             this.message = 'Image uploaded successfully';
+            
           } else {
             this.message = 'Image not uploaded successfully';
           }
         }
         );
+        window.location.reload();
+        
   
   
     }
@@ -103,7 +112,7 @@ export class ProfilComponent implements OnInit {
       //Gets called when the user clicks on retieve image button to get the image from back end
       getImage() {
       //Make a call to Sprinf Boot to get the Image Bytes.
-      this.httpClient.get('http://localhost:3000/image/get/' + this.imageName)
+      this.authService.getImage(this.user.image)
         .subscribe(
           res => {
             this.retrieveResonse = res;

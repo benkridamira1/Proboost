@@ -1,52 +1,53 @@
 <div class="container rounded bg-white mt-5 mb-5">
     <div class="row">
-        <div class="col-md-3 border-right">
+
+
+        <div class="col-md-3 " style="width: 50%;">
             <div class="d-flex flex-column align-items-center text-center p-3 py-5">
                 <div class="container row">
                     <div class="col-md-12">
-                        <h1>Upload Image</h1>
+                        <h3>Your Profile</h3>
                     </div>
                 </div>
                 
-                <div class="container row">
-                    <div class="col-md-6">
-                        <input type="file" (change)="onFileChanged($event)">
+               
                 
-                    </div>
-                    <div class="col-md-6">
-                        <input type="button" (click)="onUpload()" value="upload">
-                    </div>
-                </div>
-                <hr />
-                <div class="container row">
-                    <div class="col-md-12">
-                        <div *ngIf=message>{{message}}</div>
-                    </div>
-                </div>
-                
-                <div class="container row">
-                    <div class="col-md-6">
-                        <input type="text" class="form-control" id="name" placeholder="image name" [(ngModel)]="imageName"
-                            name="name" />
-                    </div>
-                    <div class="col-md-6">
-                        <input type="button" (click)="getImage()" value="Get Image">
-                
-                    </div>
-                </div>
-                
-                <div class="container row">
-                    <div class="col-md-12">
-                        <div *ngIf=retrievedImage>
-                            <img [src]="retrievedImage">
-                        </div>
-                    </div>
-                </div>
-                <img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
+              
+
+                <img *ngIf=retrievedImage class="rounded-circle mt-5" width="150px" [src]="retrievedImage">
+
+                <img *ngIf=!retrievedImage class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg">
                 <span class="font-weight-bold">{{user.nom}} {{user.prenom}}</span><span class="text-black-50">{{user.email}}</span><span> </span>
+            
+            
+            </div>
+            <div class="container row">
+                <div class="col-md-6">
+                    <input type="file"  (change)="onFileChanged($event)">
+            
+                </div>
+                
+                
+            </div>
+           
+           
+            <div class="container row">
+                <div class="col-md-12">
+                    <div *ngIf=message>{{message}}</div>
+                </div>
+            </div>
+            
+            <div class="container row">
+                <div class="col-md-6">
+                    <input type="button" (click)="onUpload()" value="upload">
+                </div>
+           
             </div>
         </div>
-        <div class="col-md-5 border-right">
+
+
+        
+        <div class="col-md-5 border-left border-right" style="margin-left: 150px;">
             <div class="p-3 py-5">
                 <div class="d-flex justify-content-between align-items-center mb-3">
                     <h4 class="text-right">Profile Settings </h4>

@@ -30,6 +30,12 @@ export class AuthenticationService {
     
   }
 
+  getImage(image : any) : Observable<any> {
+    //Make a call to Sprinf Boot to get the Image Bytes.
+    return this.http.get('http://localhost:3000/image/get/' +image) ;
+     
+  }
+
 
   login(lreq : LoginRequest): Observable<boolean>{
    
