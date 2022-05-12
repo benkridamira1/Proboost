@@ -4,6 +4,8 @@ import {FormBuilder, FormGroup, FormControl, ReactiveFormsModule,Validators } fr
 import { ActivatedRoute, Router } from '@angular/router';
 import { Offre } from '../models/offre';
 import { OffreService } from '../services/OffreSrevice/offreservice.service';
+import { AuthenticationService } from '../services/authentication.service';
+
 import { Component, OnInit } from '@angular/core';
 import { error } from '@angular/compiler/src/util';
 
@@ -21,12 +23,18 @@ newoffre : Offre = new Offre();
 oldoffre  : Offre = new Offre();
 id !:any;
 offres : Offre[] = [];
+currentuser:any;
 
 
 
-  constructor( public  crudApi : OffreService ,public fb: FormBuilder   , private router : Router  , private activatedroute:ActivatedRoute) { }
+  constructor( public  crudApi : OffreService ,public fb: FormBuilder , private authService : AuthenticationService  , private router : Router  , private activatedroute:ActivatedRoute) { }
 
   ngOnInit(): void {
+
+
+    this.authService.CurrentUser().subscribe(res =>{
+      this.currentuser = res ;
+    });
 
    //    this.infoForm();  
    
@@ -47,7 +55,9 @@ offres : Offre[] = [];
 
 
   update(){
-    this.crudApi.updateOffre(this.oldoffre).subscribe(off=>{
+
+    console.log(this.oldoffre);
+    this.crudApi.updateOffre(this.oldoffre,this.currentuser.id).subscribe(off=>{
       this.router.navigate(['FindAJob/job_details/',this.id]);
     }, (error)=>{alert("Problème lors de la modification")}) }
 

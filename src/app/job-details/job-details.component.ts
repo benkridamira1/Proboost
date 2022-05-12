@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Offre } from '../models/offre';
 import { OffreService } from '../services/OffreSrevice/offreservice.service';
+import { AuthenticationService } from '../services/authentication.service';
+
 import { CVService } from '../services/CvService/cv.service';
 import { cv } from '../models/cv';
 
@@ -19,12 +21,19 @@ export class JobDetailsComponent implements OnInit {
    fileInfos: cv[]=[];
    p : number =1;
     isButtonVisible = false;
+    currentuser:any;
 
 
 
-  constructor(private activatedroute:ActivatedRoute ,  public  crudApi : OffreService , private uploadService: CVService) { }
+  constructor(private activatedroute:ActivatedRoute ,  public  crudApi : OffreService , private uploadService: CVService
+    ,private authService : AuthenticationService) { }
 
   ngOnInit(): void {
+
+    this.authService.CurrentUser().subscribe(res =>{
+      this.currentuser = res ;
+    });
+     
 
     this.activatedroute.paramMap.subscribe(params => { 
       this.id = params.get('id'); 
@@ -49,7 +58,7 @@ export class JobDetailsComponent implements OnInit {
   }
 
   updateOffre(off : Offre){
-    this.crudApi.updateOffre(off).subscribe(data=>{
+    this.crudApi.updateOffre(off, this.currentuser.id).subscribe(data=>{
       console.log("joboffer updated");
     });
 

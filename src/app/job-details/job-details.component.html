@@ -69,7 +69,7 @@
                                </ul>
                             </div>
 
-                            <div class="container ">
+                            <div class="container "  *ngIf="currentuser.role=='EMPLOYER'  && currentuser.id==joboffer.recruteur.id">
                                 <div class="row">
                                 <div class="col ">
                                    
@@ -80,10 +80,8 @@
                                 </div>
 
                                 <div class="col">
-                                    <button class="btn" *ngIf="{isButtonVisible}" (click)="showCVS()">  Show all Cvs </button>                                </div>
-                                      
-                                    
-
+                                    <button class="btn" *ngIf="{isButtonVisible}" (click)="showCVS()">  Show all Cvs </button>  
+                                 </div>
 
                                     <div class="content">
                                         <div class="container">
@@ -153,9 +151,9 @@
                               <li>Salary :  <span>{{joboffer.salary}} $ monthly</span></li>
                               <li>Application date : <span>{{joboffer.deadline}}</span></li>
                           </ul>
-                         <div class="apply-btn2">
+                         <div class="apply-btn2"    >
                          
-                            <a routerLink="uploadCv" class="btn" >Apply Now</a>
+                            <a routerLink="uploadCv" class="btn"  *ngIf="currentuser.role=='USER'" >Apply Now</a>
                          </div>
                        </div>
                         <div class="post-details4  mb-50">
