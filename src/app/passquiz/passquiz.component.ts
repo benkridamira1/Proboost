@@ -3,6 +3,7 @@ import { ActivatedRoute , Router} from '@angular/router';
 import { InterviewServiceService } from '../interviewService/interview-service.service';
 import { QuestionService } from '../quizService/question.service';
 import { RecordServiceService } from '../recordservice/record-service.service';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-passquiz',
@@ -18,10 +19,12 @@ export class PassquizComponent implements OnInit {
   numberquestions:any =[];
   passed:any=[];
   constructor(private _Activatedroute:ActivatedRoute,private interviewService:InterviewServiceService,private questionService:QuestionService
-    ,private recordService:RecordServiceService) { }
+    ,private recordService:RecordServiceService,private authservice:AuthenticationService) { }
 
   ngOnInit(): void {
 
+   this.authservice.CurrentUser().subscribe(res =>{
+    var currentuser=res;
     this._Activatedroute.paramMap.subscribe(params => { 
       this.id=params.get('id');
       this.interview =this.interviewService.getoneinterview(this.id).subscribe(res =>{
@@ -33,7 +36,7 @@ export class PassquizComponent implements OnInit {
          this.questionService.getnumberofquestiosn(q.id).subscribe(res =>{
            this.numberquestions[q.id]=res;
          });
-         this.recordService.getrecord("AngularUser",q.id).subscribe(res =>{
+         this.recordService.getrecord(currentuser.prenom+" "+currentuser.nom,q.id).subscribe(res =>{
            this.passed[q.id]=res;
          })
         })
@@ -41,6 +44,12 @@ export class PassquizComponent implements OnInit {
 
      
   });
+
+
+   })
+
+
+    
 
 
   }
